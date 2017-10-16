@@ -12,4 +12,7 @@ package Logica_Juego;
  **/
 public class Logica {
     
+    public boolean verificarInicio(String jug1,String jug2){
+        return !jug1.isEmpty() && !jug2.isEmpty();
+    }
 }
