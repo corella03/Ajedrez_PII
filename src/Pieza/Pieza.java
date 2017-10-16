@@ -13,8 +13,8 @@ import Tablero.Casilla;
  ** 16/10/2017
  **/
 public abstract class Pieza {
-    Color color;
-    Casilla casilla;
+    private Color color;
+    private Casilla casilla;
     public Pieza() {
     }
     public Pieza(Color color) {
