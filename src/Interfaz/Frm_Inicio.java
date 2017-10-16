@@ -182,9 +182,10 @@ public class Frm_Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        Frm_Juego j = new Frm_Juego(log,txtJugador1.getText());
+        Frm_Juego j = new Frm_Juego(log,txtJugador1.getText(),txtJugador2.getText());
         j.setVisible(true);
         j.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void lblDadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDadoMousePressed

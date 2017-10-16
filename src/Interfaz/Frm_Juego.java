@@ -20,6 +20,8 @@ public class Frm_Juego extends javax.swing.JFrame {
      */
     private Label[][] labels;
     private Logica log;
+    private String j1;
+    private String j2;
     
     public Frm_Juego() {
         initComponents();
@@ -29,13 +31,16 @@ public class Frm_Juego extends javax.swing.JFrame {
         creaLabels();
         setBackground();
     }
-    public Frm_Juego(Logica log, String jug1) {
+    public Frm_Juego(Logica log, String jug1,String jug2) {
         initComponents();
         setLocationRelativeTo(null);
         this.log = log;
         labels = new Label[8][8];
         creaLabels();
+        j1 = jug1;
+        j2 = jug2;
         setBackground();
+        
     }
     public void creaLabels() {
         int x = 20;
@@ -77,7 +82,9 @@ public class Frm_Juego extends javax.swing.JFrame {
         jpanel = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         pnlJug1 = new javax.swing.JPanel();
+        lblJug1 = new javax.swing.JLabel();
         pnlJug2 = new javax.swing.JPanel();
+        lblJug2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -92,28 +99,44 @@ public class Frm_Juego extends javax.swing.JFrame {
 
         pnlJug1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
+        lblJug1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+
         javax.swing.GroupLayout pnlJug1Layout = new javax.swing.GroupLayout(pnlJug1);
         pnlJug1.setLayout(pnlJug1Layout);
         pnlJug1Layout.setHorizontalGroup(
             pnlJug1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 318, Short.MAX_VALUE)
+            .addGroup(pnlJug1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(225, Short.MAX_VALUE))
         );
         pnlJug1Layout.setVerticalGroup(
             pnlJug1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 323, Short.MAX_VALUE)
+            .addGroup(pnlJug1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(289, Short.MAX_VALUE))
         );
 
         pnlJug2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        lblJug2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
         javax.swing.GroupLayout pnlJug2Layout = new javax.swing.GroupLayout(pnlJug2);
         pnlJug2.setLayout(pnlJug2Layout);
         pnlJug2Layout.setHorizontalGroup(
             pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pnlJug2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblJug2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlJug2Layout.setVerticalGroup(
             pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
+            .addGroup(pnlJug2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblJug2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(276, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpanelLayout = new javax.swing.GroupLayout(jpanel);
@@ -121,13 +144,13 @@ public class Frm_Juego extends javax.swing.JFrame {
         jpanelLayout.setHorizontalGroup(
             jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLayout.createSequentialGroup()
-                .addGap(0, 1131, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(803, Short.MAX_VALUE)
                 .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(pnlJug1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlJug2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlJug2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlJug1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
         );
         jpanelLayout.setVerticalGroup(
@@ -136,9 +159,9 @@ public class Frm_Juego extends javax.swing.JFrame {
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlJug1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(pnlJug2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,6 +183,8 @@ public class Frm_Juego extends javax.swing.JFrame {
     public void setBackground(){
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
+        lblJug1.setText(j1);
+        lblJug2.setText(j2);
     }
     
     /**
@@ -200,6 +225,8 @@ public class Frm_Juego extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JPanel jpanel;
+    private javax.swing.JLabel lblJug1;
+    private javax.swing.JLabel lblJug2;
     private javax.swing.JPanel pnlJug1;
     private javax.swing.JPanel pnlJug2;
     // End of variables declaration//GEN-END:variables
