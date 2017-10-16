@@ -29,10 +29,11 @@ public abstract class Pieza {
         return true;
     }
     /**
-     * 
+     * //Preguntar si receibe algo por parametro porque en el enunciado no viene
+     * @param casilla
      * @return 
      */
-    public abstract boolean puedeMoverse();
+    public abstract boolean puedeMoverse(Casilla casilla);
     /**
      * 
      * @param casilla

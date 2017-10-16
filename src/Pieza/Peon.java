@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package Pieza;
-
 import Logica_Juego.Color;
 import Tablero.Casilla;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -20,13 +18,19 @@ public class Peon extends Pieza{
     public Peon(Color color) {
         super(color);
     }
+    /**
+     * 
+     * @return 
+     */
+    public boolean estaEnPosicionOriginal(){
+        return true;
+    }
     @Override
-    public boolean puedeMoverse() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean puedeMoverse(Casilla casilla) {
+        return true;
     }
     @Override
     public boolean mover(Casilla casilla) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        return true;
     }
-   
 }
