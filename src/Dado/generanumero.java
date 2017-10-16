@@ -16,8 +16,7 @@ public class generanumero {
     
     public int calculanumero() {
         Random Generar = new Random();
-        int num = Generar.nextInt(2) + 1;
-        System.out.println(num);
+        int num = Generar.nextInt(6) + 1;
         return num;
     }
 }

@@ -20,23 +20,22 @@ public class Frm_Juego extends javax.swing.JFrame {
      */
     private Label[][] labels;
     private Logica log;
+    
     public Frm_Juego() {
         initComponents();
         setLocationRelativeTo(null);
         log = new Logica();
-        btnExit.setContentAreaFilled(false);
         labels = new Label[8][8];
         creaLabels();
-        btnExit.setBorder(null);
+        setBackground();
     }
-    public Frm_Juego(Logica log) {
+    public Frm_Juego(Logica log, String jug1) {
         initComponents();
         setLocationRelativeTo(null);
         this.log = log;
         labels = new Label[8][8];
         creaLabels();
-        btnExit.setContentAreaFilled(false);
-        btnExit.setBorder(null);
+        setBackground();
     }
     public void creaLabels() {
         int x = 20;
@@ -77,6 +76,8 @@ public class Frm_Juego extends javax.swing.JFrame {
 
         jpanel = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
+        pnlJug1 = new javax.swing.JPanel();
+        pnlJug2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -89,19 +90,55 @@ public class Frm_Juego extends javax.swing.JFrame {
             }
         });
 
+        pnlJug1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+
+        javax.swing.GroupLayout pnlJug1Layout = new javax.swing.GroupLayout(pnlJug1);
+        pnlJug1.setLayout(pnlJug1Layout);
+        pnlJug1Layout.setHorizontalGroup(
+            pnlJug1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 318, Short.MAX_VALUE)
+        );
+        pnlJug1Layout.setVerticalGroup(
+            pnlJug1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 323, Short.MAX_VALUE)
+        );
+
+        pnlJug2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        javax.swing.GroupLayout pnlJug2Layout = new javax.swing.GroupLayout(pnlJug2);
+        pnlJug2.setLayout(pnlJug2Layout);
+        pnlJug2Layout.setHorizontalGroup(
+            pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlJug2Layout.setVerticalGroup(
+            pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 312, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jpanelLayout = new javax.swing.GroupLayout(jpanel);
         jpanel.setLayout(jpanelLayout);
         jpanelLayout.setHorizontalGroup(
             jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLayout.createSequentialGroup()
-                .addGap(0, 919, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 1131, Short.MAX_VALUE)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pnlJug1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlJug2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
         jpanelLayout.setVerticalGroup(
             jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanelLayout.createSequentialGroup()
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 718, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(pnlJug1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlJug2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,6 +157,11 @@ public class Frm_Juego extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+    public void setBackground(){
+        btnExit.setContentAreaFilled(false);
+        btnExit.setBorder(null);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -158,5 +200,7 @@ public class Frm_Juego extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JPanel jpanel;
+    private javax.swing.JPanel pnlJug1;
+    private javax.swing.JPanel pnlJug2;
     // End of variables declaration//GEN-END:variables
 }
