@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package Pieza;
-
+import Logica_Juego.Color;
 import Tablero.Casilla;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -14,17 +13,17 @@ import Tablero.Casilla;
  ** 16/10/2017
  **/
 public class Alfil extends Pieza{
-
-    @Override
-    public boolean puedeMoverse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Alfil() {
     }
-
+    public Alfil(Color color) {
+        super(color);
+    }
     @Override
     public boolean mover(Casilla casilla) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
-
-    
-    
+    @Override
+    public boolean puedeMoverse(Casilla casilla) {
+        return true;
+    }  
 }
