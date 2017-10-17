@@ -4,16 +4,13 @@
  * and open the template in the editor.
  */
 package Dado;
-
 import java.util.Random;
-
 /**
- *
- * @author jenni
+ **
+ ** @author Luis Alonso Corella Chaves
+ ** @author Carlos Daniel Martines Sequeira * 16/10/2017
  */
 public class generanumero {
-
-    
     public int calculanumero() {
         Random Generar = new Random();
         int num = Generar.nextInt(6) + 1;

@@ -4,17 +4,14 @@
  * and open the template in the editor.
  */
 package Dado;
-
 import javax.swing.ImageIcon;
-
 /**
- *
- * @author jenni
+ **
+ ** @author Luis Alonso Corella Chaves
+ ** @author Carlos Daniel Martines Sequeira * 16/10/2017
  */
 public class imagenesResul {
-
-    public ImageIcon icoImagen;
-
+    private ImageIcon icoImagen;
     public ImageIcon Imaen(int vDados) {
         switch (vDados) {
             case 1:

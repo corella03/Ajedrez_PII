@@ -4,26 +4,21 @@
  * and open the template in the editor.
  */
 package Interfaz;
-
 import Dado.generanumero;
 import Dado.imagenes1;
 import Dado.imagenesResul;
 import Logica_Juego.*;
 import javax.swing.JOptionPane;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
  ** @author Carlos Daniel Martines Sequeira * 16/10/2017
- *
  */
 public class Frm_Inicio extends javax.swing.JFrame {
-
     /**
      * Creates new form P_View
      */
     private Logica log;
-
     public Frm_Inicio() {
         initComponents();
         setLocationRelativeTo(null);
@@ -34,7 +29,34 @@ public class Frm_Inicio extends javax.swing.JFrame {
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
     }
-
+    public void irAFrmJuego(){
+        Frm_Juego j = new Frm_Juego(log,txtJugador1.getText(),txtJugador2.getText());
+        j.setVisible(true);
+        j.setLocationRelativeTo(null);
+        dispose();
+    }
+    public void verificarInicio(){
+        if (log.verificarInicio(txtJugador1.getText(), txtJugador2.getText())) {
+            generarNum();
+            btnInicio.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Digite los Nombres de los Jugadores.");
+        }
+    }
+    public void generarNum() {
+        generanumero objDado = new generanumero();
+        int dados = objDado.calculanumero();
+        imagenesResul objImag1 = new imagenesResul();
+        lblDado.setIcon(objImag1.Imaen(dados));
+        elegirganador(dados);
+    }
+    public void elegirganador(int num) {
+        if (num % 2 == 0) {
+            lblResultado.setText("El ganador es el jugador: " + txtJugador1.getText());
+        } else {
+            lblResultado.setText("El ganador es el jugador: " + txtJugador2.getText());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -182,44 +204,17 @@ public class Frm_Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        Frm_Juego j = new Frm_Juego(log,txtJugador1.getText(),txtJugador2.getText());
-        j.setVisible(true);
-        j.setLocationRelativeTo(null);
-        dispose();
+        irAFrmJuego();
     }//GEN-LAST:event_btnInicioActionPerformed
-
     private void lblDadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDadoMousePressed
-        if (log.verificarInicio(txtJugador1.getText(), txtJugador2.getText())) {
-            generarNum();
-            btnInicio.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Digite los Nombres de los Jugadores.");
-        }
+        verificarInicio();
     }//GEN-LAST:event_lblDadoMousePressed
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
     /**
      * @param args the command line arguments
      */
-    public void generarNum() {
-        generanumero objDado = new generanumero();
-        int dados = objDado.calculanumero();
-        imagenesResul objImag1 = new imagenesResul();
-
-        lblDado.setIcon(objImag1.Imaen(dados));
-        elegirganador(dados);
-    }
-
-    public void elegirganador(int num) {
-        if (num % 2 == 0) {
-            lblResultado.setText("El ganador es el jugador: " + txtJugador1.getText());
-        } else {
-            lblResultado.setText("El ganador es el jugador: " + txtJugador2.getText());
-        }
-    }
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
