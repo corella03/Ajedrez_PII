@@ -9,9 +9,11 @@ import Logica_Juego.Label;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import Logica_Juego.*;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.SwingConstants;
 
 /**
  **
@@ -50,29 +52,51 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     }
 
     public void creaLabels() {
-        int x = 20;
-        int y = 10;
+        int x = 5;
+        int y = 20;
+        int l = 0;
+        int n = 8;
         Border border = LineBorder.createBlackLineBorder();
         int i = 0;
-        for (int filas = 0; filas < 8; filas++) {
-            for (int columnas = 0; columnas < 8; columnas++) {
-                log.getMatrizL()[filas][columnas] = 0; 
-                log.getLabels()[filas][columnas] = new Label(x, y, 90, 90);
-                log.getLabels()[filas][columnas].setBorder(border);
+        for (int filas = 0; filas < 9; filas++) {
+            for (int columnas = 0; columnas < 9; columnas++) {
+                log.getMatrizL()[filas][columnas] = 0;
+                log.getLabels()[filas][columnas] = new Label(x, y, 80, 80);
+
                 ButtonController bt = new ButtonController();//method that make labels action
                 log.getLabels()[filas][columnas].addMouseListener(bt);
-                if (i == 0) {
-                    log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white.jpg")));
-                    i = 1;
-                } else {
-                    log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
-                    i = 0;
+                if (columnas > 0 & filas < 8) {
+                    if (i == 0) {
+                        log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white.jpg")));
+                        i = 1;
+                    } else {
+                        log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
+                        i = 0;
+                    }
+                    if (filas > 5) {
+                        log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/blanco.png")));
+                        log.getMatrizL()[filas][columnas] = 1;
+                    }
+                    log.getLabels()[filas][columnas].setBorder(border);
+                } else if (!(columnas == 0 & filas == 8)) {
+                    if (columnas == 0) {
+                        log.getLabels()[filas][columnas].setText(String.valueOf(n) +" " );
+                        log.getLabels()[filas][columnas].setFont(new java.awt.Font("Arial", 0, 25));
+                        log.getLabels()[filas][columnas].setHorizontalAlignment(SwingConstants.RIGHT);
+                        n--;
+                    } else if (columnas > 0 & filas == 8) {
+                        log.getLabels()[filas][columnas].setText(String.valueOf((char) ('A' + l)));
+                        log.getLabels()[filas][columnas].setFont(new java.awt.Font("Arial", 0, 25));
+                        log.getLabels()[filas][columnas].setHorizontalAlignment(SwingConstants.CENTER);
+                        log.getLabels()[filas][columnas].setVerticalAlignment(SwingConstants.TOP);
+                        l++;
+                    }
                 }
                 jpanel.add(log.getLabels()[filas][columnas]);
-                x += 90;
+                x += 80;
             }
-            y += 90;
-            x = 20;
+            y += 80;
+            x = 5;
             if (i == 0) {
                 i = 1;
             } else {
@@ -126,11 +150,25 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-
-            for (int i = 0; i < 8; i++) {
-                for (int k = 0; k < 8; k++) {
-                    if (e.getSource().equals(log.getLabels()[i][k])&log.getMatrizL()[i][k] == 0) {
-                        log.getLabels()[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/blanco.png")));
+            if (!log.isBus()) {
+                for (int i = 0; i < 9; i++) {
+                    for (int k = 0; k < 9; k++) {
+                        if (e.getSource().equals(log.getLabels()[i][k])) {
+                            log.setF(i);
+                            log.setC(k);
+                            log.setBus(true);
+                        }
+                    }
+                }
+            } else {
+                for (int i = 0; i < 9; i++) {
+                    for (int k = 0; k < 9; k++) {
+                        if (e.getSource().equals(log.getLabels()[i][k]) & log.getMatrizL()[i][k] == 0) {
+                            log.getLabels()[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/blanco.png")));
+                            log.getMatrizL()[log.getF()][log.getC()] = 0;
+                            log.getLabels()[log.getF()][log.getC()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
+                            log.setBus(false);
+                        }
                     }
                 }
             }
@@ -181,6 +219,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         pnlJug2 = new javax.swing.JPanel();
         lblJug2 = new javax.swing.JLabel();
         time2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -232,6 +271,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         time2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         time2.setText("1:00");
         time2.setFocusable(false);
+        time2.setOpaque(false);
 
         javax.swing.GroupLayout pnlJug2Layout = new javax.swing.GroupLayout(pnlJug2);
         pnlJug2.setLayout(pnlJug2Layout);
@@ -254,6 +294,9 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(250, Short.MAX_VALUE))
         );
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setText("JUGAR");
+
         javax.swing.GroupLayout jpanelLayout = new javax.swing.GroupLayout(jpanel);
         jpanel.setLayout(jpanelLayout);
         jpanelLayout.setHorizontalGroup(
@@ -262,7 +305,9 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLayout.createSequentialGroup()
-                .addContainerGap(749, Short.MAX_VALUE)
+                .addContainerGap(747, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(42, 42, 42)
                 .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(pnlJug2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlJug1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -274,9 +319,15 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlJug1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
-                .addComponent(pnlJug2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpanelLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(pnlJug2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(99, 99, 99))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -334,6 +385,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jpanel;
     private javax.swing.JLabel lblJug1;
     private javax.swing.JLabel lblJug2;
