@@ -83,8 +83,8 @@ public class Frm_Inicio extends javax.swing.JFrame {
         lblDado = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnInicio = new javax.swing.JButton();
         lblResultado = new javax.swing.JLabel();
+        btnInicio = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         lblImagenDeFondo = new javax.swing.JLabel();
 
@@ -94,24 +94,24 @@ public class Frm_Inicio extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 7, 14));
+        jLabel1.setForeground(new java.awt.Color(232, 35, 0));
         jLabel1.setText("AJEDREZ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 7, 14));
+        jLabel2.setForeground(new java.awt.Color(232, 35, 0));
         jLabel2.setText("Jugador 1:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 7, 14));
+        jLabel3.setForeground(new java.awt.Color(232, 35, 0));
         jLabel3.setText("Jugador 2:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, -1, -1));
 
         txtJugador1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        txtJugador1.setForeground(new java.awt.Color(204, 0, 0));
-        jPanel1.add(txtJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 205, -1));
+        txtJugador1.setForeground(new java.awt.Color(232, 35, 0));
+        jPanel1.add(txtJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 205, -1));
 
         txtJugador2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         txtJugador2.setForeground(new java.awt.Color(204, 0, 0));
@@ -128,21 +128,26 @@ public class Frm_Inicio extends javax.swing.JFrame {
                 lblDadoMousePressed(evt);
             }
         });
-        jPanel1.add(lblDado, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 257, 197));
+        jPanel1.add(lblDado, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 257, 197));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 7, 14));
+        jLabel5.setForeground(new java.awt.Color(232, 35, 0));
         jLabel5.setText("Impares");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 7, 14));
+        jLabel6.setForeground(new java.awt.Color(232, 35, 0));
         jLabel6.setText("Pares");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
+
+        lblResultado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblResultado.setForeground(new java.awt.Color(232, 35, 0));
+        lblResultado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 255, 370, 21));
 
         btnInicio.setBackground(new java.awt.Color(255, 255, 255));
         btnInicio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnInicio.setForeground(new java.awt.Color(204, 7, 14));
+        btnInicio.setForeground(new java.awt.Color(232, 35, 0));
         btnInicio.setText("Iniciar Juego");
         btnInicio.setFocusable(false);
         btnInicio.setOpaque(false);
@@ -151,10 +156,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
                 btnInicioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 510, -1, -1));
-
-        lblResultado.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jPanel1.add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 255, 257, 21));
+        jPanel1.add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 510, -1, -1));
 
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png"))); // NOI18N
         btnExit.setOpaque(false);

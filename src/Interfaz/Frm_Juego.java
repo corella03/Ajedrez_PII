@@ -73,8 +73,11 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                         log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
                         i = 0;
                     }
-                    if (filas > 5) {
+                    if (filas == 6) {
                         log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/blanco.png")));
+                        log.getMatrizL()[filas][columnas] = 1;
+                    }if (filas == 7) {
+                        log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png")));
                         log.getMatrizL()[filas][columnas] = 1;
                     }
                     log.getLabels()[filas][columnas].setBorder(border);
@@ -142,12 +145,9 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
             }
         }
     }
-
     private class ButtonController implements MouseListener {
-
         public void actionPerformed(ActionEvent e) {
         }
-
         @Override
         public void mouseClicked(MouseEvent e) {
             if (!log.isBus()) {
@@ -164,37 +164,28 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                 for (int i = 0; i < 9; i++) {
                     for (int k = 0; k < 9; k++) {
                         if (e.getSource().equals(log.getLabels()[i][k]) & log.getMatrizL()[i][k] == 0) {
-                            log.getLabels()[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/blanco.png")));
+                            log.getLabels()[i][k].setIcon(log.getLabels()[log.getF()][log.getC()].getIcon());
                             log.getMatrizL()[log.getF()][log.getC()] = 0;
                             log.getLabels()[log.getF()][log.getC()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
-                            log.setBus(false);
+                            log.setBus(false);                   
                         }
                     }
                 }
             }
         }
-
         @Override
         public void mousePressed(MouseEvent e) {
-
         }
-
         @Override
         public void mouseReleased(MouseEvent e) {
-
         }
-
         @Override
         public void mouseEntered(MouseEvent e) {
-
         }
-
         @Override
         public void mouseExited(MouseEvent e) {
-
         }
     }
-
     public void setBackground() {
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
