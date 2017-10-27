@@ -137,7 +137,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
             }
         });
 
-        pnlJug1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        pnlJug1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         lblJug1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
@@ -167,7 +167,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
                 .addContainerGap(248, Short.MAX_VALUE))
         );
 
-        pnlJug2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        pnlJug2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
         lblJug2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 

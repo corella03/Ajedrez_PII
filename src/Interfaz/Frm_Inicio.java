@@ -209,7 +209,10 @@ public class Frm_Inicio extends javax.swing.JFrame {
         irAFrmJuego();
     }//GEN-LAST:event_btnInicioActionPerformed
     private void lblDadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDadoMousePressed
-        verificarInicio();
+        if(log.isBus()){
+            verificarInicio();
+            log.setBus(false);
+        }
     }//GEN-LAST:event_lblDadoMousePressed
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
