@@ -21,6 +21,10 @@ public class Casilla {
     public Casilla(Color color, Coordenada coordenada) {
         this.color = color;
         this.coordenada = coordenada;
+        this.color = Color.BLANCO;
+        if(this.color == Color.NEGRO){
+        
+        }
     }
     /**
      * 

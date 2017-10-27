@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Tablero;
+import Logica_Juego.Color;
 import Logica_Juego.*;
 import Pieza.*;
 /**
