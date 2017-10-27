@@ -25,5 +25,5 @@ public class Alfil extends Pieza{
     @Override
     public boolean puedeMoverse(Casilla casilla) {
         return true;
-    }  
+    }
 }

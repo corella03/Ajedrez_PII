@@ -37,16 +37,15 @@ public class Frm_Inicio extends javax.swing.JFrame {
     }
     public void verificarInicio(){
         if (log.verificarInicio(txtJugador1.getText(), txtJugador2.getText())) {
-            if(log.verificarIgualdadDeJugadores(txtJugador1.getText(), txtJugador2.getText())){
-                //log.setBus(false);
+            if(log.verificarIgualdadDeJugadores(txtJugador1.getText().trim().toLowerCase()
+                    , txtJugador2.getText().trim().toLowerCase())){
                 generarNum();
                 btnInicio.setVisible(true);
             }else{
-                //log.setBus(true);
-                JOptionPane.showMessageDialog(null, "Son iguales.");
+                lblMensaje.setText("El nombre de los jugadores son iguales.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Digite los Nombres de los Jugadores.");
+            lblMensaje.setText("Debes digitar el nombre de ambos jugadores.");
         }
     }
     public void generarNum() {
@@ -80,28 +79,48 @@ public class Frm_Inicio extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtJugador1 = new javax.swing.JTextField();
         txtJugador2 = new javax.swing.JTextField();
+        lblMensaje = new javax.swing.JLabel();
         lblDado = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
         lblResultado = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
+        lblImagenDeFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 7, 14));
         jLabel1.setText("AJEDREZ");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 7, 14));
         jLabel2.setText("Jugador 1:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 7, 14));
         jLabel3.setText("Jugador 2:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, -1, -1));
 
         txtJugador1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        txtJugador1.setForeground(new java.awt.Color(204, 0, 0));
+        jPanel1.add(txtJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 205, -1));
 
         txtJugador2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
+        txtJugador2.setForeground(new java.awt.Color(204, 0, 0));
+        jPanel1.add(txtJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 205, -1));
+
+        lblMensaje.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblMensaje.setForeground(new java.awt.Color(204, 7, 14));
+        lblMensaje.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 361, 37));
 
         lblDado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,103 +128,55 @@ public class Frm_Inicio extends javax.swing.JFrame {
                 lblDadoMousePressed(evt);
             }
         });
+        jPanel1.add(lblDado, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 257, 197));
 
-        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 7, 14));
         jLabel5.setText("Impares");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, -1, -1));
 
-        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(204, 7, 14));
         jLabel6.setText("Pares");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, -1, -1));
 
+        btnInicio.setBackground(new java.awt.Color(255, 255, 255));
         btnInicio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnInicio.setForeground(new java.awt.Color(204, 7, 14));
         btnInicio.setText("Iniciar Juego");
         btnInicio.setFocusable(false);
+        btnInicio.setOpaque(false);
         btnInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInicioActionPerformed(evt);
             }
         });
+        jPanel1.add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 510, -1, -1));
 
         lblResultado.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jPanel1.add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 255, 257, 21));
 
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png"))); // NOI18N
+        btnExit.setOpaque(false);
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
             }
         });
+        jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, 51, 55));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(288, 288, 288))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(382, 382, 382))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblDado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblResultado, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
-                        .addGap(326, 326, 326))
-                    .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnInicio)
-                        .addGap(399, 399, 399))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(56, 56, 56)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblDado, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(btnInicio)
-                .addContainerGap(195, Short.MAX_VALUE))
-        );
+        lblImagenDeFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoPrincipal.jpg"))); // NOI18N
+        jPanel1.add(lblImagenDeFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -272,6 +243,8 @@ public class Frm_Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDado;
+    private javax.swing.JLabel lblImagenDeFondo;
+    private javax.swing.JLabel lblMensaje;
     private javax.swing.JLabel lblResultado;
     private javax.swing.JTextField txtJugador1;
     private javax.swing.JTextField txtJugador2;
