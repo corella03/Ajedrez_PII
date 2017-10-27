@@ -14,9 +14,28 @@ public class Logica {
     private String jugador1;
     private String jugador2;
     private boolean bus = true;
+    private Label[][] labels = new Label[8][8];
+    private Integer[][] matrizL = new Integer[8][8];
     public boolean verificarInicio(String jug1,String jug2){
         return !jug1.isEmpty() && !jug2.isEmpty();
     }
+
+    public Integer[][] getMatrizL() {
+        return matrizL;
+    }
+
+    public void setMatrizL(Integer[][] matrizL) {
+        this.matrizL = matrizL;
+    }
+
+    public Label[][] getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Label[][] labels) {
+        this.labels = labels;
+    }
+    
     public String getJugador1() {
         return jugador1;
     }

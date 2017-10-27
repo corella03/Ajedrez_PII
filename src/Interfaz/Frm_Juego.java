@@ -4,45 +4,51 @@
  * and open the template in the editor.
  */
 package Interfaz;
+
 import Logica_Juego.Label;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import Logica_Juego.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
  ** @author Carlos Daniel Martines Sequeira * 15/10/2017
  *
  */
-public class Frm_Juego extends javax.swing.JFrame implements Runnable{
+public class Frm_Juego extends javax.swing.JFrame implements Runnable {
+
     /**
      * Creates new form Frm_Juego
      */
     Thread h1, t;
     int i = 60;
     int j = 9;
-    private Label[][] labels;
+
     private Logica log;
-    
+
     public Frm_Juego() {
         initComponents();
         h1 = new Thread(this);
         setLocationRelativeTo(null);
         log = new Logica();
-        labels = new Label[8][8];
         creaLabels();
         setBackground();
     }
+
     public Frm_Juego(Logica log) {
         initComponents();
         h1 = new Thread(this);
         h1.start();
         this.log = log;
-        labels = new Label[8][8];
         creaLabels();
         setBackground();
         run();
     }
+
     public void creaLabels() {
         int x = 20;
         int y = 10;
@@ -50,16 +56,19 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
         int i = 0;
         for (int filas = 0; filas < 8; filas++) {
             for (int columnas = 0; columnas < 8; columnas++) {
-                labels[filas][columnas] = new Label(x, y, 90, 90);
-                labels[filas][columnas].setBorder(border);
+                log.getMatrizL()[filas][columnas] = 0; 
+                log.getLabels()[filas][columnas] = new Label(x, y, 90, 90);
+                log.getLabels()[filas][columnas].setBorder(border);
+                ButtonController bt = new ButtonController();//method that make labels action
+                log.getLabels()[filas][columnas].addMouseListener(bt);
                 if (i == 0) {
-                    labels[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white.jpg")));
+                    log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white.jpg")));
                     i = 1;
                 } else {
-                    labels[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
+                    log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
                     i = 0;
                 }
-                jpanel.add(labels[filas][columnas]);
+                jpanel.add(log.getLabels()[filas][columnas]);
                 x += 90;
             }
             y += 90;
@@ -71,32 +80,33 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
             }
         }
     }
+
     public void run() {
         Thread ct = Thread.currentThread();
         while (ct == h1) {//this is a thread that it is modifying the time
             i = i - 1;
-            if(i==0){
+            if (i == 0) {
                 j--;
                 i = 59;
             }
             if (i <= 9) {
-                time.setText(j+":0" + i);
-                time2.setText(j+":0" + i);
+                time.setText(j + ":0" + i);
+                time2.setText(j + ":0" + i);
 
             } else {
-                time.setText(j+":" + i);
-                time2.setText(j+":" + i);
+                time.setText(j + ":" + i);
+                time2.setText(j + ":" + i);
             }
             // color for the square
-            if (j==0 & i == 21) {
+            if (j == 0 & i == 21) {
                 time.setForeground(java.awt.Color.orange);
                 time2.setForeground(java.awt.Color.orange);
             }
-            if (j==0 & i == 10) {
+            if (j == 0 & i == 10) {
                 time.setForeground(java.awt.Color.red);
                 time2.setForeground(java.awt.Color.red);
             }
-            if (j==0 & i == 0) {//Condition that it indicates when the time has finished
+            if (j == 0 & i == 0) {//Condition that it indicates when the time has finished
                 time.setText("Has Perdido");
                 time2.setText("Has Perdido");
                 h1.suspend();//suspend the time(thread)
@@ -104,15 +114,56 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
+
+    private class ButtonController implements MouseListener {
+
+        public void actionPerformed(ActionEvent e) {
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+            for (int i = 0; i < 8; i++) {
+                for (int k = 0; k < 8; k++) {
+                    if (e.getSource().equals(log.getLabels()[i][k])&log.getMatrizL()[i][k] == 0) {
+                        log.getLabels()[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/blanco.png")));
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
+
     public void setBackground() {
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
         lblJug1.setText(log.getJugador1());
         lblJug2.setText(log.getJugador2());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -244,7 +295,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        System.exit(0);          
+        System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
     /**
      * @param args the command line arguments
