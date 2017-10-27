@@ -33,11 +33,4 @@ public class Peon extends Pieza{
     public boolean mover(Casilla casilla) {
         return true;
     }
-    public static void main(String[] args) {
-        
-        for(int i = 0; i < 26; i++) {
-            System.out.println((char) ('A' + i )); 
-
-        }
-    }
 }
