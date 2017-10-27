@@ -126,11 +126,12 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-
+            
             for (int i = 0; i < 8; i++) {
                 for (int k = 0; k < 8; k++) {
                     if (e.getSource().equals(log.getLabels()[i][k])&log.getMatrizL()[i][k] == 0) {
-                        log.getLabels()[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/blanco.png")));
+                        log.getF = i;
+                        log.getC = k;
                     }
                 }
             }
