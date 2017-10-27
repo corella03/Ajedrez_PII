@@ -30,7 +30,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         btnExit.setBorder(null);
     }
     public void irAFrmJuego(){
-        Frm_Juego j = new Frm_Juego(log,txtJugador1.getText(),txtJugador2.getText());
+        Frm_Juego j = new Frm_Juego(log);
         j.setVisible(true);
         j.setLocationRelativeTo(null);
         dispose();
@@ -51,10 +51,12 @@ public class Frm_Inicio extends javax.swing.JFrame {
         elegirganador(dados);
     }
     public void elegirganador(int num) {
+        log.setJugador1(txtJugador1.getText());
+        log.setJugador2(txtJugador2.getText());
         if (num % 2 == 0) {
-            lblResultado.setText("El ganador es el jugador: " + txtJugador1.getText());
+            lblResultado.setText("El ganador es el jugador: " + log.getJugador1());
         } else {
-            lblResultado.setText("El ganador es el jugador: " + txtJugador2.getText());
+            lblResultado.setText("El ganador es el jugador: " + log.getJugador2());
         }
     }
     /**

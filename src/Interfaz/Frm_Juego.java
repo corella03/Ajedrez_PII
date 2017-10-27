@@ -22,8 +22,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
     int i = 60;
     private Label[][] labels;
     private Logica log;
-    private String j1;
-    private String j2;
     public Frm_Juego() {
         initComponents();
         h1 = new Thread(this);
@@ -33,15 +31,13 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
         creaLabels();
         setBackground();
     }
-    public Frm_Juego(Logica log, String jug1, String jug2) {
+    public Frm_Juego(Logica log) {
         initComponents();
         h1 = new Thread(this);
         h1.start();
         this.log = log;
         labels = new Label[8][8];
         creaLabels();
-        j1 = jug1;
-        j2 = jug2;
         setBackground();
         run();
     }
@@ -108,8 +104,8 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
     public void setBackground() {
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
-        lblJug1.setText(j1);
-        lblJug2.setText(j2);
+        lblJug1.setText(log.getJugador1());
+        lblJug2.setText(log.getJugador2());
     }
     /**
      * This method is called from within the constructor to initialize the form.
