@@ -31,6 +31,7 @@ public class Casilla {
      * @return 
      */
     public boolean estaOcupada(){
+        
        return true;
     }
     public Color getColor() {

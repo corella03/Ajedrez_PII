@@ -37,8 +37,14 @@ public class Frm_Inicio extends javax.swing.JFrame {
     }
     public void verificarInicio(){
         if (log.verificarInicio(txtJugador1.getText(), txtJugador2.getText())) {
-            generarNum();
-            btnInicio.setVisible(true);
+            if(log.verificarIgualdadDeJugadores(txtJugador1.getText(), txtJugador2.getText())){
+                //log.setBus(false);
+                generarNum();
+                btnInicio.setVisible(true);
+            }else{
+                //log.setBus(true);
+                JOptionPane.showMessageDialog(null, "Son iguales.");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Digite los Nombres de los Jugadores.");
         }
@@ -211,7 +217,6 @@ public class Frm_Inicio extends javax.swing.JFrame {
     private void lblDadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDadoMousePressed
         if(log.isBus()){
             verificarInicio();
-            log.setBus(false);
         }
     }//GEN-LAST:event_lblDadoMousePressed
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
