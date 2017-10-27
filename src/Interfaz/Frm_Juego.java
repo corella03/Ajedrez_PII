@@ -4,13 +4,10 @@
  * and open the template in the editor.
  */
 package Interfaz;
-
 import Logica_Juego.Label;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import Logica_Juego.*;
-import javax.swing.JOptionPane;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -18,7 +15,6 @@ import javax.swing.JOptionPane;
  *
  */
 public class Frm_Juego extends javax.swing.JFrame implements Runnable{
-
     /**
      * Creates new form Frm_Juego
      */
@@ -28,7 +24,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
     private Logica log;
     private String j1;
     private String j2;
-
     public Frm_Juego() {
         initComponents();
         h1 = new Thread(this);
@@ -38,7 +33,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
         creaLabels();
         setBackground();
     }
-
     public Frm_Juego(Logica log, String jug1, String jug2) {
         initComponents();
         h1 = new Thread(this);
@@ -51,7 +45,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
         setBackground();
         run();
     }
-
     public void creaLabels() {
         int x = 20;
         int y = 10;
@@ -80,12 +73,10 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
             }
         }
     }
-
     public void run() {
         Thread ct = Thread.currentThread();
         while (ct == h1) {//this is a thread that it is modifying the time
             i = i - 1;
-
             if (i <= 9) {
                 time.setText("0:0" + i);
                 time2.setText("0:0" + i);
@@ -93,7 +84,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
             } else {
                 time.setText("0:" + i);
                 time2.setText("0:" + i);
-
             }
             // color for the square
             if (i == 21) {
@@ -104,12 +94,10 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
                 time.setForeground(java.awt.Color.red);
                 time2.setForeground(java.awt.Color.red);
             }
-
             if (i == 0) {//Condition that it indicates when the time has finished
                 time.setText("Has Perdido");
                 time2.setText("Has Perdido");
                 h1.suspend();//suspend the time(thread)
-
             }
             try {
                 Thread.sleep(1000);
@@ -117,7 +105,12 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
             }
         }
     }
-
+    public void setBackground() {
+        btnExit.setContentAreaFilled(false);
+        btnExit.setBorder(null);
+        lblJug1.setText(j1);
+        lblJug2.setText(j2);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -251,13 +244,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
-    public void setBackground() {
-        btnExit.setContentAreaFilled(false);
-        btnExit.setBorder(null);
-        lblJug1.setText(j1);
-        lblJug2.setText(j2);
-    }
-
     /**
      * @param args the command line arguments
      */
