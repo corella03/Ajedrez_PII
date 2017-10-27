@@ -20,8 +20,10 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
      */
     Thread h1, t;
     int i = 60;
+    int j = 9;
     private Label[][] labels;
     private Logica log;
+    
     public Frm_Juego() {
         initComponents();
         h1 = new Thread(this);
@@ -73,24 +75,28 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
         Thread ct = Thread.currentThread();
         while (ct == h1) {//this is a thread that it is modifying the time
             i = i - 1;
+            if(i==0){
+                j--;
+                i = 59;
+            }
             if (i <= 9) {
-                time.setText("0:0" + i);
-                time2.setText("0:0" + i);
+                time.setText(j+":0" + i);
+                time2.setText(j+":0" + i);
 
             } else {
-                time.setText("0:" + i);
-                time2.setText("0:" + i);
+                time.setText(j+":" + i);
+                time2.setText(j+":" + i);
             }
             // color for the square
-            if (i == 21) {
+            if (j==0 & i == 21) {
                 time.setForeground(java.awt.Color.orange);
                 time2.setForeground(java.awt.Color.orange);
             }
-            if (i == 10) {
+            if (j==0 & i == 10) {
                 time.setForeground(java.awt.Color.red);
                 time2.setForeground(java.awt.Color.red);
             }
-            if (i == 0) {//Condition that it indicates when the time has finished
+            if (j==0 & i == 0) {//Condition that it indicates when the time has finished
                 time.setText("Has Perdido");
                 time2.setText("Has Perdido");
                 h1.suspend();//suspend the time(thread)
@@ -238,7 +244,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        System.exit(0);
+        System.exit(0);          
     }//GEN-LAST:event_btnExitActionPerformed
     /**
      * @param args the command line arguments
