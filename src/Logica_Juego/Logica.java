@@ -14,10 +14,23 @@ public class Logica {
     private String jugador1;
     private String jugador2;
     private boolean bus = true;
-    private Label[][] labels = new Label[8][8];
-    private Integer[][] matrizL = new Integer[8][8];
+    private Label[][] labels ;
+    private Integer[][] matrizL;
+    public Logica() {
+        labels = new Label[8][8];
+        matrizL = new Integer[8][8];
+    }
+    public boolean verificarIgualdadDeJugadores(String jug1, String jug2){
+        if(jug1.equals(jug2)){
+            bus = true;
+            return false;
+        }
+        bus = false;
+        return true;
+    }
     public boolean verificarInicio(String jug1,String jug2){
-        return !jug1.isEmpty() && !jug2.isEmpty();
+            
+            return !jug1.isEmpty() && !jug2.isEmpty();
     }
 
     public Integer[][] getMatrizL() {

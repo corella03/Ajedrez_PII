@@ -13,7 +13,7 @@ package Tablero;
 public class Coordenada {
     private String letra;
     private int numero;
-    public Coordenada(Coordenada coordenada) {//preguntar este tambien
+    public Coordenada(Coordenada coordenada) {
     }
     public Coordenada(String letra, int numero) {
         this.letra = letra;
