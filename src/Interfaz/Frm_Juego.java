@@ -38,17 +38,17 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         setLocationRelativeTo(null);
         log = new Logica();
         creaLabels();
+        piezas();
         setBackground();
     }
 
     public Frm_Juego(Logica log) {
         initComponents();
         h1 = new Thread(this);
-        h1.start();
         this.log = log;
         creaLabels();
+        piezas();
         setBackground();
-        run();
     }
 
     public void creaLabels() {
@@ -73,13 +73,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                         log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
                         i = 0;
                     }
-                    if (filas == 6) {
-                        log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/blanco.png")));
-                        log.getMatrizL()[filas][columnas] = 1;
-                    }if (filas == 7) {
-                        log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png")));
-                        log.getMatrizL()[filas][columnas] = 1;
-                    }
                     log.getLabels()[filas][columnas].setBorder(border);
                 } else if (!(columnas == 0 & filas == 8)) {
                     if (columnas == 0) {
@@ -88,7 +81,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                         log.getLabels()[filas][columnas].setHorizontalAlignment(SwingConstants.RIGHT);
                         n--;
                     } else if (columnas > 0 & filas == 8) {
-                        log.getLabels()[filas][columnas].setText(String.valueOf((char) ('A' + l)));
+                        log.getLabels()[filas][columnas].setText(String.valueOf((char) ('a' + l)));
                         log.getLabels()[filas][columnas].setFont(new java.awt.Font("Arial", 0, 25));
                         log.getLabels()[filas][columnas].setHorizontalAlignment(SwingConstants.CENTER);
                         log.getLabels()[filas][columnas].setVerticalAlignment(SwingConstants.TOP);
@@ -151,23 +144,29 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         @Override
         public void mouseClicked(MouseEvent e) {
             if (!log.isBus()) {
-                for (int i = 0; i < 9; i++) {
+                for (int f = 0; f < 9; f++) {
                     for (int k = 0; k < 9; k++) {
-                        if (e.getSource().equals(log.getLabels()[i][k])) {
-                            log.setF(i);
+                        if (e.getSource().equals(log.getLabels()[f][k])) {
+                            log.setF(f);
                             log.setC(k);
                             log.setBus(true);
+                            f = 8;
+                            k = 8;
                         }
                     }
                 }
             } else {
-                for (int i = 0; i < 9; i++) {
+                for (int f = 0; f < 9; f++) {
                     for (int k = 0; k < 9; k++) {
-                        if (e.getSource().equals(log.getLabels()[i][k]) & log.getMatrizL()[i][k] == 0) {
-                            log.getLabels()[i][k].setIcon(log.getLabels()[log.getF()][log.getC()].getIcon());
+                        if (e.getSource().equals(log.getLabels()[f][k]) & log.getMatrizL()[f][k] == 0) {
+                            log.getLabels()[f][k].setIcon(log.getLabels()[log.getF()][log.getC()].getIcon());
                             log.getMatrizL()[log.getF()][log.getC()] = 0;
                             log.getLabels()[log.getF()][log.getC()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
-                            log.setBus(false);                   
+                            log.setF(0);
+                            log.setC(0);
+                            log.setBus(false);  
+                            f = 8;
+                            k = 8;
                         }
                     }
                 }
@@ -191,6 +190,42 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         btnExit.setBorder(null);
         lblJug1.setText(log.getJugador1());
         lblJug2.setText(log.getJugador2());
+    }
+    public void piezas(){
+        //Piezas Negras
+        log.getLabels()[0][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreNB.jpg")));
+        log.getLabels()[0][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoNN.jpg")));
+        log.getLabels()[0][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilNB.jpg")));
+        log.getLabels()[0][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reinaNN.jpg")));
+        log.getLabels()[0][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reyNB.jpg")));
+        log.getLabels()[0][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilNN.jpg")));
+        log.getLabels()[0][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoNB.jpg")));
+        log.getLabels()[0][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreNN.jpg")));
+        log.getLabels()[1][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
+        log.getLabels()[1][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
+        log.getLabels()[1][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
+        log.getLabels()[1][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
+        log.getLabels()[1][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
+        log.getLabels()[1][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
+        log.getLabels()[1][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
+        log.getLabels()[1][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
+        //Piezas Blancas
+        log.getLabels()[7][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreBN.jpg")));
+        log.getLabels()[7][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoBB.jpg")));
+        log.getLabels()[7][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilBN.jpg")));
+        log.getLabels()[7][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reinaBB.jpg")));
+        log.getLabels()[7][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reyBN.jpg")));
+        log.getLabels()[7][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilBB.jpg")));
+        log.getLabels()[7][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoBN.jpg")));
+        log.getLabels()[7][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreBB.jpg"))); 
+        log.getLabels()[6][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
+        log.getLabels()[6][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
+        log.getLabels()[6][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
+        log.getLabels()[6][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
+        log.getLabels()[6][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
+        log.getLabels()[6][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
+        log.getLabels()[6][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
+        log.getLabels()[6][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
     }
 
     /**
@@ -235,6 +270,11 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("JUGAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 680, -1, -1));
 
         pnlJug1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -243,7 +283,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         lblJug1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         time.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        time.setText("1:00");
+        time.setText("10:00");
 
         javax.swing.GroupLayout pnlJug1Layout = new javax.swing.GroupLayout(pnlJug1);
         pnlJug1.setLayout(pnlJug1Layout);
@@ -274,7 +314,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         lblJug2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         time2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        time2.setText("1:00");
+        time2.setText("10:00");
 
         javax.swing.GroupLayout pnlJug2Layout = new javax.swing.GroupLayout(pnlJug2);
         pnlJug2.setLayout(pnlJug2Layout);
@@ -316,6 +356,11 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        run();
+        h1.start();
+    }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * @param args the command line arguments
      */
