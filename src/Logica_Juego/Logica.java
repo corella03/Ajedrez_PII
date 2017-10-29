@@ -5,6 +5,8 @@
  */
 package Logica_Juego;
 
+import Tablero.Tablero;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -12,17 +14,16 @@ package Logica_Juego;
  *
  */
 public class Logica {
-
+private Tablero tablero;
     private String jugador1;
     private String jugador2;
     private boolean bus = true;
-    private Label[][] labels;
     private Integer[][] matrizL;
     int f = 0;
     int c = 0;
     public Logica() {
-        labels = new Label[9][9];
         matrizL = new Integer[9][9];
+        tablero = new Tablero();
     }
     public boolean verificarIgualdadDeJugadores(String jug1, String jug2) {
         if (jug1.equals(jug2)) {
@@ -62,13 +63,7 @@ public class Logica {
         this.matrizL = matrizL;
     }
 
-    public Label[][] getLabels() {
-        return labels;
-    }
-
-    public void setLabels(Label[][] labels) {
-        this.labels = labels;
-    }
+    
 
     public String getJugador1() {
         return jugador1;
@@ -93,4 +88,13 @@ public class Logica {
     public void setBus(boolean bus) {
         this.bus = bus;
     }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
+    
 }

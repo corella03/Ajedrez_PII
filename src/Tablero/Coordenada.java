@@ -11,8 +11,10 @@ package Tablero;
  ** 16/10/2017
  **/
 public class Coordenada {
-    private String letra;
+     private String letra;
     private int numero;
+    public Coordenada() {
+    }
     public Coordenada(Coordenada coordenada) {
     }
     public Coordenada(String letra, int numero) {

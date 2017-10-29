@@ -4,16 +4,15 @@
  * and open the template in the editor.
  */
 package Interfaz;
-
-import Logica_Juego.Label;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import Logica_Juego.*;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.SwingConstants;
+import Tablero.*;
+
 
 /**
  **
@@ -29,73 +28,62 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     Thread h1, t;
     int i = 60;
     int j = 9;
-
     private Logica log;
-
     public Frm_Juego() {
         initComponents();
         h1 = new Thread(this);
         setLocationRelativeTo(null);
         log = new Logica();
-        creaLabels();
-        setBackground();
+        inicioJuego();
     }
-
     public Frm_Juego(Logica log) {
         initComponents();
         h1 = new Thread(this);
-        h1.start();
         this.log = log;
-        creaLabels();
-        setBackground();
-        run();
+        inicioJuego();
     }
-
+    public void inicioJuego(){
+        creaLabels();
+        //piezas();
+        setBackground();
+        System.out.println(log.getTablero().getArregloTablero()[6][6].getColor());
+        System.out.println(log.getTablero().getArregloTablero()[1][4].getCoordenada());
+    }
     public void creaLabels() {
         int x = 5;
         int y = 20;
         int l = 0;
         int n = 8;
         Border border = LineBorder.createBlackLineBorder();
-        int i = 0;
         for (int filas = 0; filas < 9; filas++) {
             for (int columnas = 0; columnas < 9; columnas++) {
                 log.getMatrizL()[filas][columnas] = 0;
-                log.getLabels()[filas][columnas] = new Label(x, y, 80, 80);
-
+                log.getTablero().getArregloTablero()[filas][columnas] = new Casilla(x, y, 80, 80);
+                //System.out.println(log.getTablero().getArregloTablero()[filas][columnas].getColor());
                 ButtonController bt = new ButtonController();//method that make labels action
-                log.getLabels()[filas][columnas].addMouseListener(bt);
+                log.getTablero().getArregloTablero()[filas][columnas].addMouseListener(bt);
                 if (columnas > 0 & filas < 8) {
-                    if (i == 0) {
-                        log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white.jpg")));
-                        i = 1;
-                    } else {
-                        log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
-                        i = 0;
+                    if(log.getTablero().getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {                       
+                        log.getTablero().getArregloTablero()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white.jpg")));
+                    } else if(log.getTablero().getArregloTablero()[filas][columnas].getColor() == Color.NEGRO){
+                        log.getTablero().getArregloTablero()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));                        
                     }
-                    if (filas == 6) {
-                        log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/blanco.png")));
-                        log.getMatrizL()[filas][columnas] = 1;
-                    }if (filas == 7) {
-                        log.getLabels()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png")));
-                        log.getMatrizL()[filas][columnas] = 1;
-                    }
-                    log.getLabels()[filas][columnas].setBorder(border);
+                    log.getTablero().getArregloTablero()[filas][columnas].setBorder(border);
                 } else if (!(columnas == 0 & filas == 8)) {
                     if (columnas == 0) {
-                        log.getLabels()[filas][columnas].setText(String.valueOf(n) +" " );
-                        log.getLabels()[filas][columnas].setFont(new java.awt.Font("Arial", 0, 25));
-                        log.getLabels()[filas][columnas].setHorizontalAlignment(SwingConstants.RIGHT);
+                        log.getTablero().getArregloTablero()[filas][columnas].setText(String.valueOf(n) +" " );
+                        log.getTablero().getArregloTablero()[filas][columnas].setFont(new java.awt.Font("Arial", 0, 25));
+                        log.getTablero().getArregloTablero()[filas][columnas].setHorizontalAlignment(SwingConstants.RIGHT);
                         n--;
                     } else if (columnas > 0 & filas == 8) {
-                        log.getLabels()[filas][columnas].setText(String.valueOf((char) ('A' + l)));
-                        log.getLabels()[filas][columnas].setFont(new java.awt.Font("Arial", 0, 25));
-                        log.getLabels()[filas][columnas].setHorizontalAlignment(SwingConstants.CENTER);
-                        log.getLabels()[filas][columnas].setVerticalAlignment(SwingConstants.TOP);
+                        log.getTablero().getArregloTablero()[filas][columnas].setText(String.valueOf((char) ('a' + l)));
+                        log.getTablero().getArregloTablero()[filas][columnas].setFont(new java.awt.Font("Arial", 0, 25));
+                        log.getTablero().getArregloTablero()[filas][columnas].setHorizontalAlignment(SwingConstants.CENTER);
+                        log.getTablero().getArregloTablero()[filas][columnas].setVerticalAlignment(SwingConstants.TOP);
                         l++;
                     }
                 }
-                jpanel.add(log.getLabels()[filas][columnas]);
+                jpanel.add(log.getTablero().getArregloTablero()[filas][columnas]);
                 x += 80;
             }
             y += 80;
@@ -151,30 +139,39 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         @Override
         public void mouseClicked(MouseEvent e) {
             if (!log.isBus()) {
-                for (int i = 0; i < 9; i++) {
+                
+                for (int f = 0; f < 9; f++) {
                     for (int k = 0; k < 9; k++) {
-                        if (e.getSource().equals(log.getLabels()[i][k])) {
-                            log.setF(i);
+                       
+                        if (e.getSource().equals(log.getTablero().getArregloTablero()[f][k])) {
+                            log.setF(f);
                             log.setC(k);
                             log.setBus(true);
+                            f = 8;
+                            k = 8;
                         }
                     }
                 }
             } else {
-                for (int i = 0; i < 9; i++) {
+                for (int f = 0; f < 9; f++) {
                     for (int k = 0; k < 9; k++) {
-                        if (e.getSource().equals(log.getLabels()[i][k]) & log.getMatrizL()[i][k] == 0) {
-                            log.getLabels()[i][k].setIcon(log.getLabels()[log.getF()][log.getC()].getIcon());
+                         
+                        if (e.getSource().equals(log.getTablero().getArregloTablero()[f][k]) & log.getMatrizL()[f][k] == 0) {
+                            log.getTablero().getArregloTablero()[f][k].setIcon(log.getTablero().getArregloTablero()[log.getF()][log.getC()].getIcon());
                             log.getMatrizL()[log.getF()][log.getC()] = 0;
-                            log.getLabels()[log.getF()][log.getC()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
-                            log.setBus(false);                   
+                            log.getTablero().getArregloTablero()[log.getF()][log.getC()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
+                            log.setF(0);
+                            log.setC(0);
+                            log.setBus(false);  
+                            f = 8;
+                            k = 8;
                         }
                     }
                 }
             }
         }
         @Override
-        public void mousePressed(MouseEvent e) {
+        public void mousePressed(MouseEvent e) { 
         }
         @Override
         public void mouseReleased(MouseEvent e) {
@@ -186,13 +183,48 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         public void mouseExited(MouseEvent e) {
         }
     }
-    public void setBackground() {
+    public void setBackground(){
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
         lblJug1.setText(log.getJugador1());
         lblJug2.setText(log.getJugador2());
     }
-
+    public void piezas(){
+        //Piezas Negras
+        log.getTablero().getArregloTablero()[0][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreNB.jpg")));
+        log.getTablero().getArregloTablero()[0][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoNN.jpg")));
+        log.getTablero().getArregloTablero()[0][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilNB.jpg")));
+        log.getTablero().getArregloTablero()[0][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reinaNN.jpg")));
+        log.getTablero().getArregloTablero()[0][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reyNB.jpg")));
+        log.getTablero().getArregloTablero()[0][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilNN.jpg")));
+        log.getTablero().getArregloTablero()[0][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoNB.jpg")));
+        log.getTablero().getArregloTablero()[0][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreNN.jpg")));
+        log.getTablero().getArregloTablero()[1][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
+        log.getTablero().getArregloTablero()[1][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
+        log.getTablero().getArregloTablero()[1][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
+        log.getTablero().getArregloTablero()[1][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
+        log.getTablero().getArregloTablero()[1][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
+        log.getTablero().getArregloTablero()[1][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
+        log.getTablero().getArregloTablero()[1][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
+        log.getTablero().getArregloTablero()[1][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
+        //Piezas Blancas
+        log.getTablero().getArregloTablero()[7][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreBN.jpg")));
+        log.getTablero().getArregloTablero()[7][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoBB.jpg")));
+        log.getTablero().getArregloTablero()[7][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilBN.jpg")));
+        log.getTablero().getArregloTablero()[7][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reinaBB.jpg")));
+        log.getTablero().getArregloTablero()[7][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reyBN.jpg")));
+        log.getTablero().getArregloTablero()[7][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilBB.jpg")));
+        log.getTablero().getArregloTablero()[7][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoBN.jpg")));
+        log.getTablero().getArregloTablero()[7][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreBB.jpg"))); 
+        log.getTablero().getArregloTablero()[6][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
+        log.getTablero().getArregloTablero()[6][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
+        log.getTablero().getArregloTablero()[6][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
+        log.getTablero().getArregloTablero()[6][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
+        log.getTablero().getArregloTablero()[6][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
+        log.getTablero().getArregloTablero()[6][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
+        log.getTablero().getArregloTablero()[6][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
+        log.getTablero().getArregloTablero()[6][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -235,6 +267,11 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("JUGAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 680, -1, -1));
 
         pnlJug1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -243,7 +280,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         lblJug1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         time.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        time.setText("1:00");
+        time.setText("10:00");
 
         javax.swing.GroupLayout pnlJug1Layout = new javax.swing.GroupLayout(pnlJug1);
         pnlJug1.setLayout(pnlJug1Layout);
@@ -274,7 +311,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         lblJug2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         time2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        time2.setText("1:00");
+        time2.setText("10:00");
 
         javax.swing.GroupLayout pnlJug2Layout = new javax.swing.GroupLayout(pnlJug2);
         pnlJug2.setLayout(pnlJug2Layout);
@@ -316,6 +353,10 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        run();
+        h1.start();
+    }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -343,7 +384,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         }
         //</editor-fold>
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
