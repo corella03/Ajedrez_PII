@@ -7,6 +7,7 @@ package Interfaz;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import Logica_Juego.*;
+import Pieza.Torre;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
