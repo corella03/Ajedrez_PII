@@ -13,20 +13,26 @@ package Tablero;
 public class Coordenada {
     private static int letra = 0;
     private static int filas = 0;
-    private static int columnas = 1;
+    private static int columnas = 0;
     private static int numeroFijo = 8;
     private String letras;
     private int numeros;
     public Coordenada() {
-        if(filas < 8 && columnas > 0){
-           
-                this.numeros = filas;
-                this.letras = String.valueOf((char) ('A' + letra));
-                letra++;
+        if(filas != 8){
+            if(filas <= 9 && columnas > 0){
+            this.numeros = numeroFijo;
+            this.letras = String.valueOf((char) ('a' + letra));
+            letra++;
+            columnas++;
+            }else{
                 columnas++;
+            }
         }
-        if(columnas == 8){
+        if(columnas == 9){
             filas ++;
+            numeroFijo--;
+            letra = 0;
+            columnas = 0;
         }
     }
     public Coordenada(Coordenada coordenada) {
