@@ -12,8 +12,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.SwingConstants;
 import Tablero.*;
-
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -21,7 +19,6 @@ import Tablero.*;
  *
  */
 public class Frm_Juego extends javax.swing.JFrame implements Runnable {
-
     /**
      * Creates new form Frm_Juego
      */
@@ -44,10 +41,19 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     }
     public void inicioJuego(){
         creaLabels();
-        //piezas();
+        piezas();
         setBackground();
+        ver();
         System.out.println(log.getTablero().getArregloTablero()[6][6].getColor());
-        System.out.println(log.getTablero().getArregloTablero()[1][4].getCoordenada());
+        System.out.println(log.getTablero().getArregloTablero()[6][7].getCoordenada());
+       log.getTablero().getArregloTablero()[6][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png")));
+    }
+    public void ver(){
+        for (int filas = 0; filas < 8; filas++) {
+            for (int columnas = 1; columnas < 8; columnas++) {
+                System.out.println(log.getTablero().getArregloTablero()[filas][columnas].getCoordenada());
+            }
+        }
     }
     public void creaLabels() {
         int x = 5;
@@ -95,7 +101,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
             }
         }
     }
-
     public void run() {
         Thread ct = Thread.currentThread();
         while (ct == h1) {//this is a thread that it is modifying the time

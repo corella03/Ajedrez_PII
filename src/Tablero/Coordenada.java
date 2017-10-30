@@ -11,31 +11,45 @@ package Tablero;
  ** 16/10/2017
  **/
 public class Coordenada {
-     private String letra;
-    private int numero;
+    private static int letra = 0;
+    private static int filas = 0;
+    private static int columnas = 1;
+    private static int numeroFijo = 8;
+    private String letras;
+    private int numeros;
     public Coordenada() {
+        if(filas < 8 && columnas > 0){
+           
+                this.numeros = filas;
+                this.letras = String.valueOf((char) ('A' + letra));
+                letra++;
+                columnas++;
+        }
+        if(columnas == 8){
+            filas ++;
+        }
     }
     public Coordenada(Coordenada coordenada) {
     }
     public Coordenada(String letra, int numero) {
-        this.letra = letra;
-        this.numero = numero;
+        this.letras = letra;
+        this.numeros = numero;
     }
     public String getLetra() {
-        return letra;
+        return letras;
     }
     public int getNumero() {
-        return numero;
+        return numeros;
     }
     public void setLetra(String letra) {
-        this.letra = letra;
+        this.letras = letra;
     }
     public void setNumero(int numero) {
-        this.numero = numero;
+        this.numeros = numero;
     }
     //Falta lo de equals
     @Override
     public String toString() {
-        return "Coordenada: Letra(" + letra + ") -- Numero(" + numero +")";
+        return "Coordenada: Letra(" + letras + ") -- Numero(" + numeros +")";
     }
 }
