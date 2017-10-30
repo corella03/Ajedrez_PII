@@ -22,9 +22,9 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     /**
      * Creates new form Frm_Juego
      */
-    Thread h1, t;
-    int i = 60;
-    int j = 9;
+    private Thread h1, t;
+    private int segundos = 60;
+    private int minutos = 9;
     private Logica log;
     public Frm_Juego() {
         initComponents();
@@ -44,13 +44,13 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         piezas();
         setBackground();
         ver();
-        System.out.println(log.getTablero().getArregloTablero()[6][6].getColor());
-        System.out.println(log.getTablero().getArregloTablero()[6][7].getCoordenada());
-       log.getTablero().getArregloTablero()[6][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png")));
+        //System.out.println(log.getTablero().getArregloTablero()[6][6].getColor());
+        //System.out.println(log.getTablero().getArregloTablero()[6][7].getCoordenada());
+       //log.getTablero().getArregloTablero()[6][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png")));
     }
     public void ver(){
-        for (int filas = 0; filas < 8; filas++) {
-            for (int columnas = 1; columnas < 8; columnas++) {
+        for (int filas = 0; filas < 9; filas++) {
+            for (int columnas = 0; columnas < 9; columnas++) {
                 System.out.println(log.getTablero().getArregloTablero()[filas][columnas].getCoordenada());
             }
         }
@@ -94,42 +94,38 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
             }
             y += 80;
             x = 5;
-            if (i == 0) {
-                i = 1;
-            } else {
-                i = 0;
-            }
+            
         }
     }
     public void run() {
         Thread ct = Thread.currentThread();
         while (ct == h1) {//this is a thread that it is modifying the time
-            i = i - 1;
-            if (i == 0) {
-                j--;
-                i = 59;
+            segundos = segundos - 1;
+            if (segundos == 0) {
+                minutos--;
+                segundos = 59;
             }
-            if (i <= 9) {
-                time.setText(j + ":0" + i);
-                time2.setText(j + ":0" + i);
+            if (segundos <= 9) {
+                time.setText(minutos + ":0" + segundos);
+                time2.setText(minutos + ":0" + segundos);
 
             } else {
-                time.setText(j + ":" + i);
-                time2.setText(j + ":" + i);
+                time.setText(minutos + ":" + segundos);
+                time2.setText(minutos + ":" + segundos);
             }
             // color for the square
-            if (j == 0 & i == 21) {
+            if (minutos == 0 & segundos == 21) {
                 time.setForeground(java.awt.Color.orange);
                 time2.setForeground(java.awt.Color.orange);
             }
-            if (j == 0 & i == 10) {
+            if (minutos == 0 & segundos == 10) {
                 time.setForeground(java.awt.Color.red);
                 time2.setForeground(java.awt.Color.red);
             }
-            if (j == 0 & i == 0) {//Condition that it indicates when the time has finished
+            if (minutos == 0 & segundos == 0) {//Condition that it indicates when the time has finished
                 time.setText("Has Perdido");
                 time2.setText("Has Perdido");
-                h1.suspend();//suspend the time(thread)
+                h1.interrupt();//suspend the time(thread)
             }
             try {
                 Thread.sleep(1000);
