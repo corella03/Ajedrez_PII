@@ -94,11 +94,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
             }
             y += 80;
             x = 5;
-            if (i == 0) {
-                i = 1;
-            } else {
-                i = 0;
-            }
+            
         }
     }
     public void run() {
