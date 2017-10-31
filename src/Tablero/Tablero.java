@@ -20,6 +20,11 @@ public class Tablero {
     public Tablero() {
         partida = new InicioPartida();
         ArregloTablero = new Casilla[8][8];
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                ArregloTablero[i][j] = new Casilla();
+            }
+        }
     }
     public void colocarPieza(Coordenada coordenada, Pieza pieza){
     }

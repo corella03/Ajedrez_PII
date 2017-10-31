@@ -12,43 +12,43 @@ package Tablero;
  **/
 public class Coordenada {
     private static int cont;
-    private static int letra = 0;
+    private static int letraColumna = 0;
     private static int numeroFijo = 8;
-    private String letras;
-    private int numeros;
+    private String letra;
+    private int numero;
     public Coordenada() {
         if(cont != 8){
-            this.numeros = numeroFijo;
-            this.letras = String.valueOf((char) ('a' + letra));
-            letra ++;
+            this.numero = numeroFijo;
+            this.letra = String.valueOf((char) ('a' + letraColumna));
+            letraColumna ++;
             cont++;
         }if(cont == 8){
             numeroFijo--;
-            letra = 0;
+            letraColumna = 0;
             cont = 0;
         }
     }
     public Coordenada(Coordenada coordenada) {
     }
     public Coordenada(String letra, int numero) {
-        this.letras = letra;
-        this.numeros = numero;
+        this.letra = letra;
+        this.numero = numero;
     }
     public String getLetra() {
-        return letras;
-    }
-    public int getNumero() {
-        return numeros;
+        return letra;
     }
     public void setLetra(String letra) {
-        this.letras = letra;
+        this.letra = letra;
+    }
+    public int getNumero() {
+        return numero;
     }
     public void setNumero(int numero) {
-        this.numeros = numero;
+        this.numero = numero;
     }
     //Falta lo de equals
     @Override
     public String toString() {
-        return "Coordenada: Letra(" + letras + ") -- Numero(" + numeros +")";
+        return "Coordenada: Letra(" + letra + ") -- Numero(" + numero +")";
     }
 }

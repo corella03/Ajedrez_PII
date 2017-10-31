@@ -6,30 +6,21 @@
 package Tablero;
 import LogicaJuego.Color;
 import Pieza.*;
-import javax.swing.JLabel;
 /**
  **
  ** @author Luis Alonso Corella Chaves
  ** @author Carlos Daniel Martines Sequeira
  ** 16/10/2017
  **/
-public class Casilla extends JLabel{
+public class Casilla{
     private static int cont;
     private Color color;
     private Pieza pieza;
     private Coordenada coordenada;
     private static boolean esBlanca = true;
-    public Casilla() {
-    }
-    public Casilla(int posX, int posY, int ancho, int largo){
-        setBounds(posX, posY, ancho, largo);
+    public Casilla(){
         this.coordenada = new Coordenada();
         determinaColorACasilla();
-    }
-    public Casilla(Color color, Coordenada coordenada, int posX, int posY, int ancho, int largo) {
-        this.color = color;
-        this.coordenada = coordenada;
-        setBounds(posX, posY, ancho, largo);
     }
     public Casilla(Color color, Coordenada coordenada) {
         this.color = color;
