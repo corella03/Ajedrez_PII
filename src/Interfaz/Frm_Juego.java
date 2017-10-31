@@ -5,9 +5,6 @@
  */
 package Interfaz;
 import LogicaJuego.Color;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.SwingConstants;
 import Tablero.*;
 import javax.swing.JLabel;
 /**
@@ -24,6 +21,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     private int segundos = 60;
     private int minutos = 9;
     private Tablero tablero;
+    private JLabel label;
     public Frm_Juego() {
         initComponents();
         h1 = new Thread(this);
@@ -38,7 +36,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         inicioJuego();
     }
     public void inicioJuego(){
-        //creaLabels();
+        crearLabels();
         //piezas();
         setBackground();
         ver();
@@ -57,52 +55,24 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
             }
         }
     }
-//    public void creaLabels() {
-//        int x = 5;
-//        int y = 20;
-//        int l = 0;
-//        int n = 8;
-//        Border border = LineBorder.createBlackLineBorder();
-//        for (int filas = 0; filas < 8; filas++) {
-//            for (int columnas = 0; columnas < 8; columnas++) {
-//                
-//                tablero.getArregloTablero()[filas][columnas] = new Casilla();
-//                //System.out.println(log.getTablero().getArregloTablero()[filas][columnas].getColor());
-//                //ButtonController bt = new ButtonController();//method that make labels action
-//                //log.getTablero().getArregloTablero()[filas][columnas].addMouseListener(bt);
-//                if (columnas >= 0 & filas <= 8) {
-//                    if(tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {                       
-//                        tablero.getArregloTablero()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white.jpg")));
-//                    } else if(tablero.getArregloTablero()[filas][columnas].getColor() == Color.NEGRO){
-//                        tablero.getArregloTablero()[filas][columnas].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));                        
-//                    }
-//                    tablero.getArregloTablero()[filas][columnas].setBorder(border);
-//                } 
-////                if (!(columnas == 0 & filas == 8)) {
-////                    if (columnas == 0) {
-////                        tablero.getArregloTablero()[filas][columnas].setText(String.valueOf(n) +" " );
-////                        tablero.getArregloTablero()[filas][columnas].setFont(new java.awt.Font("Arial", 0, 25));
-////                       tablero.getArregloTablero()[filas][columnas].setHorizontalAlignment(SwingConstants.RIGHT);
-////                        n--;
-////                    } else if (columnas > 0 & filas == 8) {
-////                        tablero.getArregloTablero()[filas][columnas].setText(String.valueOf((char) ('a' + l)));
-////                        tablero.getArregloTablero()[filas][columnas].setFont(new java.awt.Font("Arial", 0, 25));
-////                        tablero.getArregloTablero()[filas][columnas].setHorizontalAlignment(SwingConstants.CENTER);
-////                        tablero.getArregloTablero()[filas][columnas].setVerticalAlignment(SwingConstants.TOP);
-////                        l++;
-////                    }
-////                }
-//                jpanel.add(tablero.getArregloTablero()[filas][columnas]);
-//                x += 80;
-//            }
-//            y += 80;
-//            x = 5;
-//            
-//        }
-//    }
+    public void crearLabels(){
+        jpanel.setLayout(new java.awt.GridLayout(8, 8));
+        for (int filas = 0; filas < 8; filas++) {
+            for (int columnas = 0; columnas < 8; columnas++) {
+                label = new JLabel();
+                if(tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {   
+                    label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white.jpg")));                    
+                } else if(tablero.getArregloTablero()[filas][columnas].getColor() == Color.NEGRO){
+                    label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
+                }
+                jpanel.add(label);
+            }
+        }
+        jpanel.paintAll(jpanel.getGraphics());
+    }
     public void run() {
         Thread ct = Thread.currentThread();
-        while (ct == h1) {//this is a thread that it is modifying the time
+        while (ct == h1) {
             segundos = segundos - 1;
             if (segundos == 0) {
                 minutos--;
@@ -360,38 +330,38 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
 
         lbl8.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
         lbl8.setText("8");
-        getContentPane().add(lbl8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+        getContentPane().add(lbl8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
         lbl5.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
         lbl5.setText("5");
-        getContentPane().add(lbl5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
+        getContentPane().add(lbl5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
 
         lbl6.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
         lbl6.setText("6");
-        getContentPane().add(lbl6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
+        getContentPane().add(lbl6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
 
         lbl2.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
         lbl2.setText("2");
-        getContentPane().add(lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, -1, -1));
+        getContentPane().add(lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
 
         lbl1.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
         lbl1.setText("1");
-        getContentPane().add(lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, -1, -1));
+        getContentPane().add(lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 600, -1, -1));
 
         lbl3.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
         lbl3.setText("3");
-        getContentPane().add(lbl3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, -1, -1));
+        getContentPane().add(lbl3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
 
         lbl7.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
         lbl7.setText("7");
-        getContentPane().add(lbl7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
+        getContentPane().add(lbl7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
         lbl4.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
         lbl4.setText("4");
-        getContentPane().add(lbl4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
+        getContentPane().add(lbl4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        jLabel2.setText("    a         b          c           d           e          f          g       h");
+        jLabel2.setText("    a           b          c           d           e           f           g           h");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 670, 690, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/vistaJuego.jpg"))); // NOI18N
