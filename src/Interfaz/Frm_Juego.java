@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package Interfaz;
+
 import LogicaJuego.Color;
+
 import Tablero.*;
 import javax.swing.JLabel;
 /**
