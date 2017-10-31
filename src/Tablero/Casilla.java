@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Tablero;
-import Logica_Juego.*;
+import LogicaJuego.Color;
 import Pieza.*;
 import javax.swing.JLabel;
 /**

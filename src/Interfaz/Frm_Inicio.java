@@ -4,11 +4,8 @@
  * and open the template in the editor.
  */
 package Interfaz;
-import Dado.generanumero;
-import Dado.imagenes1;
-import Dado.imagenesResul;
-import Logica_Juego.*;
-import javax.swing.JOptionPane;
+import Dado.*;
+import Tablero.*;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -18,11 +15,11 @@ public class Frm_Inicio extends javax.swing.JFrame {
     /**
      * Creates new form P_View
      */
-    private Logica log;
+    private Tablero tablero;
     public Frm_Inicio() {
         initComponents();
         setLocationRelativeTo(null);
-        log = new Logica();
+        tablero = new Tablero();
         btnInicio.setVisible(false);
         imagenes1 objImag2 = new imagenes1();
         lblDado.setIcon(objImag2.gifDado1(1));
@@ -30,7 +27,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         btnExit.setBorder(null);
     }
     public void irAFrmJuego(){
-        Frm_Juego j = new Frm_Juego(log);
+        Frm_Juego j = new Frm_Juego(tablero);
         j.setVisible(true);
         j.setLocationRelativeTo(null);
         dispose();

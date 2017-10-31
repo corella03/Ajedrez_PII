@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Pieza;
-import Logica_Juego.Color;
+import LogicaJuego.Color;
 import Tablero.Casilla;
 /**
  **

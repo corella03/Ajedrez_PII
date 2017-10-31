@@ -3,26 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logica_Juego;
-
+package LogicaJuego;
 import Tablero.Tablero;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
  ** @author Carlos Daniel Martines Sequeira * 16/10/2017
- *
- */
-public class Logica {
-private Tablero tablero;
+ **
+ **/
+public class InicioPartida {
+    private Tablero tablero;
     private String jugador1;
     private String jugador2;
     private boolean bus = true;
-    private Integer[][] matrizL;
-    int f = 0;
-    int c = 0;
-    public Logica() {
-        matrizL = new Integer[9][9];
+    
+    public InicioPartida() {
         tablero = new Tablero();
     }
     public boolean verificarIgualdadDeJugadores(String jug1, String jug2) {
@@ -33,38 +28,10 @@ private Tablero tablero;
         bus = false;
         return true;
     }
-
-    public int getF() {
-        return f;
-    }
-
-    public void setF(int f) {
-        this.f = f;
-    }
-
-    public int getC() {
-        return c;
-    }
-
-    public void setC(int c) {
-        this.c = c;
-    }
-
     public boolean verificarInicio(String jug1, String jug2) {
 
         return !jug1.isEmpty() && !jug2.isEmpty();
     }
-
-    public Integer[][] getMatrizL() {
-        return matrizL;
-    }
-
-    public void setMatrizL(Integer[][] matrizL) {
-        this.matrizL = matrizL;
-    }
-
-    
-
     public String getJugador1() {
         return jugador1;
     }

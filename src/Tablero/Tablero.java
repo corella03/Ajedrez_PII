@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Tablero;
-import Logica_Juego.Color;
+import LogicaJuego.*;
 import Pieza.*;
 /**
  **
@@ -13,10 +13,12 @@ import Pieza.*;
  ** 16/10/2017
  **/
 public class Tablero {
+    private InicioPartida partida;
     private Color turno;
     private Casilla casilla;
     private Casilla[][] ArregloTablero;
     public Tablero() {
+        partida = new InicioPartida();
         ArregloTablero = new Casilla[9][9];
     }
     public void colocarPieza(Coordenada coordenada, Pieza pieza){
@@ -55,6 +57,15 @@ public class Tablero {
     public void setTurno(Color turno) {
         this.turno = turno;
     }
+
+    public InicioPartida getPartida() {
+        return partida;
+    }
+
+    public void setPartida(InicioPartida partida) {
+        this.partida = partida;
+    }
+    
     @Override
     public String toString() {
         return "Tablero: Turno (" + turno + ") -- Casilla(" + casilla + ")";
