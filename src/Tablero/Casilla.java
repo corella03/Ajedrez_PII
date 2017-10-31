@@ -14,13 +14,11 @@ import javax.swing.JLabel;
  ** 16/10/2017
  **/
 public class Casilla extends JLabel{
-    //
-    
-    //
+    private static int cont;
     private Color color;
     private Pieza pieza;
     private Coordenada coordenada;
-    private static boolean esBlanca;
+    private static boolean esBlanca = true;
     public Casilla() {
     }
     public Casilla(int posX, int posY, int ancho, int largo){
@@ -43,12 +41,22 @@ public class Casilla extends JLabel{
      * si la variable: esBlanco = false: el color va hacer Negro
      */
     public void determinaColorACasilla(){
-        if(esBlanca == true){
-            esBlanca = false;
-            this.color = Color.BLANCO;
-        }else if(esBlanca == false){
-           esBlanca = true;
-           this.color = Color.NEGRO;
+        if(cont != 8){
+            if(esBlanca){
+                esBlanca = false;
+                this.color = Color.BLANCO;
+            }else if(!esBlanca){
+                esBlanca = true;
+                this.color = Color.NEGRO;
+            }
+            cont++;
+        }if(cont == 8){
+            cont = 0;
+            if(esBlanca){
+                esBlanca = false;
+            }else if(!esBlanca){
+                esBlanca = true;
+            }
         }
     }
     /**
@@ -62,17 +70,17 @@ public class Casilla extends JLabel{
     public Color getColor() {
         return color;
     }
-    public Pieza getPieza() {
-        return pieza;
-    }
-    public Coordenada getCoordenada() {
-        return coordenada;
-    }
     public void setColor(Color color) {
         this.color = color;
     }
+    public Pieza getPieza() {
+        return pieza;
+    }
     public void setPieza(Pieza pieza) {
         this.pieza = pieza;
+    }
+    public Coordenada getCoordenada() {
+        return coordenada;
     }
     public void setCoordenada(Coordenada coordenada) {
         this.coordenada = coordenada;

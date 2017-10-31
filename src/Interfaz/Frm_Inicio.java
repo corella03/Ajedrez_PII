@@ -33,8 +33,8 @@ public class Frm_Inicio extends javax.swing.JFrame {
         dispose();
     }
     public void verificarInicio(){
-        if (log.verificarInicio(txtJugador1.getText(), txtJugador2.getText())) {
-            if(log.verificarIgualdadDeJugadores(txtJugador1.getText().trim().toLowerCase()
+        if (tablero.getPartida().verificarInicio(txtJugador1.getText(), txtJugador2.getText())) {
+            if(tablero.getPartida().verificarIgualdadDeJugadores(txtJugador1.getText().trim().toLowerCase()
                     , txtJugador2.getText().trim().toLowerCase())){
                 generarNum();
                 btnInicio.setVisible(true);
@@ -53,12 +53,12 @@ public class Frm_Inicio extends javax.swing.JFrame {
         elegirganador(dados);
     }
     public void elegirganador(int num) {
-        log.setJugador1(txtJugador1.getText());
-        log.setJugador2(txtJugador2.getText());
+        tablero.getPartida().setJugador1(txtJugador1.getText());
+        tablero.getPartida().setJugador2(txtJugador2.getText());
         if (num % 2 == 0) {
-            lblResultado.setText("El ganador es el jugador: " + log.getJugador1());
+            lblResultado.setText("El ganador es el jugador: " + tablero.getPartida().getJugador1());
         } else {
-            lblResultado.setText("El ganador es el jugador: " + log.getJugador2());
+            lblResultado.setText("El ganador es el jugador: " + tablero.getPartida().getJugador2());
         }
     }
     /**
@@ -185,7 +185,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         irAFrmJuego();
     }//GEN-LAST:event_btnInicioActionPerformed
     private void lblDadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDadoMousePressed
-        if(log.isBus()){
+        if(tablero.getPartida().isBus()){
             verificarInicio();
         }
     }//GEN-LAST:event_lblDadoMousePressed

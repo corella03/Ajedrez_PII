@@ -19,7 +19,7 @@ public class Tablero {
     private Casilla[][] ArregloTablero;
     public Tablero() {
         partida = new InicioPartida();
-        ArregloTablero = new Casilla[9][9];
+        ArregloTablero = new Casilla[8][8];
     }
     public void colocarPieza(Coordenada coordenada, Pieza pieza){
     }

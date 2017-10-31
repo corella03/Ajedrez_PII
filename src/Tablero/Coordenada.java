@@ -11,28 +11,21 @@ package Tablero;
  ** 16/10/2017
  **/
 public class Coordenada {
+    private static int cont;
     private static int letra = 0;
-    private static int filas = 0;
-    private static int columnas = 0;
     private static int numeroFijo = 8;
     private String letras;
     private int numeros;
     public Coordenada() {
-        if(filas != 8){
-            if(filas <= 9 && columnas > 0){
+        if(cont != 8){
             this.numeros = numeroFijo;
             this.letras = String.valueOf((char) ('a' + letra));
-            letra++;
-            columnas++;
-            }else{
-                columnas++;
-            }
-        }
-        if(columnas == 9){
-            filas ++;
+            letra ++;
+            cont++;
+        }if(cont == 8){
             numeroFijo--;
             letra = 0;
-            columnas = 0;
+            cont = 0;
         }
     }
     public Coordenada(Coordenada coordenada) {
