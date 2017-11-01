@@ -15,6 +15,9 @@ import Pieza.Rey;
 import Pieza.Torre;
 
 import Tablero.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 /**
@@ -72,11 +75,12 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     }
 
     public void crearLabels() {
-        
-        jpanel.setLayout(new java.awt.GridLayout(8,8));
+        ButtonController bt = new ButtonController();
+        jpanel.setLayout(new java.awt.GridLayout(8, 8));
         for (int filas = 0; filas < 8; filas++) {
             for (int columnas = 0; columnas < 8; columnas++) {
                 label = new JLabel();
+                label.addMouseListener(bt);
                 if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Torre && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.NEGRO) {
                     if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
                         label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreNB.jpg")));
@@ -148,7 +152,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                 } else if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.NEGRO) {
                     label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
                 }
-                jpanel.add(label);  
+                jpanel.add(label);
             }
         }
 
@@ -192,56 +196,66 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
             }
         }
     }
-//    private class ButtonController implements MouseListener {
-//        public void actionPerformed(ActionEvent e) {
-//        }
-//        @Override
-//        public void mouseClicked(MouseEvent e) {
-//            if (!log.isBus()) {
-//                
-//                for (int f = 0; f < 9; f++) {
-//                    for (int k = 0; k < 9; k++) {
-//                       
-//                        if (e.getSource().equals(log.getTablero().getArregloTablero()[f][k])) {
-//                            log.setF(f);
-//                            log.setC(k);
-//                            log.setBus(true);
-//                            f = 8;
-//                            k = 8;
-//                        }
-//                    }
-//                }
-//            } else {
-//                for (int f = 0; f < 9; f++) {
-//                    for (int k = 0; k < 9; k++) {
-//                         
-//                        if (e.getSource().equals(log.getTablero().getArregloTablero()[f][k]) & log.getMatrizL()[f][k] == 0) {
-//                            log.getTablero().getArregloTablero()[f][k].setIcon(log.getTablero().getArregloTablero()[log.getF()][log.getC()].getIcon());
-//                            log.getMatrizL()[log.getF()][log.getC()] = 0;
-//                            log.getTablero().getArregloTablero()[log.getF()][log.getC()].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
-//                            log.setF(0);
-//                            log.setC(0);
-//                            log.setBus(false);  
-//                            f = 8;
-//                            k = 8;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        @Override
-//        public void mousePressed(MouseEvent e) { 
-//        }
-//        @Override
-//        public void mouseReleased(MouseEvent e) {
-//        }
-//        @Override
-//        public void mouseEntered(MouseEvent e) {
-//        }
-//        @Override
-//        public void mouseExited(MouseEvent e) {
-//        }
-//    }
+
+    private class ButtonController implements MouseListener {
+
+        public void actionPerformed(ActionEvent e) {
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (!tablero.isBus()) {
+                for (int f = 0; f < 8; f++) {
+                    for (int k = 0; k < 8; k++) {
+                        if (e.getSource().equals(tablero.getArregloTablero()[f][k])) {
+                            tablero.setF(f);
+                            tablero.setC(k);
+                            tablero.setBus(true);
+                            f = 7;
+                            k = 7;
+                        }
+                    }
+                }
+            } else {
+                for (int f = 0; f < 8; f++) {
+                    for (int k = 0; k < 8; k++) {
+                        if (e.getSource().equals(tablero.getArregloTablero()[f][k])) {
+                            if (tablero.getArregloTablero()[tablero.getF()][tablero.getC()].getPieza() instanceof Peon) {
+                                tablero.setF1(f);
+                                tablero.setC1(k);
+                                tablero.getArregloTablero()[tablero.getF()][tablero.getC()].getPieza().puedeMoverse(tablero.getArregloTablero()[tablero.getF1()][tablero.getC1()]);
+                                tablero.setF(0);
+                                tablero.setC(0);
+                                tablero.setBus(false);
+                                f = 7;
+                                k = 7;
+                                crearLabels();
+
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+
+    }
 
     public void setBackground() {
         btnExit.setContentAreaFilled(false);
@@ -249,7 +263,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         lblJug1.setText(tablero.getPartida().getJugador1());
         lblJug2.setText(tablero.getPartida().getJugador2());
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

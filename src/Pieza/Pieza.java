@@ -26,6 +26,7 @@ public abstract class Pieza {
      * @return 
      */
     public boolean esMismoColor(Pieza pieza){
+        
         return true;
     }
     /**

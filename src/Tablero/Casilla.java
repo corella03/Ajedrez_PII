@@ -17,6 +17,7 @@ public class Casilla{
     private Color color;
     private Pieza pieza;
     private Coordenada coordenada;
+    private Tablero tablero;
     private static boolean esBlanca = true;
     public Casilla(){
         this.coordenada = new Coordenada();
@@ -55,8 +56,10 @@ public class Casilla{
      * @return 
      */
     public boolean estaOcupada(){
-        
-       return true;
+       if(!(tablero.getArregloTablero()[tablero.getF1()][tablero.getC1()].getPieza()==null)){
+           return true;
+       }
+       return false;
     }
     public Color getColor() {
         return color;

@@ -20,7 +20,11 @@ public class Tablero {
     private Color turno;
     private Casilla casilla;
     private Casilla[][] ArregloTablero;
-
+    private int c = 0;
+    private int f = 0;
+    private int c1 = 0;
+    private int f1 = 0;
+    private boolean bus = false;
     public Tablero() {
         partida = new InicioPartida();
         ArregloTablero = new Casilla[8][8];
@@ -54,7 +58,47 @@ public class Tablero {
         return casilla;
     }
 
+    public boolean isBus() {
+        return bus;
+    }
+
+    public void setBus(boolean bus) {
+        this.bus = bus;
+    }
+    
+    public int getC() {
+        return c;
+    }
+
+    public int getC1() {
+        return c1;
+    }
+
+    public void setC1(int c1) {
+        this.c1 = c1;
+    }
+
+    public int getF1() {
+        return f1;
+    }
+
+    public void setF1(int f1) {
+        this.f1 = f1;
+    }
+
+    public void setC(int c) {
+        this.c = c;
+    }
+
+    public int getF() {
+        return f;
+    }
+
     //Métodos SETTERS y GETTERS
+    public void setF(int f) {    
+        this.f = f;
+    }
+
     public Casilla[][] getArregloTablero() {
         return ArregloTablero;
     }
