@@ -6,9 +6,17 @@
 package Interfaz;
 
 import LogicaJuego.Color;
+import Pieza.Alfil;
+import Pieza.Caballo;
+import Pieza.Peon;
+import Pieza.Pieza;
+import Pieza.Reina;
+import Pieza.Rey;
+import Pieza.Torre;
 
 import Tablero.*;
 import javax.swing.JLabel;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -16,6 +24,7 @@ import javax.swing.JLabel;
  *
  */
 public class Frm_Juego extends javax.swing.JFrame implements Runnable {
+
     /**
      * Creates new form Frm_Juego
      */
@@ -24,6 +33,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     private int minutos = 9;
     private Tablero tablero;
     private JLabel label;
+
     public Frm_Juego() {
         initComponents();
         h1 = new Thread(this);
@@ -31,22 +41,25 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         tablero = new Tablero();
         inicioJuego();
     }
+
     public Frm_Juego(Tablero tablero) {
         initComponents();
         h1 = new Thread(this);
         this.tablero = tablero;
         inicioJuego();
     }
-    public void inicioJuego(){
+
+    public void inicioJuego() {
         crearLabels();
         //piezas();
         setBackground();
         ver();
         //System.out.println(log.getTablero().getArregloTablero()[6][6].getColor());
         //System.out.println(log.getTablero().getArregloTablero()[6][7].getCoordenada());
-       //log.getTablero().getArregloTablero()[6][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png")));
+        //log.getTablero().getArregloTablero()[6][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png")));
     }
-    public void ver(){
+
+    public void ver() {
         for (int filas = 0; filas < 8; filas++) {
             for (int columnas = 0; columnas < 8; columnas++) {
                 System.out.println(filas + "   " + columnas);
@@ -57,21 +70,91 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
             }
         }
     }
-    public void crearLabels(){
-        jpanel.setLayout(new java.awt.GridLayout(8, 8));
+
+    public void crearLabels() {
+        
+        jpanel.setLayout(new java.awt.GridLayout(8,8));
         for (int filas = 0; filas < 8; filas++) {
             for (int columnas = 0; columnas < 8; columnas++) {
                 label = new JLabel();
-                if(tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {   
-                    label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white.jpg")));                    
-                } else if(tablero.getArregloTablero()[filas][columnas].getColor() == Color.NEGRO){
+                if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Torre && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.NEGRO) {
+                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreNB.jpg")));
+                    } else {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreNN.jpg")));
+                    }
+                } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Caballo && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.NEGRO) {
+                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoNB.jpg")));
+                    } else {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoNN.jpg")));
+                    }
+                } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Alfil && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.NEGRO) {
+                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilNB.jpg")));
+                    } else {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilNN.jpg")));
+                    }
+                } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Reina && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.NEGRO) {
+//                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+//                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reinaNB.jpg")));
+                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.NEGRO) {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reinaNN.jpg")));
+                    }
+                } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Rey && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.NEGRO) {
+//                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+//                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoNB.jpg")));
+                    label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reyNB.jpg")));
+                } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Peon && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.NEGRO) {
+                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
+                    } else if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.NEGRO) {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
+                    }
+                } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Torre && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.BLANCO) {
+                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreBN.jpg")));
+                    } else {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreBB.jpg")));
+                    }
+                } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Caballo && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.BLANCO) {
+                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoBN.jpg")));
+                    } else {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoBB.jpg")));
+                    }
+                } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Alfil && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.BLANCO) {
+                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilBN.jpg")));
+                    } else {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilBB.jpg")));
+                    }
+                } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Reina && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.BLANCO) {
+//                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+//                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reinaNB.jpg")));
+                    label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reinaBB.jpg")));
+                } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Rey && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.BLANCO) {
+//                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+//                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoNB.jpg")));
+                    label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reyBN.jpg")));
+                } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Peon && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color.BLANCO) {
+                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
+                    } else if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.NEGRO) {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
+                    }
+                } else if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
+                    label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white.jpg")));
+                } else if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.NEGRO) {
                     label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.jpg")));
                 }
-                jpanel.add(label);
+                jpanel.add(label);  
             }
         }
+
         jpanel.paintAll(jpanel.getGraphics());
     }
+
     public void run() {
         Thread ct = Thread.currentThread();
         while (ct == h1) {
@@ -159,48 +242,15 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
 //        public void mouseExited(MouseEvent e) {
 //        }
 //    }
-    public void setBackground(){
+
+    public void setBackground() {
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
         lblJug1.setText(tablero.getPartida().getJugador1());
         lblJug2.setText(tablero.getPartida().getJugador2());
     }
-//    public void piezas(){
-//        //Piezas Negras
-//        tablero.getArregloTablero()[0][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreNB.jpg")));
-//        tablero.getArregloTablero()[0][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoNN.jpg")));
-//        tablero.getArregloTablero()[0][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilNB.jpg")));
-//        tablero.getArregloTablero()[0][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reinaNN.jpg")));
-//        tablero.getArregloTablero()[0][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reyNB.jpg")));
-//        tablero.getArregloTablero()[0][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilNN.jpg")));
-//        tablero.getArregloTablero()[0][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoNB.jpg")));
-//        tablero.getArregloTablero()[0][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreNN.jpg")));
-//        tablero.getArregloTablero()[1][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
-//        tablero.getArregloTablero()[1][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
-//        tablero.getArregloTablero()[1][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
-//        tablero.getArregloTablero()[1][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
-//        tablero.getArregloTablero()[1][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
-//        tablero.getArregloTablero()[1][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
-//        tablero.getArregloTablero()[1][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNN.jpg")));
-//        tablero.getArregloTablero()[1][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonNB.jpg")));
-//        //Piezas Blancas
-//        tablero.getArregloTablero()[7][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreBN.jpg")));
-//        tablero.getArregloTablero()[7][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoBB.jpg")));
-//        tablero.getArregloTablero()[7][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilBN.jpg")));
-//        tablero.getArregloTablero()[7][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reinaBB.jpg")));
-//        tablero.getArregloTablero()[7][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reyBN.jpg")));
-//        tablero.getArregloTablero()[7][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilBB.jpg")));
-//        tablero.getArregloTablero()[7][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoBN.jpg")));
-//        tablero.getArregloTablero()[7][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreBB.jpg"))); 
-//        tablero.getArregloTablero()[6][1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
-//        tablero.getArregloTablero()[6][2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
-//        tablero.getArregloTablero()[6][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
-//        tablero.getArregloTablero()[6][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
-//        tablero.getArregloTablero()[6][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
-//        tablero.getArregloTablero()[6][6].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
-//        tablero.getArregloTablero()[6][7].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
-//        tablero.getArregloTablero()[6][8].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
-//    }
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
