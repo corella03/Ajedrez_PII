@@ -10,7 +10,7 @@ package LogicaJuego;
  ** @author Carlos Daniel Martines Sequeira
  ** 18/10/2017
  **/
-public enum Color {
+public enum Color1 {
     BLANCO,
     NEGRO
 }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Pieza;
-import LogicaJuego.Color;
+import LogicaJuego.Color1;
 import Tablero.Casilla;
 /**
  **
@@ -15,7 +15,7 @@ import Tablero.Casilla;
 public class Rey extends Pieza{
     public Rey() {
     }
-    public Rey(Color color) {
+    public Rey(Color1 color) {
         super(color);
     }
     @Override

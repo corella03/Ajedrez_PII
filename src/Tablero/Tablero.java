@@ -17,7 +17,7 @@ import Pieza.*;
 public class Tablero {
 
     private InicioPartida partida;
-    private Color turno;
+    private Color1 turno;
     private Casilla casilla;
     private Casilla[][] ArregloTablero;
     private int c = 0;
@@ -115,11 +115,11 @@ public class Tablero {
         this.casilla = casilla;
     }
 
-    public Color getTurno() {
+    public Color1 getTurno() {
         return turno;
     }
 
-    public void setTurno(Color turno) {
+    public void setTurno(Color1 turno) {
         this.turno = turno;
     }
 
@@ -132,25 +132,25 @@ public class Tablero {
     }
 
     public void setPiezas() {
-        ArregloTablero[0][0].setPieza(new Torre(Color.NEGRO));
-        ArregloTablero[0][1].setPieza(new Caballo(Color.NEGRO));
-        ArregloTablero[0][2].setPieza(new Alfil(Color.NEGRO));
-        ArregloTablero[0][3].setPieza(new Reina(Color.NEGRO));
-        ArregloTablero[0][4].setPieza(new Rey(Color.NEGRO));
-        ArregloTablero[0][5].setPieza(new Alfil(Color.NEGRO));
-        ArregloTablero[0][6].setPieza(new Caballo(Color.NEGRO));
-        ArregloTablero[0][7].setPieza(new Torre(Color.NEGRO));
-        ArregloTablero[7][0].setPieza(new Torre(Color.BLANCO));
-        ArregloTablero[7][1].setPieza(new Caballo(Color.BLANCO));
-        ArregloTablero[7][2].setPieza(new Alfil(Color.BLANCO));
-        ArregloTablero[7][3].setPieza(new Reina(Color.BLANCO));
-        ArregloTablero[7][4].setPieza(new Rey(Color.BLANCO));
-        ArregloTablero[7][5].setPieza(new Alfil(Color.BLANCO));
-        ArregloTablero[7][6].setPieza(new Caballo(Color.BLANCO));
-        ArregloTablero[7][7].setPieza(new Torre(Color.BLANCO));
+        ArregloTablero[0][0].setPieza(new Torre(Color1.NEGRO));
+        ArregloTablero[0][1].setPieza(new Caballo(Color1.NEGRO));
+        ArregloTablero[0][2].setPieza(new Alfil(Color1.NEGRO));
+        ArregloTablero[0][3].setPieza(new Reina(Color1.NEGRO));
+        ArregloTablero[0][4].setPieza(new Rey(Color1.NEGRO));
+        ArregloTablero[0][5].setPieza(new Alfil(Color1.NEGRO));
+        ArregloTablero[0][6].setPieza(new Caballo(Color1.NEGRO));
+        ArregloTablero[0][7].setPieza(new Torre(Color1.NEGRO));
+        ArregloTablero[7][0].setPieza(new Torre(Color1.BLANCO));
+        ArregloTablero[7][1].setPieza(new Caballo(Color1.BLANCO));
+        ArregloTablero[7][2].setPieza(new Alfil(Color1.BLANCO));
+        ArregloTablero[7][3].setPieza(new Reina(Color1.BLANCO));
+        ArregloTablero[7][4].setPieza(new Rey(Color1.BLANCO));
+        ArregloTablero[7][5].setPieza(new Alfil(Color1.BLANCO));
+        ArregloTablero[7][6].setPieza(new Caballo(Color1.BLANCO));
+        ArregloTablero[7][7].setPieza(new Torre(Color1.BLANCO));
         for (int c = 0; c < 8; c++) {
-            ArregloTablero[1][c].setPieza(new Peon(Color.NEGRO));
-            ArregloTablero[6][c].setPieza(new Peon(Color.BLANCO));
+            ArregloTablero[1][c].setPieza(new Peon(Color1.NEGRO));
+            ArregloTablero[6][c].setPieza(new Peon(Color1.BLANCO));
         }
     }
 

@@ -5,7 +5,7 @@
  */
 package Pieza;
 
-import LogicaJuego.Color;
+import LogicaJuego.Color1;
 import Tablero.Casilla;
 import Tablero.Tablero;
 
@@ -20,9 +20,10 @@ public class Peon extends Pieza {
     private Tablero tablero;
 
     public Peon() {
+        
     }
 
-    public Peon(Color color) {
+    public Peon(Color1 color) {
         super(color);
     }
 

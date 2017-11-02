@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Pieza;
-import LogicaJuego.Color;
+import LogicaJuego.Color1;
 import Tablero.Casilla;
 /**
  **
@@ -13,11 +13,11 @@ import Tablero.Casilla;
  ** 16/10/2017
  **/
 public abstract class Pieza {
-    private Color color;
+    private Color1 color;
     private Casilla casilla;
     public Pieza() {
     }
-    public Pieza(Color color) {
+    public Pieza(Color1 color) {
         this.color = color;
     }
     /**
@@ -41,7 +41,7 @@ public abstract class Pieza {
      * @return 
      */
     public abstract boolean mover(Casilla casilla);
-    public Color getColor() {
+    public Color1 getColor() {
         return color;
     }
     public Casilla getCasilla() {

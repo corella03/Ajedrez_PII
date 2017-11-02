@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Tablero;
-import LogicaJuego.Color;
+import LogicaJuego.Color1;
 import Pieza.*;
 /**
  **
@@ -14,7 +14,7 @@ import Pieza.*;
  **/
 public class Casilla{
     private static int cont;
-    private Color color;
+    private Color1 color;
     private Pieza pieza;
     private Coordenada coordenada;
     private Tablero tablero;
@@ -23,9 +23,12 @@ public class Casilla{
         this.coordenada = new Coordenada();
         determinaColorACasilla();
     }
-    public Casilla(Color color, Coordenada coordenada) {
+    public Casilla(Color1 color, Coordenada coordenada) {
         this.color = color;
         this.coordenada = coordenada;
+    }
+    public Casilla(Tablero t) {
+        tablero = t;
     }
     /**
      * Al crear cada casilla le asigna un color,
@@ -36,10 +39,10 @@ public class Casilla{
         if(cont != 8){
             if(esBlanca){
                 esBlanca = false;
-                this.color = Color.BLANCO;
+                this.color = Color1.BLANCO;
             }else if(!esBlanca){
                 esBlanca = true;
-                this.color = Color.NEGRO;
+                this.color = Color1.NEGRO;
             }
             cont++;
         }if(cont == 8){
@@ -61,10 +64,10 @@ public class Casilla{
        }
        return false;
     }
-    public Color getColor() {
+    public Color1 getColor() {
         return color;
     }
-    public void setColor(Color color) {
+    public void setColor(Color1 color) {
         this.color = color;
     }
     public Pieza getPieza() {
