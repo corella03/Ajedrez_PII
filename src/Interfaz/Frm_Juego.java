@@ -38,7 +38,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     /**
      * Creates new form Frm_Juego
      */
-    private Thread h1, t;
+    private Thread h1, t;//tiempo de los jugadores
     private int segundos = 60;
     private int minutos = 9;
     private Tablero tablero;
@@ -126,21 +126,21 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                     }
                 } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Torre && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color1.BLANCO) {
                     if (tablero.getArregloTablero()[filas][columnas].getColor() == Color1.BLANCO) {
-                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreBN.jpg")));
-                    } else {
                         label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreBB.jpg")));
+                    } else {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/torreBN.jpg")));
                     }
                 } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Caballo && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color1.BLANCO) {
                     if (tablero.getArregloTablero()[filas][columnas].getColor() == Color1.BLANCO) {
-                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoBN.jpg")));
-                    } else {
                         label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoBB.jpg")));
+                    } else {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/caballoBN.jpg")));
                     }
                 } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Alfil && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color1.BLANCO) {
                     if (tablero.getArregloTablero()[filas][columnas].getColor() == Color1.BLANCO) {
-                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilBN.jpg")));
-                    } else {
                         label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilBB.jpg")));
+                    } else {
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/alfilBN.jpg")));
                     }
                 } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Reina && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color1.BLANCO) {
 //                    if (tablero.getArregloTablero()[filas][columnas].getColor() == Color.BLANCO) {
@@ -152,9 +152,9 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                     label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reyBN.jpg")));
                 } else if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Peon && tablero.getArregloTablero()[filas][columnas].getPieza().getColor() == Color1.BLANCO) {
                     if (tablero.getArregloTablero()[filas][columnas].getColor() == Color1.BLANCO) {
-                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
-                    } else if (tablero.getArregloTablero()[filas][columnas].getColor() == Color1.NEGRO) {
                         label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBB.jpg")));
+                    } else{
+                        label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/peonBN.jpg")));
                     }
                 } else if (tablero.getArregloTablero()[filas][columnas].getColor() == Color1.BLANCO) {
                     label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white.jpg")));
@@ -325,14 +325,14 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         jpanel.setLayout(jpanelLayout);
         jpanelLayout.setHorizontalGroup(
             jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
         jpanelLayout.setVerticalGroup(
             jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 690, 660));
+        getContentPane().add(jpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 650, 650));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("JUGAR");
@@ -447,7 +447,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         getContentPane().add(lbl4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
-        jLabel2.setText("    a           b          c           d           e           f           g           h");
+        jLabel2.setText("    a           b          c         d         e           f          g          h");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 670, 690, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/vistaJuego.jpg"))); // NOI18N
