@@ -168,6 +168,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                     casilla1 = null;
                     crearLabels();
                 }
+                
             }
         }
 
@@ -186,9 +187,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         @Override
         public void mouseExited(MouseEvent e) {
         }
-
     }
-
     public void setBackground() {
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
