@@ -7,7 +7,6 @@ package Pieza;
 
 import LogicaJuego.Color;
 import Tablero.Casilla;
-import Tablero.Tablero;
 
 /**
  **
@@ -16,9 +15,6 @@ import Tablero.Tablero;
  *
  */
 public class Peon extends Pieza {
-
-    private Tablero tablero;
-
     public Peon() { 
     }
     public Peon(Color color) {
@@ -35,12 +31,24 @@ public class Peon extends Pieza {
      * @return
      */
     public boolean estaEnPosicionOriginal() {
-        return true;
+        int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
+        for (int c = 0; c < 8; c++) {
+            if(this.getCasilla().getCoordenada().getLetra().equals(String.valueOf((char) (97 + c))) && this.getCasilla().getCoordenada().getNumero() == pos[6]){
+                return true;
+            }
+            else if(this.getCasilla().getCoordenada().getLetra().equals(String.valueOf((char) (97 + c))) && this.getCasilla().getCoordenada().getNumero() == pos[1]){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public boolean puedeMoverse(Casilla casilla) {
+        if(estaEnPosicionOriginal()){   
         return true;
+        }
+        return false;
     }
 
     @Override

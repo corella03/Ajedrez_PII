@@ -148,7 +148,10 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
             int co = Integer.parseInt(coor[1]);
 
             if (casilla1 == null) {
+                if(tablero.getArregloTablero()[fi][co].getPieza()!= null){
                 casilla1 = tablero.getArregloTablero()[fi][co];
+                lbl.setBorder(line);
+                }
             } else {
                 int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
                 System.out.println(casilla1.getCoordenada());
