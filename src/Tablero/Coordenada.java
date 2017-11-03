@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package Tablero;
+
+import java.util.Objects;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -56,4 +59,6 @@ public class Coordenada {
     public String toString() {
         return "Coordenada: Letra(" + letra + ") -- Numero(" + numero +")";
     }
+    
+    
 }
