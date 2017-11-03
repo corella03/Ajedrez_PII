@@ -20,10 +20,14 @@ public class Caballo extends Pieza{
     }
     @Override
     public boolean mover(Casilla casilla) {
+        casilla.setPieza(this);
+        this.getCasilla().setPieza(null);
+        this.setCasilla(casilla);
         return true;
     }
     @Override
     public boolean puedeMoverse(Casilla casilla) {
+        
         return true;
     }
 }

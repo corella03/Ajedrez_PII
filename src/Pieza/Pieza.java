@@ -34,13 +34,14 @@ public abstract class Pieza {
 
     /**
      * falta ver que hace el método
-     *
      * @param pieza
      * @return
      */
     public boolean esMismoColor(Pieza pieza) {
-
-        return true;
+        if(this.getColor().equals(pieza.getColor())){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -51,14 +52,12 @@ public abstract class Pieza {
      * @return
      */
     public abstract boolean puedeMoverse(Casilla casilla);
-
     /**
      *
      * @param casilla
      * @return
      */
     public abstract boolean mover(Casilla casilla);
-
     public Color getColor() {
         return color;
     }
