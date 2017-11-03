@@ -32,7 +32,12 @@ public class Caballo extends Pieza{
     }
     @Override
     public boolean puedeMoverse(Casilla casilla) {
-        
-        return true;
+        if(this.esMismoColor(this.getCasilla().getPieza())){
+            return false;
+        }else
+        {
+            
+            return true;
+        }
     }
 }
