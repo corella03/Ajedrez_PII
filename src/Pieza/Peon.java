@@ -19,55 +19,32 @@ public class Peon extends Pieza {
 
     private Tablero tablero;
 
-    public Peon() {
-        
+    public Peon() { 
     }
-
     public Peon(Color color) {
         super(color);
     }
+
+    public Peon(Color color, String url) {
+        super(color, url);
+    }
+    
 
     /**
      *
      * @return
      */
     public boolean estaEnPosicionOriginal() {
-        for (int i = 0; i < 8; i++) {
-            if (tablero.getArregloTablero()[tablero.getFunFila1()][tablero.getFunColumna1()].equals(tablero.getArregloTablero()[1][i])) {
-                return true;
-            } else if (tablero.getArregloTablero()[tablero.getFunFila1()][tablero.getFunColumna1()].equals(tablero.getArregloTablero()[6][i])) {
-                return true;
-            }
-        }
-        return false;
+        return true;
     }
 
     @Override
     public boolean puedeMoverse(Casilla casilla) {
-        if (casilla.estaOcupada()) {
-            if (tablero.getArregloTablero()[tablero.getFunFila1()][tablero.getFunColumna1() + 1] == tablero.getArregloTablero()[tablero.getFunFila2()][tablero.getFunColumna2()] || tablero.getArregloTablero()[tablero.getFunFila1()][tablero.getFunColumna1() - 1] == tablero.getArregloTablero()[tablero.getFunFila2()][tablero.getFunColumna2()]) {
-                if (!tablero.getArregloTablero()[tablero.getFunFila2()][tablero.getFunColumna2()].getPieza().esMismoColor(casilla.getPieza())) {
-                    return true;
-                }
-            }
-        }else{
-            if(estaEnPosicionOriginal()){
-                if(tablero.getArregloTablero()[tablero.getFunFila1()-1][tablero.getFunColumna1()]==tablero.getArregloTablero()[tablero.getFunFila2()][tablero.getFunColumna2()]||tablero.getArregloTablero()[tablero.getFunFila1()-2][tablero.getFunColumna1()]==tablero.getArregloTablero()[tablero.getFunFila2()][tablero.getFunColumna2()]){
-                    return true;
-                }else if(tablero.getArregloTablero()[tablero.getFunFila1()+1][tablero.getFunColumna1()]==tablero.getArregloTablero()[tablero.getFunFila2()][tablero.getFunColumna2()]||tablero.getArregloTablero()[tablero.getFunFila1()+2][tablero.getFunColumna1()]==tablero.getArregloTablero()[tablero.getFunFila2()][tablero.getFunColumna2()]){
-                    return true;
-                }
-            }
-        }
-        return false;
+        return true;
     }
 
     @Override
     public boolean mover(Casilla casilla) {
-        if(puedeMoverse(casilla)){
-            tablero.getArregloTablero()[tablero.getFunFila1()][tablero.getFunColumna1()].setPieza(null);
-            tablero.getArregloTablero()[tablero.getFunFila2()][tablero.getFunColumna2()].setPieza(casilla.getPieza());
-        }
         return true;
     }
 }

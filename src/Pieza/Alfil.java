@@ -18,6 +18,11 @@ public class Alfil extends Pieza{
     public Alfil(Color color) {
         super(color);
     }
+
+    public Alfil(Color color, String url) {
+        super(color, url);
+    }
+    
     @Override
     public boolean mover(Casilla casilla) {
         return true;
