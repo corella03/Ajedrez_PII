@@ -18,6 +18,11 @@ public class Rey extends Pieza{
     public Rey(Color color) {
         super(color);
     }
+
+    public Rey(Color color, String url) {
+        super(color, url);
+    }
+    
     @Override
     public boolean mover(Casilla casilla) {
         return true;

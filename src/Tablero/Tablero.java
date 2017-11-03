@@ -64,27 +64,60 @@ public class Tablero {
      * Método donde se le asigna una pieza a una casilla de forma Inicial
      */
     public void setPiezas() {
-        arregloTablero[0][0].setPieza(new Torre(Color.NEGRO));
-        //arregloTablero[0][0].getPieza().setCasilla(arregloTablero[0][0]);
-
-        arregloTablero[0][1].setPieza(new Caballo(Color.NEGRO));
-        arregloTablero[0][2].setPieza(new Alfil(Color.NEGRO));
-        arregloTablero[0][3].setPieza(new Reina(Color.NEGRO));
-        arregloTablero[0][4].setPieza(new Rey(Color.NEGRO));
-        arregloTablero[0][5].setPieza(new Alfil(Color.NEGRO));
-        arregloTablero[0][6].setPieza(new Caballo(Color.NEGRO));
+        arregloTablero[0][0].setPieza(new Torre(Color.NEGRO,"/Imagenes/torreN"));
+        arregloTablero[0][0].getPieza().setCasilla(arregloTablero[0][0]);
+        
+        arregloTablero[0][1].setPieza(new Caballo(Color.NEGRO,"/Imagenes/caballoN"));
+        arregloTablero[0][1].getPieza().setCasilla(arregloTablero[0][1]);
+        
+        arregloTablero[0][2].setPieza(new Alfil(Color.NEGRO,"/Imagenes/alfilN"));
+        arregloTablero[0][2].getPieza().setCasilla(arregloTablero[0][2]);
+        
+        arregloTablero[0][3].setPieza(new Reina(Color.NEGRO,"/Imagenes/reinaN"));
+        arregloTablero[0][3].getPieza().setCasilla(arregloTablero[0][3]);
+        
+        arregloTablero[0][4].setPieza(new Rey(Color.NEGRO,"/Imagenes/reyN"));
+        arregloTablero[0][4].getPieza().setCasilla(arregloTablero[0][4]);
+        
+        arregloTablero[0][5].setPieza(new Alfil(Color.NEGRO,"/Imagenes/alfilN"));
+        arregloTablero[0][5].getPieza().setCasilla(arregloTablero[0][5]);
+        
+        arregloTablero[0][6].setPieza(new Caballo(Color.NEGRO,"/Imagenes/caballoN"));
+        arregloTablero[0][6].getPieza().setCasilla(arregloTablero[0][6]);
+        
         arregloTablero[0][7].setPieza(new Torre(Color.NEGRO, "/Imagenes/torreN"));
-        arregloTablero[7][0].setPieza(new Torre(Color.BLANCO));
-        arregloTablero[7][1].setPieza(new Caballo(Color.BLANCO));
-        arregloTablero[7][2].setPieza(new Alfil(Color.BLANCO));
-        arregloTablero[7][3].setPieza(new Reina(Color.BLANCO));
-        arregloTablero[7][4].setPieza(new Rey(Color.BLANCO));
-        arregloTablero[7][5].setPieza(new Alfil(Color.BLANCO));
-        arregloTablero[7][6].setPieza(new Caballo(Color.BLANCO));
-        arregloTablero[7][7].setPieza(new Torre(Color.BLANCO));
+        arregloTablero[0][7].getPieza().setCasilla(arregloTablero[0][7]);
+        
+        arregloTablero[7][0].setPieza(new Torre(Color.BLANCO,"/Imagenes/torreB"));
+        arregloTablero[7][0].getPieza().setCasilla(arregloTablero[7][0]);
+        
+        arregloTablero[7][1].setPieza(new Caballo(Color.BLANCO,"/Imagenes/caballoB"));
+        arregloTablero[7][1].getPieza().setCasilla(arregloTablero[7][1]);
+        
+        arregloTablero[7][2].setPieza(new Alfil(Color.BLANCO,"/Imagenes/alfilB"));
+        arregloTablero[7][2].getPieza().setCasilla(arregloTablero[7][2]);
+        
+        arregloTablero[7][3].setPieza(new Reina(Color.BLANCO,"/Imagenes/reinaB"));
+        arregloTablero[7][3].getPieza().setCasilla(arregloTablero[7][3]);
+        
+        arregloTablero[7][4].setPieza(new Rey(Color.BLANCO,"/Imagenes/reyB"));
+        arregloTablero[7][4].getPieza().setCasilla(arregloTablero[7][4]);
+        
+        arregloTablero[7][5].setPieza(new Alfil(Color.BLANCO,"/Imagenes/alfilB"));
+        arregloTablero[7][5].getPieza().setCasilla(arregloTablero[7][5]);
+        
+        arregloTablero[7][6].setPieza(new Caballo(Color.BLANCO,"/Imagenes/caballoB"));
+        arregloTablero[7][6].getPieza().setCasilla(arregloTablero[7][6]);
+        
+        arregloTablero[7][7].setPieza(new Torre(Color.BLANCO,"/Imagenes/torreB"));
+        arregloTablero[7][7].getPieza().setCasilla(arregloTablero[7][7]);
+        
         for (int c = 0; c < 8; c++) {
-            arregloTablero[1][c].setPieza(new Peon(Color.NEGRO));
-            arregloTablero[6][c].setPieza(new Peon(Color.BLANCO));
+            arregloTablero[1][c].setPieza(new Peon(Color.NEGRO,"/Imagenes/peonN"));
+            arregloTablero[1][c].getPieza().setCasilla(arregloTablero[1][c]);
+            
+            arregloTablero[6][c].setPieza(new Peon(Color.BLANCO,"/Imagenes/peonB"));
+            arregloTablero[6][c].getPieza().setCasilla(arregloTablero[6][c]);
         }
     }
 

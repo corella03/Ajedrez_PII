@@ -18,6 +18,11 @@ public class Reina extends Pieza{
     public Reina(Color color) {
         super(color);
     }
+
+    public Reina(Color color, String url) {
+        super(color, url);
+    }
+    
     @Override
     public boolean mover(Casilla casilla) {
         return true;
