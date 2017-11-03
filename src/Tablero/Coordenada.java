@@ -34,6 +34,7 @@ public class Coordenada {
         this.letra = letra;
         this.numero = numero;
     }
+    //Métodos GETTERS y SETTERS
     public String getLetra() {
         return letra;
     }
@@ -47,6 +48,10 @@ public class Coordenada {
         this.numero = numero;
     }
     //Falta lo de equals
+    /**
+     * Método toString de la clase Coordenada
+     * @return String letra: La letra que representa las columnas, int numero: El número que representa las filas.
+     */
     @Override
     public String toString() {
         return "Coordenada: Letra(" + letra + ") -- Numero(" + numero +")";

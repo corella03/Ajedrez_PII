@@ -13,11 +13,12 @@ import Pieza.*;
  ** 16/10/2017
  **/
 public class Casilla{
+    private static boolean esBlanca = true;
     private static int cont;
     private Color color;
     private Pieza pieza;
     private Coordenada coordenada;
-    private static boolean esBlanca = true;
+    private Tablero tablero;
     public Casilla(){
         this.coordenada = new Coordenada();
         determinaColorACasilla();
@@ -26,10 +27,14 @@ public class Casilla{
         this.color = color;
         this.coordenada = coordenada;
     }
+    public Casilla(Tablero tablero) {
+        this.tablero = tablero;
+    }
     /**
      * Al crear cada casilla le asigna un color,
      * si la variable: esBlanco = true: el color va hacer blanco,
      * si la variable: esBlanco = false: el color va hacer Negro
+     * y la variable: cont sirve para que al llegra a la octaba fila se reinicie y asi repetir el proceso.
      */
     public void determinaColorACasilla(){
         if(cont != 8){
@@ -51,13 +56,16 @@ public class Casilla{
         }
     }
     /**
-     * 
-     * @return 
+     * Verifica si la casilla donde se va a mover esta ocupada.
+     * @return  true: Si esta ocupada, false: Si la casilla esta libre.
      */
     public boolean estaOcupada(){
-        
-       return true;
+       if(!(tablero.getArregloTablero()[tablero.getFunFila2()][tablero.getFunColumna2()].getPieza() == null)){
+           return true;
+       }
+       return false;
     }
+    //Métodos GETTERS y SETTERS
     public Color getColor() {
         return color;
     }
@@ -75,5 +83,14 @@ public class Casilla{
     }
     public void setCoordenada(Coordenada coordenada) {
         this.coordenada = coordenada;
+    }
+    /**
+     * Método toString de la clase casilla
+     * @return Color color: El color que tiene la casilla, Pieza pieza: la piesa que tiene la casilla 
+     * y Coordenada coordenada: coordenada de la casilla.
+     */
+    @Override
+    public String toString() {
+        return "Casilla:  Color: " + color + "\nPieza: " + pieza + "\nCoordenada: " + coordenada;
     }
 }

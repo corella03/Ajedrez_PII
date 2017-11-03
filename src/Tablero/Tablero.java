@@ -9,14 +9,19 @@ import Pieza.*;
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira
- ** 16/10/2017
+ ** @author Carlos Daniel Martines Sequeira * 16/10/2017
+ **
  **/
 public class Tablero {
     private InicioPartida partida;
     private Color turno;
     private Casilla casilla;
     private Casilla[][] ArregloTablero;
+    private int funColumna1 = 0;
+    private int funFila1 = 0;
+    private int funColumna2 = 0;
+    private int funFila2 = 0;
+    private boolean bus = false;
     public Tablero() {
         partida = new InicioPartida();
         ArregloTablero = new Casilla[8][8];
@@ -25,10 +30,11 @@ public class Tablero {
                 ArregloTablero[i][j] = new Casilla();
             }
         }
+        setPiezas();
     }
-    public void colocarPieza(Coordenada coordenada, Pieza pieza){
+    public void colocarPieza(Coordenada coordenada, Pieza pieza) {
     }
-    public boolean moverPieza(Casilla casillaInicial, Casilla casillaFinal){
+    public boolean moverPieza(Casilla casillaInicial, Casilla casillaFinal) {
         return true;
     }
     public Casilla getCasilla(Coordenada coordenada) {
@@ -38,12 +44,67 @@ public class Tablero {
      * Se le asigana una coordenada a la casilla.
      * @param letra String: que recibe letra para identificar las columnas.
      * @param numero int: que recibe número para identificar las filas.
-     * @return
+     * @return String letra: Una letra que va de A,H , int numero: un numero uqe va del 8 al 1.
      */
     public Casilla getCasillaCoordenada(String letra, int numero) {
         return casilla;
     }
-    //Métodos SETTERS y GETTERS
+    /**
+    *   Método donde se le asigna una  pieza a una casilla de forma Inicial
+    */
+    public void setPiezas() {
+        ArregloTablero[0][0].setPieza(new Torre(Color.NEGRO));
+        ArregloTablero[0][1].setPieza(new Caballo(Color.NEGRO));
+        ArregloTablero[0][2].setPieza(new Alfil(Color.NEGRO));
+        ArregloTablero[0][3].setPieza(new Reina(Color.NEGRO));
+        ArregloTablero[0][4].setPieza(new Rey(Color.NEGRO));
+        ArregloTablero[0][5].setPieza(new Alfil(Color.NEGRO));
+        ArregloTablero[0][6].setPieza(new Caballo(Color.NEGRO));
+        ArregloTablero[0][7].setPieza(new Torre(Color.NEGRO));
+        ArregloTablero[7][0].setPieza(new Torre(Color.BLANCO));
+        ArregloTablero[7][1].setPieza(new Caballo(Color.BLANCO));
+        ArregloTablero[7][2].setPieza(new Alfil(Color.BLANCO));
+        ArregloTablero[7][3].setPieza(new Reina(Color.BLANCO));
+        ArregloTablero[7][4].setPieza(new Rey(Color.BLANCO));
+        ArregloTablero[7][5].setPieza(new Alfil(Color.BLANCO));
+        ArregloTablero[7][6].setPieza(new Caballo(Color.BLANCO));
+        ArregloTablero[7][7].setPieza(new Torre(Color.BLANCO));
+        for (int c = 0; c < 8; c++) {
+            ArregloTablero[1][c].setPieza(new Peon(Color.NEGRO));
+            ArregloTablero[6][c].setPieza(new Peon(Color.BLANCO));
+        }
+    }
+    //Métodos GETTERS y SETTERS
+    public boolean isBus() {
+        return bus;
+    }
+    public void setBus(boolean bus) {
+        this.bus = bus;
+    }
+    public int getFunFila1() {
+        return funFila1;
+    }
+    public void setFunFila1(int funFila1) {    
+        this.funFila1 = funFila1;
+    }
+    public int getFunFila2() {
+        return funFila2;
+    }
+    public void setFunFila2(int funFila2) {
+        this.funFila2 = funFila2;
+    }
+    public int getFunColumna1() {
+        return funColumna1;
+    }
+    public void setFunColumna1(int funColumna1) {
+        this.funColumna1 = funColumna1;
+    }
+    public int getFunColumna2() {
+        return funColumna2;
+    }
+    public void setFunColumna2(int funColumna2) {
+        this.funColumna2 = funColumna2;
+    }
     public Casilla[][] getArregloTablero() {
         return ArregloTablero;
     }
@@ -62,15 +123,16 @@ public class Tablero {
     public void setTurno(Color turno) {
         this.turno = turno;
     }
-
     public InicioPartida getPartida() {
         return partida;
     }
-
     public void setPartida(InicioPartida partida) {
         this.partida = partida;
     }
-    
+    /**
+     * Método toString de la clase Tablero
+     * @return Color turno: El color ya sea blanco o negro. Casilla casilla: La casilla con todos sus atributos.
+     */
     @Override
     public String toString() {
         return "Tablero: Turno (" + turno + ") -- Casilla(" + casilla + ")";
