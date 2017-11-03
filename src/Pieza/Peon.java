@@ -47,7 +47,7 @@ public class Peon extends Pieza {
 
     @Override
     public boolean puedeMoverse(Casilla casilla) {
-        if (!this.esMismoColor(casilla.getPieza())) {
+        if (this.esMismoColor(casilla.getPieza())) {
             if (estaEnPosicionOriginal()) {
                 return true;
             } else {
