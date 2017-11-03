@@ -39,7 +39,7 @@ public abstract class Pieza {
      * @return
      */
     public boolean esMismoColor(Pieza pieza) {
-        return this.getColor().equals(pieza.getColor());
+        return pieza == null || this.getColor().equals(pieza.getColor());
     }
 
     /**
