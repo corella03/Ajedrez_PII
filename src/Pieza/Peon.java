@@ -15,8 +15,10 @@ import Tablero.Casilla;
  *
  */
 public class Peon extends Pieza {
-    public Peon() { 
+
+    public Peon() {
     }
+
     public Peon(Color color) {
         super(color);
     }
@@ -24,7 +26,6 @@ public class Peon extends Pieza {
     public Peon(Color color, String url) {
         super(color, url);
     }
-    
 
     /**
      *
@@ -33,10 +34,11 @@ public class Peon extends Pieza {
     public boolean estaEnPosicionOriginal() {
         int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
         for (int c = 0; c < 8; c++) {
-            if(this.getCasilla().getCoordenada().getLetra().equals(String.valueOf((char) (97 + c))) && this.getCasilla().getCoordenada().getNumero() == pos[6]){
+            if (this.getCasilla().getCoordenada().getLetra().equals(String.valueOf((char) (97 + c)))
+                    && this.getCasilla().getCoordenada().getNumero() == pos[6]) {
                 return true;
-            }
-            else if(this.getCasilla().getCoordenada().getLetra().equals(String.valueOf((char) (97 + c))) && this.getCasilla().getCoordenada().getNumero() == pos[1]){
+            } else if (this.getCasilla().getCoordenada().getLetra().equals(String.valueOf((char) (97 + c)))
+                    && this.getCasilla().getCoordenada().getNumero() == pos[1]) {
                 return true;
             }
         }
@@ -45,8 +47,12 @@ public class Peon extends Pieza {
 
     @Override
     public boolean puedeMoverse(Casilla casilla) {
-        if(estaEnPosicionOriginal()){   
-        return true;
+        if (!this.esMismoColor(casilla.getPieza())) {
+            if (estaEnPosicionOriginal()) {
+                return true;
+            } else {
+                
+            }
         }
         return false;
     }
