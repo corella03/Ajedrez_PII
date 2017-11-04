@@ -141,34 +141,35 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-
             JLabel lbl = (JLabel) e.getSource();
             String[] coor = lbl.getName().split(",");
             int fi = Integer.parseInt(coor[0]);
             int co = Integer.parseInt(coor[1]);
 
             if (casilla1 == null) {
-                if(tablero.getArregloTablero()[fi][co].getPieza()!= null){
-                casilla1 = tablero.getArregloTablero()[fi][co];
-                lbl.setBorder(line);
+                if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
+                    casilla1 = tablero.getArregloTablero()[fi][co];
+                    lbl.setBorder(line);
                 }
-            } else {
-                int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
-                System.out.println(casilla1.getCoordenada());
-                System.out.println(String.valueOf((char) (97 + co)));
-                System.out.println(pos[fi]);
-
-                if (casilla1.getCoordenada().getLetra().equals(String.valueOf((char) (97 + co))) && casilla1.getCoordenada().getNumero() == pos[fi]) {
-                    return;
+            } else if (casilla1 != null) {
+                if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
+                    if (casilla1.getPieza().getColor().equals(tablero.getArregloTablero()[fi][co].getPieza().getColor())) {
+                        casilla1 = tablero.getArregloTablero()[fi][co];
+                        lbl.setBorder(line);
+                    }
+                } else if (tablero.getArregloTablero()[fi][co].getPieza() == null || !casilla1.getPieza().getColor().equals(tablero.getArregloTablero()[fi][co].getPieza().getColor())) {
+                    int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
+                    if (casilla1.getCoordenada().getLetra().equals(String.valueOf((char) (97 + co))) && casilla1.getCoordenada().getNumero() == pos[fi]) {
+                        return;
+                    }
+                    if (casilla1.getPieza().puedeMoverse(tablero.getArregloTablero()[fi][co])) {
+                        tablero.getArregloTablero()[fi][co].setPieza(casilla1.getPieza());
+                        tablero.getArregloTablero()[fi][co].getPieza().setCasilla(tablero.getArregloTablero()[fi][co]);
+                        casilla1.setPieza(null);
+                        casilla1 = null;
+                        crearLabels();
+                    }
                 }
-                if (casilla1.getPieza().puedeMoverse(tablero.getArregloTablero()[fi][co])) {
-                    tablero.getArregloTablero()[fi][co].setPieza(casilla1.getPieza());
-                    tablero.getArregloTablero()[fi][co].getPieza().setCasilla(tablero.getArregloTablero()[fi][co]);
-                    casilla1.setPieza(null);
-                    casilla1 = null;
-                    crearLabels();
-                }
-                
             }
         }
 
@@ -188,6 +189,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         public void mouseExited(MouseEvent e) {
         }
     }
+
     public void setBackground() {
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
