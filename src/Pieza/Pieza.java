@@ -31,8 +31,6 @@ public abstract class Pieza {
         this.color = color;
         this.url = url;
     }
-    
-
     /**
      * falta ver que hace el método
      * @param pieza

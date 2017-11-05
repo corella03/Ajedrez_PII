@@ -7,7 +7,6 @@ package Tablero;
 
 import LogicaJuego.Color;
 import Pieza.*;
-import java.util.Objects;
 
 /**
  **
