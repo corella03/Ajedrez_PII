@@ -35,18 +35,25 @@ public class Rey extends Pieza {
     @Override
     public boolean puedeMoverse(Casilla casilla) {
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
-        if (this.esMismoColor(casilla.getPieza())) {
-            if (this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()
-                    || this.getCasilla().getCoordenada().getNumero() - 1 == casilla.getCoordenada().getNumero()
-                    || String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
-                    || String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())) {
-                return true;
-            }
-        } else if (this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()
-                || this.getCasilla().getCoordenada().getNumero() - 1 == casilla.getCoordenada().getNumero()
-                || String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
-                || String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())) {
-            if (this.getColor() != casilla.getPieza().getColor()) {
+        int numero = this.getCasilla().getCoordenada().getNumero();
+        String letraThis = this.getCasilla().getCoordenada().getLetra();
+        if (!this.esMismoColor(getCasilla().getPieza())) {
+            if (numero + 1 == casilla.getCoordenada().getNumero() 
+                    && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
+                    || numero + 1 == casilla.getCoordenada().getNumero() 
+                    && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())
+                    || numero - 1 == casilla.getCoordenada().getNumero()
+                    && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
+                    || numero - 1 == casilla.getCoordenada().getNumero() 
+                    && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())
+                    || String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra()) 
+                    && numero == casilla.getCoordenada().getNumero()
+                    || String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())
+                    && numero == casilla.getCoordenada().getNumero()
+                    || numero + 1 == casilla.getCoordenada().getNumero() 
+                    && letraThis.equals(casilla.getCoordenada().getLetra())
+                    || numero - 1 == casilla.getCoordenada().getNumero() 
+                    && letraThis.equals(casilla.getCoordenada().getLetra())) {
                 return true;
             }
         }

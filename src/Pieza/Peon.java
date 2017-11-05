@@ -48,45 +48,47 @@ public class Peon extends Pieza {
     @Override
     public boolean puedeMoverse(Casilla casilla) {
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
-        if (this.esMismoColor(casilla.getPieza())) {
+        int numero = this.getCasilla().getCoordenada().getNumero();
+        String letraThis = this.getCasilla().getCoordenada().getLetra();
+        if (!this.esMismoColor(getCasilla().getPieza())) {
             if (estaEnPosicionOriginal()) {
                 for (int f = 1; f < 3; f++) {
-                    if (this.getCasilla().getCoordenada().getNumero() + f == casilla.getCoordenada().getNumero()
-                            && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())
-                            || this.getCasilla().getCoordenada().getNumero() - f == casilla.getCoordenada().getNumero()
-                            && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())) {
+                    if (numero + f == casilla.getCoordenada().getNumero()
+                            && letraThis.equals(casilla.getCoordenada().getLetra())
+                            || numero - f == casilla.getCoordenada().getNumero()
+                            && letraThis.equals(casilla.getCoordenada().getLetra())) {
                         return true;
                     }
                 }
-            } else if (this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()
-                    && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())
-                    || this.getCasilla().getCoordenada().getNumero() - 1 == casilla.getCoordenada().getNumero()
-                    && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra()) 
+            } else if (numero + 1 == casilla.getCoordenada().getNumero()
+                    && letraThis.equals(casilla.getCoordenada().getLetra())
+                    || numero - 1 == casilla.getCoordenada().getNumero()
+                    && letraThis.equals(casilla.getCoordenada().getLetra())
                     && this.getColor().equals(Color.NEGRO)) {
                 return true;
-            }
-
-        } else if (this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()
-                && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
-                && this.getColor().equals(Color.BLANCO)
-                || this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()
-                && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())
-                && this.getColor().equals(Color.BLANCO)) {
-            if (this.getColor() != casilla.getPieza().getColor()) {
-                return true;
-            }
-        } else if (this.getCasilla().getCoordenada().getNumero() - 1 == casilla.getCoordenada().getNumero()
-                && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
-                && this.getColor().equals(Color.NEGRO)
-                || this.getCasilla().getCoordenada().getNumero() - 1 == casilla.getCoordenada().getNumero()
-                && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())
-                && this.getColor().equals(Color.NEGRO)) {
-            if (this.getColor() != casilla.getPieza().getColor()) {
-                return true;
+            } else if (numero + 1 == casilla.getCoordenada().getNumero()
+                    && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
+                    && this.getColor().equals(Color.BLANCO)
+                    || numero + 1 == casilla.getCoordenada().getNumero()
+                    && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())
+                    && this.getColor().equals(Color.BLANCO)) {
+                if (this.getColor() != casilla.getPieza().getColor()) {
+                    return true;
+                }
+            } else if (numero - 1 == casilla.getCoordenada().getNumero()
+                    && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
+                    && this.getColor().equals(Color.NEGRO)
+                    || numero - 1 == casilla.getCoordenada().getNumero()
+                    && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())
+                    && this.getColor().equals(Color.NEGRO)) {
+                if (this.getColor() != casilla.getPieza().getColor()) {
+                    return true;
+                }
             }
         }
         return false;
     }
+
     @Override
     public boolean mover(Casilla casilla) {
         this.setCasilla(casilla);

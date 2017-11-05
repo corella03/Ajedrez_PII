@@ -4,19 +4,24 @@
  * and open the template in the editor.
  */
 package Pieza;
+
 import LogicaJuego.Color;
 import Tablero.Casilla;
 import Tablero.Coordenada;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira
- ** 16/10/2017
- **/
-public class Caballo extends Pieza{
+ ** @author Carlos Daniel Martines Sequeira * 16/10/2017
+ *
+ */
+public class Caballo extends Pieza {
+
     Coordenada coor;
+
     public Caballo() {
     }
+
     public Caballo(Color color) {
         super(color);
     }
@@ -24,7 +29,7 @@ public class Caballo extends Pieza{
     public Caballo(Color color, String url) {
         super(color, url);
     }
-    
+
     @Override
     public boolean mover(Casilla casilla) {
         casilla.setPieza(this);
@@ -32,33 +37,35 @@ public class Caballo extends Pieza{
         this.setCasilla(casilla);
         return true;
     }
+
     @Override
     public boolean puedeMoverse(Casilla casilla) {
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
-        if(!this.esMismoColor(getCasilla().getPieza())){
-            if((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() -2)
-                    && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())) 
-                    || (this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() -2)
-                    && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra()))){
+        int numero = this.getCasilla().getCoordenada().getNumero();
+        if (!this.esMismoColor(getCasilla().getPieza())) {
+            if ((numero == (casilla.getCoordenada().getNumero() - 2)
+                    && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra()))
+                    || (numero == (casilla.getCoordenada().getNumero() - 2)
+                    && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra()))) {
                 return true;
             }
-            if((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + 2) 
+            if ((numero == (casilla.getCoordenada().getNumero() + 2)
                     && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra()))
-                    || (this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + 2) 
-                    && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra()))){
-                return true; 
+                    || (numero == (casilla.getCoordenada().getNumero() + 2)
+                    && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra()))) {
+                return true;
             }
-            if(((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + 1) 
+            if (((numero == (casilla.getCoordenada().getNumero() + 1)
                     && String.valueOf((char) (letra + 2)).equals(casilla.getCoordenada().getLetra()))
-                    || this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() - 1) 
-                    && String.valueOf((char) (letra + 2)).equals(casilla.getCoordenada().getLetra()))){
-                return true; 
+                    || numero == (casilla.getCoordenada().getNumero() - 1)
+                    && String.valueOf((char) (letra + 2)).equals(casilla.getCoordenada().getLetra()))) {
+                return true;
             }
-            if(((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + 1) 
+            if (((numero == (casilla.getCoordenada().getNumero() + 1)
                     && String.valueOf((char) (letra - 2)).equals(casilla.getCoordenada().getLetra()))
-                    || this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() - 1) 
-                    && String.valueOf((char) (letra - 2)).equals(casilla.getCoordenada().getLetra()))){
-                return true; 
+                    || numero == (casilla.getCoordenada().getNumero() - 1)
+                    && String.valueOf((char) (letra - 2)).equals(casilla.getCoordenada().getLetra()))) {
+                return true;
             }
         }
         return false;
