@@ -61,21 +61,26 @@ public class Peon extends Pieza {
             } else if (this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()
                     && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())
                     || this.getCasilla().getCoordenada().getNumero() - 1 == casilla.getCoordenada().getNumero()
-                    && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())) {
+                    && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra()) 
+                    && this.getColor().equals(Color.NEGRO)) {
                 return true;
             }
 
         } else if (this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()
                 && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
+                && this.getColor().equals(Color.BLANCO)
                 || this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()
-                && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())) {
+                && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())
+                && this.getColor().equals(Color.BLANCO)) {
             if (this.getColor() != casilla.getPieza().getColor()) {
                 return true;
             }
         } else if (this.getCasilla().getCoordenada().getNumero() - 1 == casilla.getCoordenada().getNumero()
                 && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
+                && this.getColor().equals(Color.NEGRO)
                 || this.getCasilla().getCoordenada().getNumero() - 1 == casilla.getCoordenada().getNumero()
-                && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())) {
+                && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())
+                && this.getColor().equals(Color.NEGRO)) {
             if (this.getColor() != casilla.getPieza().getColor()) {
                 return true;
             }

@@ -8,10 +8,13 @@ package Interfaz;
 import LogicaJuego.Color;
 import Pieza.*;
 import Tablero.*;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
@@ -33,6 +36,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     private Border line = BorderFactory.createLineBorder(java.awt.Color.RED, 3);
     private Casilla casilla1;
     private Casilla casilla2;
+    private JLabel label = new JLabel();
 
     public Frm_Juego() {
         initComponents();
@@ -40,6 +44,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         setLocationRelativeTo(null);
         tablero = new Tablero();
         inicioJuego();
+        
     }
 
     public Frm_Juego(Tablero tablero) {
@@ -86,7 +91,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                 Pieza temp = tablero.getArregloTablero()[filas][columnas].getPieza();
                 if (temp != null && temp.getUrl(casillaTemp.getColor()) != null) {
                     label.setIcon(new javax.swing.ImageIcon(getClass().getResource(temp.getUrl(casillaTemp.getColor()))));
-
                 }
                 label.setName(filas + "," + columnas);
                 jpanel.add(label);
@@ -149,27 +153,43 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
             if (casilla1 == null) {
                 if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
                     casilla1 = tablero.getArregloTablero()[fi][co];
+                    label = lbl;
                     lbl.setBorder(line);
                 }
             } else if (casilla1 != null) {
-//                if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
-//                    if (casilla1.getPieza().getColor().equals(tablero.getArregloTablero()[fi][co].getPieza().getColor())) {
-//                        casilla1 = tablero.getArregloTablero()[fi][co];
-//                        lbl.setBorder(line);
-//                    }
-//                 if (casilla1 != null) {
-                    //tablero.getArregloTablero()[fi][co].getPieza() == null || !casilla1.getPieza().getColor().equals(tablero.getArregloTablero()[fi][co].getPieza().getColor())
+                if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
+                    if (casilla1.getPieza().getColor().equals(tablero.getArregloTablero()[fi][co].getPieza().getColor())) {
+                        casilla1 = tablero.getArregloTablero()[fi][co];
+                        label.setBorder(null);
+                        lbl.setBorder(line);
+                        label = lbl;
+                    }
+                }
+                if (tablero.getArregloTablero()[fi][co].getPieza() == null || !casilla1.getPieza().getColor().equals(tablero.getArregloTablero()[fi][co].getPieza().getColor())) {
                     int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
                     if (casilla1.getCoordenada().getLetra().equals(String.valueOf((char) (97 + co))) && casilla1.getCoordenada().getNumero() == pos[fi]) {
                         return;
                     }
                     if (casilla1.getPieza().puedeMoverse(tablero.getArregloTablero()[fi][co])) {
+                        if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
+                            if (tablero.getArregloTablero()[fi][co].getPieza().getColor() != casilla1.getPieza().getColor()) {
+                                piezasB.setLayout(new java.awt.GridLayout(4, 4));
+                                JLabel l = new JLabel();
+                                ImageIcon image = new ImageIcon(getClass().getResource(tablero.getArregloTablero()[fi][co].getPieza().getUrl(tablero.getArregloTablero()[fi][co].getColor())));
+                                Icon icon = new ImageIcon(image.getImage().getScaledInstance(80, 65, Image.SCALE_DEFAULT));
+                                l.setIcon(icon);
+                                piezasB.add(l);
+                                piezasB.paintAll(piezasB.getGraphics());
+                            }
+                        }
                         tablero.getArregloTablero()[fi][co].setPieza(casilla1.getPieza());
                         tablero.getArregloTablero()[fi][co].getPieza().setCasilla(tablero.getArregloTablero()[fi][co]);
                         casilla1.setPieza(null);
                         casilla1 = null;
+                        label = null;
+
                         crearLabels();
-//                    }
+                    }
                 }
             }
         }
@@ -215,6 +235,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         pnlJug2 = new javax.swing.JPanel();
         lblJug2 = new javax.swing.JLabel();
         time2 = new javax.swing.JLabel();
+        piezasB = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         lbl8 = new javax.swing.JLabel();
         lbl5 = new javax.swing.JLabel();
@@ -295,6 +316,19 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         time2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         time2.setText("10:00");
 
+        piezasB.setOpaque(false);
+
+        javax.swing.GroupLayout piezasBLayout = new javax.swing.GroupLayout(piezasB);
+        piezasB.setLayout(piezasBLayout);
+        piezasBLayout.setHorizontalGroup(
+            piezasBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        piezasBLayout.setVerticalGroup(
+            piezasBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 231, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout pnlJug2Layout = new javax.swing.GroupLayout(pnlJug2);
         pnlJug2.setLayout(pnlJug2Layout);
         pnlJug2Layout.setHorizontalGroup(
@@ -302,21 +336,26 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
             .addGroup(pnlJug2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblJug2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(time2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(253, Short.MAX_VALUE))
+                    .addComponent(piezasB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlJug2Layout.createSequentialGroup()
+                        .addGroup(pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblJug2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(time2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 243, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pnlJug2Layout.setVerticalGroup(
             pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlJug2Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(lblJug2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(9, 9, 9)
                 .addComponent(time2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(piezasB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnlJug2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, -1, -1));
+        getContentPane().add(pnlJug2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, -1, 310));
 
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png"))); // NOI18N
         btnExit.setFocusable(false);
@@ -425,6 +464,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel lbl8;
     private javax.swing.JLabel lblJug1;
     private javax.swing.JLabel lblJug2;
+    private javax.swing.JPanel piezasB;
     private javax.swing.JPanel pnlJug1;
     private javax.swing.JPanel pnlJug2;
     private javax.swing.JLabel time;
