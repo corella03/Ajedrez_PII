@@ -51,18 +51,32 @@ public class Peon extends Pieza {
         if (this.esMismoColor(casilla.getPieza())) {
             if (estaEnPosicionOriginal()) {
                 for (int f = 1; f < 3; f++) {
-                    if (this.getCasilla().getCoordenada().getNumero() + f == casilla.getCoordenada().getNumero() || this.getCasilla().getCoordenada().getNumero() - f == casilla.getCoordenada().getNumero() 
+                    if (this.getCasilla().getCoordenada().getNumero() + f == casilla.getCoordenada().getNumero()
+                            && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())
+                            || this.getCasilla().getCoordenada().getNumero() - f == casilla.getCoordenada().getNumero()
                             && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())) {
                         return true;
-                    } else if (casilla.getPieza() != null) {
-                        if (this.getCasilla().getCoordenada().getNumero() + f == casilla.getCoordenada().getNumero() || this.getCasilla().getCoordenada().getNumero() - f == casilla.getCoordenada().getNumero()) {
-                            if (String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra()) || String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())) {
-                                return true;
-                            }
-                        }
                     }
                 }
-            } else if (this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()) {
+            } else if (this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()
+                    && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())
+                    || this.getCasilla().getCoordenada().getNumero() - 1 == casilla.getCoordenada().getNumero()
+                    && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())) {
+                return true;
+            }
+
+        } else if (this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()
+                && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
+                || this.getCasilla().getCoordenada().getNumero() + 1 == casilla.getCoordenada().getNumero()
+                && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())) {
+            if (this.getColor() != casilla.getPieza().getColor()) {
+                return true;
+            }
+        } else if (this.getCasilla().getCoordenada().getNumero() - 1 == casilla.getCoordenada().getNumero()
+                && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
+                || this.getCasilla().getCoordenada().getNumero() - 1 == casilla.getCoordenada().getNumero()
+                && String.valueOf((char) (letra - 1)).equals(casilla.getCoordenada().getLetra())) {
+            if (this.getColor() != casilla.getPieza().getColor()) {
                 return true;
             }
         }

@@ -152,12 +152,13 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                     lbl.setBorder(line);
                 }
             } else if (casilla1 != null) {
-                if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
-                    if (casilla1.getPieza().getColor().equals(tablero.getArregloTablero()[fi][co].getPieza().getColor())) {
-                        casilla1 = tablero.getArregloTablero()[fi][co];
-                        lbl.setBorder(line);
-                    }
-                } else if (tablero.getArregloTablero()[fi][co].getPieza() == null || !casilla1.getPieza().getColor().equals(tablero.getArregloTablero()[fi][co].getPieza().getColor())) {
+//                if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
+//                    if (casilla1.getPieza().getColor().equals(tablero.getArregloTablero()[fi][co].getPieza().getColor())) {
+//                        casilla1 = tablero.getArregloTablero()[fi][co];
+//                        lbl.setBorder(line);
+//                    }
+//                 if (casilla1 != null) {
+                    //tablero.getArregloTablero()[fi][co].getPieza() == null || !casilla1.getPieza().getColor().equals(tablero.getArregloTablero()[fi][co].getPieza().getColor())
                     int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
                     if (casilla1.getCoordenada().getLetra().equals(String.valueOf((char) (97 + co))) && casilla1.getCoordenada().getNumero() == pos[fi]) {
                         return;
@@ -168,7 +169,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                         casilla1.setPieza(null);
                         casilla1 = null;
                         crearLabels();
-                    }
+//                    }
                 }
             }
         }
