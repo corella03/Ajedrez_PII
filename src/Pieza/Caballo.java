@@ -6,6 +6,7 @@
 package Pieza;
 import LogicaJuego.Color;
 import Tablero.Casilla;
+import Tablero.Coordenada;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -13,6 +14,7 @@ import Tablero.Casilla;
  ** 16/10/2017
  **/
 public class Caballo extends Pieza{
+    Coordenada coor;
     public Caballo() {
     }
     public Caballo(Color color) {
@@ -32,9 +34,14 @@ public class Caballo extends Pieza{
     }
     @Override
     public boolean puedeMoverse(Casilla casilla) {
-        if(!this.esMismoColor(getCasilla().getPieza())){
-            
-            return true;
+        if(this.esMismoColor(getCasilla().getPieza())){
+            if(this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() -2) ){
+                return true;    
+            }
+            if(this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + 2) 
+                    ){
+                return true;    
+            }
         }
         return false;
     }

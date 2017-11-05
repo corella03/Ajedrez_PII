@@ -11,7 +11,10 @@ package Interfaz;
  */
 public class Test {
     public static void main(String[] args) {
-        System.out.println();
+        String letra;
+        int letraColumna = 0;
+        letra = String.valueOf((char) ('a' + letraColumna));
+            letraColumna ++;
         
     }
    
