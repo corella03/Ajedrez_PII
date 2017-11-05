@@ -87,7 +87,6 @@ public class Peon extends Pieza {
         }
         return false;
     }
-
     @Override
     public boolean mover(Casilla casilla) {
         this.setCasilla(casilla);

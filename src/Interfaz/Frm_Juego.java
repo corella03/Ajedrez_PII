@@ -173,8 +173,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                     if (casilla1.getPieza().puedeMoverse(tablero.getArregloTablero()[fi][co])) {
                         if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
                             if (tablero.getArregloTablero()[fi][co].getPieza().getColor() != casilla1.getPieza().getColor()) {
-                                
-                                
                                 JLabel l = new JLabel();
                                 ImageIcon image = new ImageIcon(getClass().getResource(tablero.getArregloTablero()[fi][co].getPieza().getUrl(tablero.getArregloTablero()[fi][co].getColor())));
                                 Icon icon = new ImageIcon(image.getImage().getScaledInstance(70, 60, Image.SCALE_DEFAULT));
@@ -195,7 +193,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                         casilla1.setPieza(null);
                         casilla1 = null;
                         label = null;
-
                         crearLabels();
                     }
                 }
