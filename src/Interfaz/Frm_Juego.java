@@ -10,12 +10,16 @@ import Pieza.*;
 import Tablero.*;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 import javax.swing.border.Border;
 
 /**
@@ -24,36 +28,95 @@ import javax.swing.border.Border;
  ** @author Carlos Daniel Martines Sequeira * 15/10/2017 *
  *
  */
-public class Frm_Juego extends javax.swing.JFrame implements Runnable {
+public class Frm_Juego extends javax.swing.JFrame {
 
     /**
      * Creates new form Frm_Juego
      */
-    private Thread h1, t;//tiempo de los jugadores
+    private Timer timer;
+    private Timer timer2;
     private int segundos = 60;
     private int minutos = 9;
+    private int segundos2 = 60;
+    private int minutos2 = 9;
     private Tablero tablero;
     private Border line = BorderFactory.createLineBorder(java.awt.Color.RED, 3);
     private Casilla casilla1;
     private Casilla casilla2;
     private JLabel label = new JLabel();
-
+    private boolean estado = true;
+       
     public Frm_Juego() {
         initComponents();
-        h1 = new Thread(this);
         setLocationRelativeTo(null);
         tablero = new Tablero();
+        timer = new Timer(1000, accion);
+        timer2 = new Timer(1000, accion2);
         inicioJuego();
-
     }
 
     public Frm_Juego(Tablero tablero) {
         initComponents();
-        h1 = new Thread(this);
+        timer = new Timer(1000, accion);
+        timer2 = new Timer(1000, accion2);
         this.tablero = tablero;
         inicioJuego();
     }
+    private ActionListener accion = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            segundos = segundos - 1;
+            if (minutos <= 0 && segundos == 0) {
+                time2.setText("Has Perdido");
+                timer.stop();
+                return;
+            }
+            if (segundos == 0) {
+                minutos--;
+                segundos = 59;
+            }
+            if (segundos <= 9) {
+                time2.setText(minutos + ":0" + segundos);
 
+            } else {
+                time2.setText(minutos + ":" + segundos);
+            }
+            if (minutos == 0 & segundos == 21) {
+                time2.setForeground(java.awt.Color.orange);
+            }
+            if (minutos == 0 & segundos == 10) {
+                time2.setForeground(java.awt.Color.red);
+            }
+            
+        }
+    };
+    private ActionListener accion2 = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            segundos2 = segundos2 - 1;
+            if (minutos2 <= 0 && segundos2 == 0) {
+                time.setText("Has Perdido");
+                timer2.stop();
+                return;
+            }
+            if (segundos2 == 0) {
+                minutos2--;
+                segundos2 = 59;
+            }
+            if (segundos2 <= 9) {
+                time.setText(minutos2 + ":0" + segundos2);
+            } else {
+                time.setText(minutos2 + ":" + segundos2);
+
+            }
+            if (minutos2 == 0 & segundos2 == 21) {
+                time.setForeground(java.awt.Color.orange);
+            }
+            if (minutos2 == 0 & segundos2 == 10) {
+                time.setForeground(java.awt.Color.red);
+            }
+        }
+    };
     public void inicioJuego() {
         crearLabels();
         setBackground();
@@ -98,44 +161,6 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         }
         jpanel.addMouseListener(bt);
         jpanel.paintAll(jpanel.getGraphics());
-    }
-
-    public void run() {
-        tablero.setTurno(Color.BLANCO);
-        Thread ct = Thread.currentThread();
-        while (ct == h1) {
-            segundos = segundos - 1;
-            if (segundos == 0) {
-                minutos--;
-                segundos = 59;
-            }
-            if (segundos <= 9) {
-                time.setText(minutos + ":0" + segundos);
-                time2.setText(minutos + ":0" + segundos);
-
-            } else {
-                time.setText(minutos + ":" + segundos);
-                time2.setText(minutos + ":" + segundos);
-            }
-            if (minutos == 0 & segundos == 21) {
-                time.setForeground(java.awt.Color.orange);
-                time2.setForeground(java.awt.Color.orange);
-            }
-            if (minutos == 0 & segundos == 10) {
-                time.setForeground(java.awt.Color.red);
-                time2.setForeground(java.awt.Color.red);
-            }
-            if (minutos == 0 & segundos == 0) {
-                time.setText("Has Perdido");
-                time2.setText("Has Perdido");
-                h1.interrupt();
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-        }
     }
 
     private class ButtonController implements MouseListener {
@@ -193,7 +218,16 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                         casilla1.setPieza(null);
                         casilla1 = null;
                         label = null;
-                        crearLabels();
+                        if(estado){
+                        timer.stop();
+                        timer2.start();
+                        estado = false;
+                        }else{
+                            timer2.stop();
+                            timer.start();
+                            estado = true;
+                        }
+                          crearLabels();
                     }
                 }
             }
@@ -297,7 +331,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         piezasB.setLayout(piezasBLayout);
         piezasBLayout.setHorizontalGroup(
             piezasBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 345, Short.MAX_VALUE)
         );
         piezasBLayout.setVerticalGroup(
             piezasBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,11 +346,10 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                 .addContainerGap()
                 .addGroup(pnlJug1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(piezasB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblJug1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlJug1Layout.createSequentialGroup()
-                        .addGroup(pnlJug1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 234, Short.MAX_VALUE)))
+                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlJug1Layout.setVerticalGroup(
@@ -341,7 +374,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         piezasN.setLayout(piezasNLayout);
         piezasNLayout.setHorizontalGroup(
             piezasNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 345, Short.MAX_VALUE)
         );
         piezasNLayout.setVerticalGroup(
             piezasNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,11 +394,10 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                 .addContainerGap()
                 .addGroup(pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(piezasN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblJug2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlJug2Layout.createSequentialGroup()
-                        .addGroup(pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblJug2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(time2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 243, Short.MAX_VALUE)))
+                        .addComponent(time2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlJug2Layout.setVerticalGroup(
@@ -435,8 +467,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        run();
-        h1.start();
+       timer.start();
     }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * @param args the command line arguments

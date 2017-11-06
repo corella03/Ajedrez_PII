@@ -35,44 +35,23 @@ public class Torre extends Pieza {
     @Override
     public boolean puedeMoverse(Casilla casilla) {
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
-        int f1 = this.getCasilla().getCoordenada().getNumero();
-        if (this.esMismoColor(casilla.getPieza())) {
-            for (int f = f1; f < 8; f++) {
+        int numero = this.getCasilla().getCoordenada().getNumero();
+        String letraThis = this.getCasilla().getCoordenada().getLetra();
+        if (!this.esMismoColor(getCasilla().getPieza())) {
+            for (int f = numero; f <= 8; f++) {
                 if (f == casilla.getCoordenada().getNumero()
-                        && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())) {
+                        && letraThis.equals(casilla.getCoordenada().getLetra())) {
                     return true;
                 }
             }
-            for (int f = f1; f > 0; f--) {
+            for (int f = numero; f > 0; f--) {
                 if (f == casilla.getCoordenada().getNumero()
-                        && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())) {
+                        && letraThis.equals(casilla.getCoordenada().getLetra())) {
                     return true;
                 }
             }
-            if (f1 == casilla.getCoordenada().getNumero()) {
+            if (numero == casilla.getCoordenada().getNumero()) {
                 return true;
-            }
-        } else {
-            for (int f = f1; f < 8; f++) {
-                if (f == casilla.getCoordenada().getNumero()
-                        && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())) {
-                    if (this.getColor() != casilla.getPieza().getColor()) {
-                        return true;
-                    }
-                }
-            }
-            for (int f = f1; f > 0; f--) {
-                if (f == casilla.getCoordenada().getNumero()
-                        && this.getCasilla().getCoordenada().getLetra().equals(casilla.getCoordenada().getLetra())) {
-                    if (this.getColor() != casilla.getPieza().getColor()) {
-                        return true;
-                    }
-                }
-            }
-            if (f1 == casilla.getCoordenada().getNumero()) {
-                if (this.getColor() != casilla.getPieza().getColor()) {
-                        return true;
-                    }
             }
         }
         return false;
