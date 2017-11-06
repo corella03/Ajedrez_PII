@@ -25,10 +25,41 @@ public class Alfil extends Pieza{
     
     @Override
     public boolean mover(Casilla casilla) {
+        casilla.setPieza(this);
+        this.getCasilla().setPieza(null);
+        this.setCasilla(casilla);
         return true;
     }
     @Override
     public boolean puedeMoverse(Casilla casilla) {
-        return true;
+        char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
+        if(!this.esMismoColor(getCasilla().getPieza())){
+            int f1 = this.getCasilla().getCoordenada().getNumero();
+            for (int i = 1; i <= 8; i++) {
+                if((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() - i)
+                    && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra()))){
+                    return true;
+                }
+            }
+            for (int i = 1; i <= 8; i++) {
+                if((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() - i)
+                    && String.valueOf((char) (letra - i)).equals(casilla.getCoordenada().getLetra()))){
+                    return true;
+                }
+            }
+            for (int i = 1; i <= 8; i++) {
+                if((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + i)
+                    && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra()))){
+                    return true;
+                }
+            }
+            for (int i = 1; i <= 8; i++) {
+                if((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + i)
+                    && String.valueOf((char) (letra - i)).equals(casilla.getCoordenada().getLetra()))){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
