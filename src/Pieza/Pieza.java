@@ -31,14 +31,16 @@ public abstract class Pieza {
         this.color = color;
         this.url = url;
     }
+
     /**
      * falta ver que hace el método
+     *
      * @param pieza
      * @return
      */
     public boolean esMismoColor(Pieza pieza) {
-        if(pieza != null){
-            if(pieza.getColor() != this.getColor()){
+        if (pieza != null) {
+            if (pieza.getColor() != this.getColor()) {
                 return false;
             }
         }
@@ -49,16 +51,18 @@ public abstract class Pieza {
      * //Preguntar si receibe algo por parametro porque en el enunciado no
      * viene
      *
-     * @param casilla
+     * @param casilla, Casilla[][] arreglo
      * @return
      */
-    public abstract boolean puedeMoverse(Casilla casilla);
+    public abstract boolean puedeMoverse(Casilla casilla, Casilla[][] arreglo);
+
     /**
      *
      * @param casilla
      * @return
      */
     public abstract boolean mover(Casilla casilla);
+
     public Color getColor() {
         return color;
     }

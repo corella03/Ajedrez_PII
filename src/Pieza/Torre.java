@@ -16,6 +16,8 @@ import Tablero.Casilla;
  */
 public class Torre extends Pieza {
 
+    private Casilla[][] arreglo;
+
     public Torre() {
     }
 
@@ -36,21 +38,32 @@ public class Torre extends Pieza {
     }
 
     @Override
-    public boolean puedeMoverse(Casilla casilla) {
+    public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
+        arreglo = a;
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
         int numero = this.getCasilla().getCoordenada().getNumero();
         String letraThis = this.getCasilla().getCoordenada().getLetra();
+        int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
         if (!this.esMismoColor(getCasilla().getPieza())) {
-            for (int f = numero; f <= 8; f++) {
-                if (f == casilla.getCoordenada().getNumero()
-                        && letraThis.equals(casilla.getCoordenada().getLetra())) {
-                    return true;
+            if (numero < casilla.getCoordenada().getNumero()) {
+                for (int f = numero; f <= 8; f++) {
+                    if (f == casilla.getCoordenada().getNumero()
+                            && letraThis.equals(casilla.getCoordenada().getLetra())) {
+                        return true;
+                    }
+                    if (arreglo[pos[f] - 1][7].getPieza() != null) {
+                        return false;
+                    }
                 }
-            }
-            for (int f = numero; f > 0; f--) {
-                if (f == casilla.getCoordenada().getNumero()
-                        && letraThis.equals(casilla.getCoordenada().getLetra())) {
-                    return true;
+            } else if(numero > casilla.getCoordenada().getNumero()){
+                for (int f = numero; f > 0; f--) {
+                    if (f == casilla.getCoordenada().getNumero()
+                            && letraThis.equals(casilla.getCoordenada().getLetra())) {
+                        return true;
+                    }
+                    if (arreglo[pos[f] + 1][7].getPieza() != null) {
+                        return false;
+                    }
                 }
             }
             if (numero == casilla.getCoordenada().getNumero()) {

@@ -16,6 +16,8 @@ import Tablero.Casilla;
  */
 public class Rey extends Pieza {
 
+    private Casilla[][] arreglo;
+
     public Rey() {
     }
 
@@ -36,7 +38,8 @@ public class Rey extends Pieza {
     }
 
     @Override
-    public boolean puedeMoverse(Casilla casilla) {
+    public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
+        arreglo = a;
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
         int numero = this.getCasilla().getCoordenada().getNumero();
         String letraThis = this.getCasilla().getCoordenada().getLetra();
