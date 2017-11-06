@@ -12,6 +12,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -40,8 +42,8 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
 
     public Frm_Juego() {
         initComponents();
-        h1 = new Thread(this);
         setLocationRelativeTo(null);
+        h1 = new Thread(this);
         tablero = new Tablero();
         inicioJuego();
 
@@ -128,7 +130,7 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
             if (minutos == 0 & segundos == 0) {
                 time.setText("Has Perdido");
                 time2.setText("Has Perdido");
-                h1.interrupt();
+                h1.suspend();
             }
             try {
                 Thread.sleep(1000);
@@ -313,10 +315,9 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                 .addGroup(pnlJug1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(piezasB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlJug1Layout.createSequentialGroup()
-                        .addGroup(pnlJug1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 234, Short.MAX_VALUE)))
+                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 289, Short.MAX_VALUE))
+                    .addComponent(lblJug1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlJug1Layout.setVerticalGroup(
@@ -362,10 +363,9 @@ public class Frm_Juego extends javax.swing.JFrame implements Runnable {
                 .addGroup(pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(piezasN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlJug2Layout.createSequentialGroup()
-                        .addGroup(pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblJug2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(time2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 243, Short.MAX_VALUE)))
+                        .addComponent(time2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 289, Short.MAX_VALUE))
+                    .addComponent(lblJug2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlJug2Layout.setVerticalGroup(
