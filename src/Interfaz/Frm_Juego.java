@@ -195,7 +195,7 @@ public class Frm_Juego extends javax.swing.JFrame {
                     if (casilla1.getCoordenada().getLetra().equals(String.valueOf((char) (97 + co))) && casilla1.getCoordenada().getNumero() == pos[fi]) {
                         return;
                     }
-                    if (casilla1.getPieza().puedeMoverse(tablero.getArregloTablero()[fi][co])) {
+                    if (casilla1.getPieza().puedeMoverse(tablero.getArregloTablero()[fi][co],tablero.getArregloTablero())) {
                         if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
                             if (tablero.getArregloTablero()[fi][co].getPieza().getColor() != casilla1.getPieza().getColor()) {
                                 JLabel l = new JLabel();

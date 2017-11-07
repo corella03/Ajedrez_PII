@@ -17,6 +17,7 @@ import Tablero.Coordenada;
  */
 public class Caballo extends Pieza {
 
+    private Casilla[][] arreglo;
     Coordenada coor;
 
     public Caballo() {
@@ -39,7 +40,8 @@ public class Caballo extends Pieza {
     }
 
     @Override
-    public boolean puedeMoverse(Casilla casilla) {
+    public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
+        arreglo = a;
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
         int numero = this.getCasilla().getCoordenada().getNumero();
         if (!this.esMismoColor(getCasilla().getPieza())) {

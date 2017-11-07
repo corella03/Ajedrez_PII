@@ -7,7 +7,6 @@ package Pieza;
 
 import LogicaJuego.Color;
 import Tablero.Casilla;
-import Tablero.Tablero;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -15,7 +14,8 @@ import Tablero.Tablero;
  *
  */
 public class Alfil extends Pieza {
-    Tablero tablero;
+
+    private Casilla[][] arreglo;
     public Alfil() {
     }
 
@@ -36,7 +36,8 @@ public class Alfil extends Pieza {
     }
 
     @Override
-    public boolean puedeMoverse(Casilla casilla) {
+    public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
+        arreglo = a;
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
         if (!this.esMismoColor(getCasilla().getPieza())) {
             for (int i = 1; i <= 8; i++) {

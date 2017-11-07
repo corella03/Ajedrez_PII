@@ -15,7 +15,7 @@ import Tablero.Casilla;
  *
  */
 public class Peon extends Pieza {
-
+    private Casilla[][] arreglo;
     public Peon() {
     }
 
@@ -35,10 +35,12 @@ public class Peon extends Pieza {
         int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
         for (int c = 0; c < 8; c++) {
             if (this.getCasilla().getCoordenada().getLetra().equals(String.valueOf((char) (97 + c)))
-                    && this.getCasilla().getCoordenada().getNumero() == pos[6]) {
+                    && this.getCasilla().getCoordenada().getNumero() == pos[6]
+                    && this.getColor().equals(Color.BLANCO)) {
                 return true;
             } else if (this.getCasilla().getCoordenada().getLetra().equals(String.valueOf((char) (97 + c)))
-                    && this.getCasilla().getCoordenada().getNumero() == pos[1]) {
+                    && this.getCasilla().getCoordenada().getNumero() == pos[1]
+                    && this.getColor().equals(Color.NEGRO)) {
                 return true;
             }
         }
@@ -46,7 +48,8 @@ public class Peon extends Pieza {
     }
 
     @Override
-    public boolean puedeMoverse(Casilla casilla) {
+    public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
+        arreglo = a;
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
         int numero = this.getCasilla().getCoordenada().getNumero();
         String letraThis = this.getCasilla().getCoordenada().getLetra();
@@ -60,15 +63,16 @@ public class Peon extends Pieza {
                         return true;
                     }
                 }
-            } if (numero + 1 == casilla.getCoordenada().getNumero()
+            }
+            if (numero + 1 == casilla.getCoordenada().getNumero()
                     && letraThis.equals(casilla.getCoordenada().getLetra())
                     || numero - 1 == casilla.getCoordenada().getNumero()
-                    && letraThis.equals(casilla.getCoordenada().getLetra())
-                    && this.getColor().equals(Color.NEGRO)) {
+                    && letraThis.equals(casilla.getCoordenada().getLetra())) {
                 if (casilla.getPieza() == null) {
                     return true;
                 }
-            } if (numero + 1 == casilla.getCoordenada().getNumero()
+            }
+            if (numero + 1 == casilla.getCoordenada().getNumero()
                     && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
                     && this.getColor().equals(Color.BLANCO)
                     || numero + 1 == casilla.getCoordenada().getNumero()
@@ -79,7 +83,8 @@ public class Peon extends Pieza {
                         return true;
                     }
                 }
-            } if (numero - 1 == casilla.getCoordenada().getNumero()
+            }
+            if (numero - 1 == casilla.getCoordenada().getNumero()
                     && String.valueOf((char) (letra + 1)).equals(casilla.getCoordenada().getLetra())
                     && this.getColor().equals(Color.NEGRO)
                     || numero - 1 == casilla.getCoordenada().getNumero()
