@@ -45,13 +45,14 @@ public class Frm_Juego extends javax.swing.JFrame {
     private Casilla casilla2;
     private JLabel label = new JLabel();
     private boolean estado = true;
-       
+
     public Frm_Juego() {
         initComponents();
         setLocationRelativeTo(null);
         tablero = new Tablero();
         timer = new Timer(1000, accion);
         timer2 = new Timer(1000, accion2);
+        tablero.setTurno(Color.BLANCO);
         inicioJuego();
     }
 
@@ -60,6 +61,7 @@ public class Frm_Juego extends javax.swing.JFrame {
         timer = new Timer(1000, accion);
         timer2 = new Timer(1000, accion2);
         this.tablero = tablero;
+        tablero.setTurno(Color.BLANCO);
         inicioJuego();
     }
     private ActionListener accion = new ActionListener() {
@@ -87,7 +89,7 @@ public class Frm_Juego extends javax.swing.JFrame {
             if (minutos == 0 & segundos == 10) {
                 time2.setForeground(java.awt.Color.red);
             }
-            
+
         }
     };
     private ActionListener accion2 = new ActionListener() {
@@ -117,6 +119,7 @@ public class Frm_Juego extends javax.swing.JFrame {
             }
         }
     };
+
     public void inicioJuego() {
         crearLabels();
         setBackground();
@@ -177,9 +180,18 @@ public class Frm_Juego extends javax.swing.JFrame {
 
             if (casilla1 == null) {
                 if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
-                    casilla1 = tablero.getArregloTablero()[fi][co];
-                    label = lbl;
-                    lbl.setBorder(line);
+                    if (tablero.getTurno().equals(Color.BLANCO)) {
+                        if (tablero.getArregloTablero()[fi][co].getPieza().getColor().equals(Color.BLANCO)) {
+                            casilla1 = tablero.getArregloTablero()[fi][co];
+                            label = lbl;
+                            lbl.setBorder(line);
+                        }
+                    } else if (tablero.getArregloTablero()[fi][co].getPieza().getColor().equals(Color.NEGRO)) {
+                        casilla1 = tablero.getArregloTablero()[fi][co];
+                        label = lbl;
+                        lbl.setBorder(line);
+                    }
+
                 }
             } else if (casilla1 != null) {
                 if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
@@ -195,7 +207,7 @@ public class Frm_Juego extends javax.swing.JFrame {
                     if (casilla1.getCoordenada().getLetra().equals(String.valueOf((char) (97 + co))) && casilla1.getCoordenada().getNumero() == pos[fi]) {
                         return;
                     }
-                    if (casilla1.getPieza().puedeMoverse(tablero.getArregloTablero()[fi][co],tablero.getArregloTablero())) {
+                    if (casilla1.getPieza().puedeMoverse(tablero.getArregloTablero()[fi][co], tablero.getArregloTablero())) {
                         if (tablero.getArregloTablero()[fi][co].getPieza() != null) {
                             if (tablero.getArregloTablero()[fi][co].getPieza().getColor() != casilla1.getPieza().getColor()) {
                                 JLabel l = new JLabel();
@@ -218,16 +230,18 @@ public class Frm_Juego extends javax.swing.JFrame {
                         casilla1.setPieza(null);
                         casilla1 = null;
                         label = null;
-                        if(estado){
-                        timer.stop();
-                        timer2.start();
-                        estado = false;
-                        }else{
+                        if (estado) {
+                            timer.stop();
+                            timer2.start();
+                            tablero.setTurno(Color.NEGRO);
+                            estado = false;
+                        } else {
                             timer2.stop();
+                            tablero.setTurno(Color.BLANCO);
                             timer.start();
                             estado = true;
                         }
-                          crearLabels();
+                        crearLabels();
                     }
                 }
             }
@@ -467,7 +481,7 @@ public class Frm_Juego extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       timer.start();
+        timer.start();
     }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * @param args the command line arguments

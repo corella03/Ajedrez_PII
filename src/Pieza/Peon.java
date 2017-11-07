@@ -15,7 +15,7 @@ import Tablero.Casilla;
  *
  */
 public class Peon extends Pieza {
-    private Casilla[][] arreglo;
+
     public Peon() {
     }
 
@@ -49,7 +49,6 @@ public class Peon extends Pieza {
 
     @Override
     public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
-        arreglo = a;
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
         int numero = this.getCasilla().getCoordenada().getNumero();
         String letraThis = this.getCasilla().getCoordenada().getLetra();

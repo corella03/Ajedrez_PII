@@ -14,8 +14,9 @@ import Tablero.Casilla;
  *
  */
 public class Alfil extends Pieza {
-
     private Casilla[][] arreglo;
+    private int fila;
+    private int filaC;
     public Alfil() {
     }
 
@@ -37,31 +38,116 @@ public class Alfil extends Pieza {
 
     @Override
     public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
-        arreglo = a;
+        int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
+        getFila();
+        getFila2(casilla.getCoordenada().getLetra());
+        int numero = this.getCasilla().getCoordenada().getNumero();
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
         if (!this.esMismoColor(getCasilla().getPieza())) {
-            for (int i = 1; i <= 8; i++) {
-                if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() - i)
-                        && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra()))){ 
-                    return true;
+
+            if (pos[numero] + 1 > pos[casilla.getCoordenada().getNumero()] + 1) {
+                for (int i = 1; i <= 8; i++) {
+                    if (fila < filaC) {
+                        if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() - i)
+                                && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra()))) {
+                            return true;
+                        }
+                        if (a[pos[numero] - i][fila + i].getPieza() != null) {
+                            return false;
+                        }
+                    } else if (fila > filaC) {
+                        if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() - i)
+                                && String.valueOf((char) (letra - i)).equals(casilla.getCoordenada().getLetra()))) {
+                            return true;
+                        }
+                        if (a[pos[numero] - i][fila - i].getPieza() != null) {
+                            return false;
+                        }
+                    }
                 }
-                if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() - i)
-                        && String.valueOf((char) (letra - i)).equals(casilla.getCoordenada().getLetra()))
-                        && !this.esMismoColor(getCasilla().getPieza())) {
-                    return true;
-                }
-                if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + i)
-                        && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra()))
-                        && !this.esMismoColor(getCasilla().getPieza())) {
-                    return true;
-                }
-                if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + i)
-                        && String.valueOf((char) (letra - i)).equals(casilla.getCoordenada().getLetra()))
-                        && !this.esMismoColor(getCasilla().getPieza())) {
-                    return true;
+            }
+            if (pos[numero] - 1 < pos[casilla.getCoordenada().getNumero()] - 1) {
+                for (int i = 1; i <= 8; i++) {
+                    if (fila < filaC) {
+                        if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + i)
+                                && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra()))) {
+                            return true;
+                        }
+                        if (a[pos[numero] + i][fila + i].getPieza() != null) {
+                            return false;
+                        }
+                    } else if (fila > filaC) {
+                        if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + i)
+                                && String.valueOf((char) (letra - i)).equals(casilla.getCoordenada().getLetra()))) {
+                            return true;
+                        }
+                        if (a[pos[numero] + i][fila - i].getPieza() != null) {
+                            return false;
+                        }
+                    }
                 }
             }
         }
         return false;
+    }
+
+
+    public void getFila() {
+        switch (this.getCasilla().getCoordenada().getLetra()) {
+            case "a":
+                fila = 0;
+                return;
+            case "b":
+                fila = 1;
+                return;
+            case "c":
+                fila = 2;
+                return;
+            case "d":
+                fila = 3;
+                return;
+            case "e":
+                fila = 4;
+                return;
+            case "f":
+                fila = 5;
+                return;
+            case "g":
+                fila = 6;
+                return;
+            case "h":
+                fila = 7;
+                return;
+        }
+
+    }
+
+    public void getFila2(String letra) {
+        switch (letra) {
+            case "a":
+                filaC = 0;
+                return;
+            case "b":
+                filaC = 1;
+                return;
+            case "c":
+                filaC = 2;
+                return;
+            case "d":
+                filaC = 3;
+                return;
+            case "e":
+                filaC = 4;
+                return;
+            case "f":
+                filaC = 5;
+                return;
+            case "g":
+                filaC = 6;
+                return;
+            case "h":
+                filaC = 7;
+                return;
+        }
     }
 }

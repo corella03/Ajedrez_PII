@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/Primer_Proyecto_PrograII_Ajedrez/Ajedrez_PII/src/Pieza/Alfil.java</file>
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/Primer_Proyecto_PrograII_Ajedrez/Ajedrez_PII/src/Pieza/Torre.java</file>
@@ -10,5 +11,8 @@
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/Primer_Proyecto_PrograII_Ajedrez/Ajedrez_PII/src/Tablero/Coordenada.java</file>
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/Primer_Proyecto_PrograII_Ajedrez/Ajedrez_PII/src/Interfaz/Frm_Juego.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> c8354bc5ecf1386597f9d4b9c7ed2202abd42804
     </open-files>
 </project-private>

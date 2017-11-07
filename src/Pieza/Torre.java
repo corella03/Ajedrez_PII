@@ -16,7 +16,8 @@ import Tablero.Casilla;
  */
 public class Torre extends Pieza {
 
-    private Casilla[][] arreglo;
+    private int fila;
+    private int filaC;
 
     public Torre() {
     }
@@ -39,7 +40,8 @@ public class Torre extends Pieza {
 
     @Override
     public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
-        arreglo = a;
+        getFila();
+        getFila2(casilla.getCoordenada().getLetra());
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
         int numero = this.getCasilla().getCoordenada().getNumero();
         String letraThis = this.getCasilla().getCoordenada().getLetra();
@@ -47,29 +49,110 @@ public class Torre extends Pieza {
         if (!this.esMismoColor(getCasilla().getPieza())) {
             if (numero < casilla.getCoordenada().getNumero()) {
                 for (int f = numero; f <= 8; f++) {
-                    if (f == casilla.getCoordenada().getNumero()
+                    if (f + 1 == casilla.getCoordenada().getNumero()
                             && letraThis.equals(casilla.getCoordenada().getLetra())) {
                         return true;
                     }
-                    if (arreglo[pos[f] - 1][7].getPieza() != null) {
+                    if (a[pos[f] - 1][fila].getPieza() != null) {
                         return false;
                     }
                 }
-            } else if(numero > casilla.getCoordenada().getNumero()){
-                for (int f = numero; f > 0; f--) {
-                    if (f == casilla.getCoordenada().getNumero()
+            } else if (numero > casilla.getCoordenada().getNumero()) {
+                for (int f1 = numero; f1 > 0; f1--) {
+                    if (f1 + 1 == casilla.getCoordenada().getNumero()
                             && letraThis.equals(casilla.getCoordenada().getLetra())) {
                         return true;
                     }
-                    if (arreglo[pos[f] + 1][7].getPieza() != null) {
+                    if (a[pos[f1] + 1][fila].getPieza() != null) {
                         return false;
                     }
                 }
-            }
-            if (numero == casilla.getCoordenada().getNumero()) {
-                return true;
+            } else if (fila < filaC) {
+                int i = 1;
+                for (int f2 = fila; f2 < 7; f2++) {
+                    if (numero == casilla.getCoordenada().getNumero()
+                            && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra())) {
+                        return true;
+                    }
+                    if (a[pos[numero]][f2 + 1].getPieza() != null) {
+                        return false;
+                    }
+                    i++;
+                }
+            } else if (fila > filaC) {
+                int p = 1;
+                for (int f3 = fila; f3 > 0; f3--) {
+                    if (numero == casilla.getCoordenada().getNumero()
+                            && String.valueOf((char) (letra - p)).equals(casilla.getCoordenada().getLetra())) {
+                        return true;
+                    }
+                    if (a[pos[numero]][f3 - 1].getPieza() != null) {
+                        return false;
+                    }
+                    p++;
+                }
             }
         }
         return false;
+    }
+
+    public void getFila() {
+        switch (this.getCasilla().getCoordenada().getLetra()) {
+            case "a":
+                fila = 0;
+                return;
+            case "b":
+                fila = 1;
+                return;
+            case "c":
+                fila = 2;
+                return;
+            case "d":
+                fila = 3;
+                return;
+            case "e":
+                fila = 4;
+                return;
+            case "f":
+                fila = 5;
+                return;
+            case "g":
+                fila = 6;
+                return;
+            case "h":
+                fila = 7;
+                return;
+        }
+
+    }
+
+    public void getFila2(String letra) {
+        switch (letra) {
+            case "a":
+                filaC = 0;
+                return;
+            case "b":
+                filaC = 1;
+                return;
+            case "c":
+                filaC = 2;
+                return;
+            case "d":
+                filaC = 3;
+                return;
+            case "e":
+                filaC = 4;
+                return;
+            case "f":
+                filaC = 5;
+                return;
+            case "g":
+                filaC = 6;
+                return;
+            case "h":
+                filaC = 7;
+                return;
+        }
+
     }
 }
