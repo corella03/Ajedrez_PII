@@ -16,7 +16,6 @@ import Tablero.Casilla;
  */
 public class Torre extends Pieza {
 
-    private Casilla[][] arreglo;
     private int fila;
     private int filaC;
 
@@ -41,7 +40,6 @@ public class Torre extends Pieza {
 
     @Override
     public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
-        arreglo = a;
         getFila();
         getFila2(casilla.getCoordenada().getLetra());
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
@@ -51,45 +49,47 @@ public class Torre extends Pieza {
         if (!this.esMismoColor(getCasilla().getPieza())) {
             if (numero < casilla.getCoordenada().getNumero()) {
                 for (int f = numero; f <= 8; f++) {
-                    if (f == casilla.getCoordenada().getNumero()
+                    if (f + 1 == casilla.getCoordenada().getNumero()
                             && letraThis.equals(casilla.getCoordenada().getLetra())) {
                         return true;
                     }
-                    if (arreglo[pos[f] - 1][7].getPieza() != null) {
+                    if (a[pos[f] - 1][fila].getPieza() != null) {
                         return false;
                     }
                 }
             } else if (numero > casilla.getCoordenada().getNumero()) {
-                for (int f = numero; f > 0; f--) {
-                    if (f == casilla.getCoordenada().getNumero()
+                for (int f1 = numero; f1 > 0; f1--) {
+                    if (f1 + 1 == casilla.getCoordenada().getNumero()
                             && letraThis.equals(casilla.getCoordenada().getLetra())) {
                         return true;
                     }
-                    if (arreglo[pos[f] + 1][7].getPieza() != null) {
+                    if (a[pos[f1] + 1][fila].getPieza() != null) {
                         return false;
                     }
                 }
             } else if (fila < filaC) {
                 int i = 1;
-                for (int f = fila; f < 7; f++) {
+                for (int f2 = fila; f2 < 7; f2++) {
                     if (numero == casilla.getCoordenada().getNumero()
                             && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra())) {
                         return true;
                     }
-                    if (arreglo[5][f+1].getPieza() != null) {
+                    if (a[pos[numero]][f2 + 1].getPieza() != null) {
                         return false;
                     }
                     i++;
                 }
             } else if (fila > filaC) {
-                for (int f = fila; f > 0; f--) {
+                int p = 1;
+                for (int f3 = fila; f3 > 0; f3--) {
                     if (numero == casilla.getCoordenada().getNumero()
-                            && String.valueOf((char) (letra - f)).equals(casilla.getCoordenada().getLetra())) {
+                            && String.valueOf((char) (letra - p)).equals(casilla.getCoordenada().getLetra())) {
                         return true;
                     }
-                    if (arreglo[5][f - 1].getPieza() != null) {
+                    if (a[pos[numero]][f3 - 1].getPieza() != null) {
                         return false;
                     }
+                    p++;
                 }
             }
         }

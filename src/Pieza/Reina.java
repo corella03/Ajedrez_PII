@@ -16,8 +16,6 @@ import Tablero.Casilla;
  */
 public class Reina extends Pieza {
 
-    private Casilla[][] arreglo;
-
     public Reina() {
     }
 
@@ -36,7 +34,6 @@ public class Reina extends Pieza {
 
     @Override
     public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
-        arreglo = a;
         return true;
     }
 }
