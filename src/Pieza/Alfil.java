@@ -7,7 +7,7 @@ package Pieza;
 
 import LogicaJuego.Color;
 import Tablero.Casilla;
-
+import Tablero.Tablero;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -15,7 +15,7 @@ import Tablero.Casilla;
  *
  */
 public class Alfil extends Pieza {
-
+    Tablero tablero;
     public Alfil() {
     }
 
@@ -41,19 +41,22 @@ public class Alfil extends Pieza {
         if (!this.esMismoColor(getCasilla().getPieza())) {
             for (int i = 1; i <= 8; i++) {
                 if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() - i)
-                        && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra()))) {
+                        && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra()))){ 
                     return true;
                 }
                 if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() - i)
-                        && String.valueOf((char) (letra - i)).equals(casilla.getCoordenada().getLetra()))) {
+                        && String.valueOf((char) (letra - i)).equals(casilla.getCoordenada().getLetra()))
+                        && !this.esMismoColor(getCasilla().getPieza())) {
                     return true;
                 }
                 if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + i)
-                        && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra()))) {
+                        && String.valueOf((char) (letra + i)).equals(casilla.getCoordenada().getLetra()))
+                        && !this.esMismoColor(getCasilla().getPieza())) {
                     return true;
                 }
                 if ((this.getCasilla().getCoordenada().getNumero() == (casilla.getCoordenada().getNumero() + i)
-                        && String.valueOf((char) (letra - i)).equals(casilla.getCoordenada().getLetra()))) {
+                        && String.valueOf((char) (letra - i)).equals(casilla.getCoordenada().getLetra()))
+                        && !this.esMismoColor(getCasilla().getPieza())) {
                     return true;
                 }
             }
