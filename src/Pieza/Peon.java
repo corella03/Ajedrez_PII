@@ -4,32 +4,26 @@
  * and open the template in the editor.
  */
 package Pieza;
-
 import LogicaJuego.Color;
 import Tablero.Casilla;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira * 16/10/2017
- *
+ ** @author Carlos Daniel Martines Sequeira 
+ ** 16/10/2017
  */
 public class Peon extends Pieza {
-
     public Peon() {
     }
-
     public Peon(Color color) {
         super(color);
     }
-
     public Peon(Color color, String url) {
         super(color, url);
     }
-
     /**
-     *
-     * @return
+     * Determina si es el primer movimiento del peón para saber si puede mover 1 o 2 casillas.
+     * @return true si se encuentra en la posición inicial, false: si ya se ha movido.
      */
     public boolean estaEnPosicionOriginal() {
         int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
@@ -46,7 +40,7 @@ public class Peon extends Pieza {
         }
         return false;
     }
-
+    //El movimiento del peon esrecto hacia adelante 1 o 2 pasos en el primero movimiento y 1 despues.
     @Override
     public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);
@@ -98,7 +92,7 @@ public class Peon extends Pieza {
         }
         return false;
     }
-
+    // "El comer" de las piezas; Diagonal.
     @Override
     public boolean mover(Casilla casilla) {
         casilla.setPieza(this);

@@ -4,32 +4,26 @@
  * and open the template in the editor.
  */
 package Pieza;
-
 import LogicaJuego.Color;
 import Tablero.Casilla;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira * 16/10/2017
- *
+ ** @author Carlos Daniel Martines Sequeira 
+ ** 16/10/2017
  */
 public class Torre extends Pieza {
-
     private int fila;
     private int filaC;
-
     public Torre() {
     }
-
     public Torre(Color color) {
         super(color);
     }
-
     public Torre(Color color, String url) {
         super(color, url);
     }
-
+    // "El comer" de las piezas.
     @Override
     public boolean mover(Casilla casilla) {
         casilla.setPieza(this);
@@ -37,7 +31,7 @@ public class Torre extends Pieza {
         this.setCasilla(casilla);
         return true;
     }
-
+    //El movimiento de la Torre es en dirección recta mientras no haya una pieza del mismo Color.
     @Override
     public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
         getFila();
@@ -95,7 +89,10 @@ public class Torre extends Pieza {
         }
         return false;
     }
-
+    /**
+     * Obtiene de la Coordenada la latra, y la pasa a número. Para luego verificar 
+     * que no se salten piezas del mismo Color.
+     */
     public void getFila() {
         switch (this.getCasilla().getCoordenada().getLetra()) {
             case "a":
@@ -123,9 +120,12 @@ public class Torre extends Pieza {
                 fila = 7;
                 return;
         }
-
     }
-
+    /**
+     * Obtiene de la Coordenada donde nos vamos a mover la latra, y la pasa a número. Para luego verificar 
+     * que no se salten piezas del mismo Color.
+     * @param letra String: letra de la Coordenada donde nos vamos a mover.
+     */
     public void getFila2(String letra) {
         switch (letra) {
             case "a":
@@ -153,6 +153,5 @@ public class Torre extends Pieza {
                 filaC = 7;
                 return;
         }
-
     }
 }

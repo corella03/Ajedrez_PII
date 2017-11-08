@@ -47,7 +47,7 @@ public abstract class Pieza {
      */
     public abstract boolean puedeMoverse(Casilla casilla, Casilla[][] arreglo);
     /**
-     * Método abstracto que mueve las piezas.
+     * Método abstracto que mueve las casillas e intercambia las piezas en caso de ser necesario.
      * @param casilla Casilla: que recibe una casilla a donde se va a mover.
      * @return true: si se mueve, false: si no se mueve.
      */

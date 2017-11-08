@@ -4,30 +4,24 @@
  * and open the template in the editor.
  */
 package Pieza;
-
 import LogicaJuego.Color;
 import Tablero.Casilla;
-import Tablero.Coordenada;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira * 16/10/2017
- *
+ ** @author Carlos Daniel Martines Sequeira 
+ ** 16/10/2017
  */
 public class Caballo extends Pieza {
-
     public Caballo() {
     }
-
     public Caballo(Color color) {
         super(color);
     }
-
     public Caballo(Color color, String url) {
         super(color, url);
     }
-
+    // "El comer" de las piezas.
     @Override
     public boolean mover(Casilla casilla) {
         casilla.setPieza(this);
@@ -35,7 +29,7 @@ public class Caballo extends Pieza {
         this.setCasilla(casilla);
         return true;
     }
-
+    //El movimiento del caballo es en forma de  L hacia cualquier lado.
     @Override
     public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);

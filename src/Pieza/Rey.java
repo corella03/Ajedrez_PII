@@ -4,37 +4,32 @@
  * and open the template in the editor.
  */
 package Pieza;
-
 import LogicaJuego.Color;
 import Tablero.Casilla;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira * 16/10/2017
- *
+ ** @author Carlos Daniel Martines Sequeira 
+ ** 16/10/2017
  */
 public class Rey extends Pieza {
-
     public Rey() {
     }
-
     public Rey(Color color) {
         super(color);
     }
-
     public Rey(Color color, String url) {
         super(color, url);
     }
-
     @Override
+    // "El comer" de las piezas.
     public boolean mover(Casilla casilla) {
         casilla.setPieza(this);
         this.getCasilla().setPieza(null);
         this.setCasilla(casilla);
         return true;
     }
-
+    //El movimiento del Rey es en cualquier lado mientras solo sea una casilla que este  a la par.
     @Override
     public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
         char letra = this.getCasilla().getCoordenada().getLetra().charAt(0);

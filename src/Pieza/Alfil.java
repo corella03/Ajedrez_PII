@@ -4,17 +4,15 @@
  * and open the template in the editor.
  */
 package Pieza;
-
 import LogicaJuego.Color;
 import Tablero.Casilla;
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira * 16/10/2017
- *
+ ** @author Carlos Daniel Martines Sequeira 
+ ** 16/10/2017
  */
 public class Alfil extends Pieza {
-    private Casilla[][] arreglo;
     private int fila;
     private int filaC;
     public Alfil() {
@@ -25,6 +23,7 @@ public class Alfil extends Pieza {
     public Alfil(Color color, String url) {
         super(color, url);
     }
+    // "El comer" de las piezas.
     @Override
     public boolean mover(Casilla casilla) {
         casilla.setPieza(this);
@@ -32,6 +31,7 @@ public class Alfil extends Pieza {
         this.setCasilla(casilla);
         return true;
     }
+    //El movimiento del alfin es en diagonal hacia cualquier lado.
     @Override
     public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
         int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
@@ -86,6 +86,10 @@ public class Alfil extends Pieza {
         }
         return false;
     }
+    /**
+     * Obtiene de la Coordenada la latra, y la pasa a número. Para luego verificar 
+     * que no se salten piezas del mismo Color.
+     */
     public void getFila() {
         switch (this.getCasilla().getCoordenada().getLetra()) {
             case "a":
@@ -114,6 +118,11 @@ public class Alfil extends Pieza {
                 return;
         }
     }
+    /**
+     * Obtiene de la Coordenada donde nos vamos a mover la latra, y la pasa a número. Para luego verificar 
+     * que no se salten piezas del mismo Color.
+     * @param letra String: letra de la Coordenada donde nos vamos a mover.
+     */
     public void getFila2(String letra) {
         switch (letra) {
             case "a":
