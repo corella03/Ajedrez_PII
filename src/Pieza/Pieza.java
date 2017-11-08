@@ -26,10 +26,10 @@ public abstract class Pieza {
         this.url = url;
     }
     /**
-     * falta ver que hace el método
-     *
-     * @param pieza
-     * @return
+     * Método que verifica si la pieza seleccionado y la pieza donde se va a mover son del mismo 
+     * color o sino tiene pieza.
+     * @param pieza Pieza: que recibe la pieza donde se va a mover.
+     * @return true: si es null o mismo color, false: si  no es null o distinto color.
      */
     public boolean esMismoColor(Pieza pieza) {
         if (pieza != null) {
@@ -40,29 +40,23 @@ public abstract class Pieza {
         return pieza == null;
     }
     /**
-     * //Preguntar si receibe algo por parametro porque en el enunciado no
-     * viene
-     *
-     * @param casilla, Casilla[][] arreglo
-     * @param arreglo
-     * @return
+     * Método abstracto para determina si se puede mover.
+     * @param casilla Casilla: que recibe una casilla.
+     * @param arreglo Casilla[][]: que recibe una matriz.
+     * @return true: si se puede mover, false: si no se puede mover.
      */
     public abstract boolean puedeMoverse(Casilla casilla, Casilla[][] arreglo);
     /**
-     *
-     * @param casilla
-     * @return
+     * Método abstracto que mueve las piezas.
+     * @param casilla Casilla: que recibe una casilla a donde se va a mover.
+     * @return true: si se mueve, false: si no se mueve.
      */
     public abstract boolean mover(Casilla casilla);
-    public Color getColor() {
-        return color;
-    }
-    public Casilla getCasilla() {
-        return casilla;
-    }
-    public void setCasilla(Casilla casilla) {
-        this.casilla = casilla;
-    }
+    /**
+     * Método para determinar el url que va a llervar la imagen.
+     * @param color Color: que recibe el color de la casilla.
+     * @return String url: la ruta de la imagen.
+     */
     public String getUrl(Color color) {
         if (url == null) {
             return null;
@@ -71,5 +65,18 @@ public abstract class Pieza {
         } else {
             return url + "N.jpg";
         }
+    }
+    //Métodos GETTERS y SETTERS
+    public Color getColor() {
+        return color;
+    }
+    public void setColor(Color color) {
+        this.color = color;
+    }
+    public Casilla getCasilla() {
+        return casilla;
+    }
+    public void setCasilla(Casilla casilla) {
+        this.casilla = casilla;
     }
 }

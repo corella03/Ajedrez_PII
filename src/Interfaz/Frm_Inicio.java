@@ -9,7 +9,8 @@ import Tablero.*;
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira * 16/10/2017
+ ** @author Carlos Daniel Martines Sequeira *
+ ** 16/10/2017
  */
 public class Frm_Inicio extends javax.swing.JFrame {
     /**
@@ -26,12 +27,18 @@ public class Frm_Inicio extends javax.swing.JFrame {
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
     }
+    /**
+     * Método para ir a FrmJuego.
+     */
     public void irAFrmJuego(){
         Frm_Juego j = new Frm_Juego(tablero);
         j.setVisible(true);
         j.setLocationRelativeTo(null);
         dispose();
     }
+    /**
+     * Verifica que todos los datos esten listos al iniciar el juego.
+     */
     public void verificarInicio(){
         if (tablero.getPartida().verificarInicio(txtJugador1.getText(), txtJugador2.getText())) {
             if(tablero.getPartida().verificarIgualdadDeJugadores(txtJugador1.getText().trim().toLowerCase()
@@ -45,6 +52,9 @@ public class Frm_Inicio extends javax.swing.JFrame {
             lblMensaje.setText("Debes digitar el nombre de ambos jugadores.");
         }
     }
+    /**
+     * Método para eligir cual cara de dado sale.
+     */
     public void generarNum() {
         generanumero objDado = new generanumero();
         int dados = objDado.calculanumero();
@@ -52,6 +62,10 @@ public class Frm_Inicio extends javax.swing.JFrame {
         lblDado.setIcon(objImag1.Imagen(dados));
         elegirganador(dados);
     }
+    /**
+     * Se elige ganador si el número elegido es par ganar el jugador1 de lo contrario el jugador2.
+     * @param num int: que recibe el número que determina el ganador.
+     */
     public void elegirganador(int num) {
         tablero.getPartida().setJugador1(txtJugador1.getText());
         tablero.getPartida().setJugador2(txtJugador2.getText());

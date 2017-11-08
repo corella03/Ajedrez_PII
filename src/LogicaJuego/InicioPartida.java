@@ -7,8 +7,8 @@ package LogicaJuego;
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira * 16/10/2017
- **
+ ** @author Carlos Daniel Martines Sequeira 
+ ** 16/10/2017
  **/
 public class InicioPartida {
     private String jugador1;
@@ -16,6 +16,12 @@ public class InicioPartida {
     private boolean bus = true;
     public InicioPartida() {
     }
+    /**
+     * Método que verifica que los jugadores no tengan el mismo nombre.
+     * @param jug1 String: que recibe el nombre del jugador1.
+     * @param jug2 String: que recibe el nombre del jugador2.
+     * @return true: si el jugar es igual, false: si el jugador es igual.
+     */
     public boolean verificarIgualdadDeJugadores(String jug1, String jug2) {
         if (jug1.equals(jug2)) {
             bus = true;
@@ -24,9 +30,16 @@ public class InicioPartida {
         bus = false;
         return true;
     }
+    /**
+     * Verifica que ambos usuarios hayan escrito el nombre.
+     * @param jug1 String: que recibe el nombre del jugador1.
+     * @param jug2 String: que recibe el nombre del jugador2.
+     * @return true: si los datos estan completos, false: si falta alguno de los datos.
+     */
     public boolean verificarInicio(String jug1, String jug2) {
         return !jug1.isEmpty() && !jug2.isEmpty();
     }
+    //Métodos GETTERS y SETTERS
     public String getJugador1() {
         return jugador1;
     }
