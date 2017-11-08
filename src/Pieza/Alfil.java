@@ -14,7 +14,6 @@ import Tablero.Casilla;
  *
  */
 public class Alfil extends Pieza {
-    private Casilla[][] arreglo;
     private int fila;
     private int filaC;
     public Alfil() {

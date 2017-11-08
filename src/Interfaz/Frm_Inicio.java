@@ -57,8 +57,10 @@ public class Frm_Inicio extends javax.swing.JFrame {
         tablero.getPartida().setJugador2(txtJugador2.getText());
         if (num % 2 == 0) {
             lblResultado.setText("El ganador es el jugador: " + tablero.getPartida().getJugador1());
+            tablero.getPartida().setJugador1(txtJugador1.getText()+"1");
         } else {
             lblResultado.setText("El ganador es el jugador: " + tablero.getPartida().getJugador2());
+            tablero.getPartida().setJugador2(txtJugador2.getText()+"1");
         }
     }
     /**

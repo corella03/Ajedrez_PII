@@ -49,6 +49,31 @@ public class Coordenada {
     public void setNumero(int numero) {
         this.numero = numero;
     }
+
+    public static int getCont() {
+        return cont;
+    }
+
+    public static void setCont(int cont) {
+        Coordenada.cont = cont;
+    }
+
+    public static int getLetraColumna() {
+        return letraColumna;
+    }
+
+    public static void setLetraColumna(int letraColumna) {
+        Coordenada.letraColumna = letraColumna;
+    }
+
+    public static int getNumeroFijo() {
+        return numeroFijo;
+    }
+
+    public static void setNumeroFijo(int numeroFijo) {
+        Coordenada.numeroFijo = numeroFijo;
+    }
+    
     //Falta lo de equals
     /**
      * Método toString de la clase Coordenada
