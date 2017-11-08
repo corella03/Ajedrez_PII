@@ -72,6 +72,7 @@ public class Frm_Juego extends javax.swing.JFrame {
             segundos = segundos - 1;
             if (minutos <= 0 && segundos == 0) {
                 time2.setText("Has Perdido");
+                timer2.stop();
                 timer.stop();
                 return;
             }
@@ -100,6 +101,7 @@ public class Frm_Juego extends javax.swing.JFrame {
             segundos2 = segundos2 - 1;
             if (minutos2 <= 0 && segundos2 == 0) {
                 time.setText("Has Perdido");
+                timer.stop();
                 timer2.stop();
                 return;
             }
