@@ -30,6 +30,18 @@ public class Casilla {
     public Casilla(Tablero tablero) {
         this.tablero = tablero;
     }
+    public static boolean isEsBlanca() {
+        return esBlanca;
+    }
+    public static void setEsBlanca(boolean esBlanca) {
+        Casilla.esBlanca = esBlanca;
+    }
+    public static int getCont() {
+        return cont;
+    }
+    public static void setCont(int cont) {
+        Casilla.cont = cont;
+    }
     /**
      * Al crear cada casilla le asigna un color, si la variable: esBlanco =
      * true: el color va hacer blanco, si la variable: esBlanco = false: el

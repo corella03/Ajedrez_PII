@@ -17,6 +17,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 
@@ -52,6 +53,8 @@ public class Frm_Juego extends javax.swing.JFrame {
         timer2 = new Timer(1000, accion2);
         tablero.setTurno(Color.BLANCO);
         inicioJuego();
+        btnExit.setContentAreaFilled(false);
+        btnExit.setBorder(null);
     }
 
     public Frm_Juego(Tablero tablero) {
@@ -61,6 +64,7 @@ public class Frm_Juego extends javax.swing.JFrame {
         this.tablero = tablero;
         tablero.setTurno(Color.BLANCO);
         inicioJuego();
+        setBackground();
     }
     private ActionListener accion = new ActionListener() {
         @Override
@@ -120,7 +124,6 @@ public class Frm_Juego extends javax.swing.JFrame {
 
     public void inicioJuego() {
         crearLabels();
-        setBackground();
         ver();
     }
 
@@ -240,6 +243,16 @@ public class Frm_Juego extends javax.swing.JFrame {
                             estado = true;
                         }
                         crearLabels();
+                        if (validarNegra()) {
+                            timer.stop();
+                            timer2.stop();
+                            JOptionPane.showMessageDialog(null, lblJug2.getText() + "\nHA GANADO.");
+                        }
+                        if (validarBlanca()) {
+                            timer.stop();
+                            timer2.stop();
+                            JOptionPane.showMessageDialog(null, lblJug1.getText() + "\nHA GANADO.");
+                        }
                     }
                 }
             }
@@ -263,10 +276,14 @@ public class Frm_Juego extends javax.swing.JFrame {
     }
 
     public void setBackground() {
-        btnExit.setContentAreaFilled(false);
-        btnExit.setBorder(null);
-        lblJug1.setText(tablero.getPartida().getJugador1());
-        lblJug2.setText(tablero.getPartida().getJugador2());
+        String jug1 = String.valueOf(tablero.getPartida().getJugador1().charAt(tablero.getPartida().getJugador1().length() - 1));
+        if (jug1.equals("1")) {
+            lblJug2.setText(tablero.getPartida().getJugador1().replace("1", ""));
+            lblJug1.setText(tablero.getPartida().getJugador2());
+        } else {
+            lblJug1.setText(tablero.getPartida().getJugador1());
+            lblJug2.setText(tablero.getPartida().getJugador2().replace("1", ""));
+        }
     }
 
     /**
@@ -298,6 +315,7 @@ public class Frm_Juego extends javax.swing.JFrame {
         lbl7 = new javax.swing.JLabel();
         lbl4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -327,15 +345,18 @@ public class Frm_Juego extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 690, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 690, -1, -1));
 
         pnlJug1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         pnlJug1.setOpaque(false);
+        pnlJug1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblJug1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        pnlJug1.add(lblJug1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 345, 23));
 
         time.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         time.setText("10:00");
+        pnlJug1.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 42, 165, 29));
 
         piezasB.setOpaque(false);
 
@@ -350,35 +371,13 @@ public class Frm_Juego extends javax.swing.JFrame {
             .addGap(0, 241, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout pnlJug1Layout = new javax.swing.GroupLayout(pnlJug1);
-        pnlJug1.setLayout(pnlJug1Layout);
-        pnlJug1Layout.setHorizontalGroup(
-            pnlJug1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlJug1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlJug1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(piezasB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblJug1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlJug1Layout.createSequentialGroup()
-                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pnlJug1Layout.setVerticalGroup(
-            pnlJug1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlJug1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblJug1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(piezasB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        pnlJug1.add(piezasB, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 77, -1, -1));
 
-        getContentPane().add(pnlJug1, new org.netbeans.lib.awtextra.AbsoluteConstraints(788, 24, -1, 320));
+        getContentPane().add(pnlJug1, new org.netbeans.lib.awtextra.AbsoluteConstraints(788, 24, 370, 320));
 
         pnlJug2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         pnlJug2.setOpaque(false);
+        pnlJug2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         piezasN.setOpaque(false);
 
@@ -393,37 +392,16 @@ public class Frm_Juego extends javax.swing.JFrame {
             .addGap(0, 241, Short.MAX_VALUE)
         );
 
+        pnlJug2.add(piezasN, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 77, -1, -1));
+
         lblJug2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        pnlJug2.add(lblJug2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 8, 345, 25));
 
         time2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         time2.setText("10:00");
+        pnlJug2.add(time2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 42, 165, 29));
 
-        javax.swing.GroupLayout pnlJug2Layout = new javax.swing.GroupLayout(pnlJug2);
-        pnlJug2.setLayout(pnlJug2Layout);
-        pnlJug2Layout.setHorizontalGroup(
-            pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlJug2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(piezasN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblJug2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlJug2Layout.createSequentialGroup()
-                        .addComponent(time2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pnlJug2Layout.setVerticalGroup(
-            pnlJug2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlJug2Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(lblJug2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(time2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(piezasN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(pnlJug2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, -1, 320));
+        getContentPane().add(pnlJug2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, 370, 320));
 
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/close.png"))); // NOI18N
         btnExit.setFocusable(false);
@@ -470,6 +448,15 @@ public class Frm_Juego extends javax.swing.JFrame {
         jLabel2.setText("    a           b          c         d         e           f          g          h");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 670, 690, -1));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton2.setText("NUEVA PARTIDA");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 690, -1, 30));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/vistaJuego.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 1230, 760));
 
@@ -481,6 +468,57 @@ public class Frm_Juego extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         timer.start();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        piezasB.removeAll();
+        piezasN.removeAll();
+        piezasB.repaint();
+        piezasN.repaint();
+        casilla1 = null;
+        casilla2 = null;
+        estado = true;
+        minutos = 9;
+        minutos2 = 9;
+        segundos = 60;
+        segundos2 = 60;
+        timer.stop();
+        timer2.stop();
+        Casilla.setCont(0);
+        Coordenada.setLetraColumna(0);
+        Coordenada.setNumeroFijo(8);
+        Casilla.setEsBlanca(true);
+        Coordenada.setCont(0);
+        time.setText("10:00");
+        time2.setText("10:00");
+        timer = new Timer(1000, accion);
+        timer2 = new Timer(1000, accion2);
+        tablero = new Tablero();
+        tablero.setTurno(Color.BLANCO);
+        inicioJuego();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public boolean validarNegra() {
+        for (int filas = 0; filas < 8; filas++) {
+            for (int columnas = 0; columnas < 8; columnas++) {
+                if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Rey && tablero.getArregloTablero()[filas][columnas].getPieza().getColor().equals(Color.NEGRO)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean validarBlanca() {
+        for (int filas = 0; filas < 8; filas++) {
+            for (int columnas = 0; columnas < 8; columnas++) {
+                if (tablero.getArregloTablero()[filas][columnas].getPieza() instanceof Rey && tablero.getArregloTablero()[filas][columnas].getPieza().getColor().equals(Color.BLANCO)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -518,6 +556,7 @@ public class Frm_Juego extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jpanel;
