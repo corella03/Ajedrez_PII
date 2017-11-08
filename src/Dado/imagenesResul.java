@@ -8,11 +8,17 @@ import javax.swing.ImageIcon;
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira * 16/10/2017
+ ** @author Carlos Daniel Martines Sequeira 
+ ** 16/10/2017
  */
 public class imagenesResul {
     private ImageIcon icoImagen;
-    public ImageIcon Imaen(int vDados) {
+    /**
+     * Método para determinar la imagen que se muestra a la hora de detener el gif del dado.
+     * @param vDados int: que recibe un numero para determinar cual imagen mostar.
+     * @return icoImagen: la imagen que se eligió. 
+     */
+    public ImageIcon Imagen(int vDados) {
         switch (vDados) {
             case 1:
                 icoImagen = new ImageIcon(getClass().getResource("/Imagenes/1.png"));

@@ -19,15 +19,12 @@ public class Alfil extends Pieza {
     private int filaC;
     public Alfil() {
     }
-
     public Alfil(Color color) {
         super(color);
     }
-
     public Alfil(Color color, String url) {
         super(color, url);
     }
-
     @Override
     public boolean mover(Casilla casilla) {
         casilla.setPieza(this);
@@ -35,7 +32,6 @@ public class Alfil extends Pieza {
         this.setCasilla(casilla);
         return true;
     }
-
     @Override
     public boolean puedeMoverse(Casilla casilla, Casilla[][] a) {
         int[] pos = {8, 7, 6, 5, 4, 3, 2, 1, 0};
@@ -90,8 +86,6 @@ public class Alfil extends Pieza {
         }
         return false;
     }
-
-
     public void getFila() {
         switch (this.getCasilla().getCoordenada().getLetra()) {
             case "a":
@@ -119,9 +113,7 @@ public class Alfil extends Pieza {
                 fila = 7;
                 return;
         }
-
     }
-
     public void getFila2(String letra) {
         switch (letra) {
             case "a":

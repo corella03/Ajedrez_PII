@@ -21,7 +21,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         tablero = new Tablero();
         btnInicio.setVisible(false);
-        imagenes1 objImag2 = new imagenes1();
+        imagenes objImag2 = new imagenes();
         lblDado.setIcon(objImag2.gifDado1(1));
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
@@ -49,7 +49,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         generanumero objDado = new generanumero();
         int dados = objDado.calculanumero();
         imagenesResul objImag1 = new imagenesResul();
-        lblDado.setIcon(objImag1.Imaen(dados));
+        lblDado.setIcon(objImag1.Imagen(dados));
         elegirganador(dados);
     }
     public void elegirganador(int num) {

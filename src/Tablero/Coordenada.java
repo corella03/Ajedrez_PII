@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package Tablero;
-
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -18,6 +16,10 @@ public class Coordenada {
     private static int numeroFijo = 8;
     private String letra;
     private int numero;
+    /**
+     * En este constructor se le asigna una letra y un numero a cada coordenada creada,
+     * este ciclo se repite 8 veces asignando un numero del 1 al 8y letras de la A,H
+     */
     public Coordenada() {
         if(cont != 8){
             this.numero = numeroFijo;
@@ -49,7 +51,6 @@ public class Coordenada {
     public void setNumero(int numero) {
         this.numero = numero;
     }
-    //Falta lo de equals
     /**
      * Método toString de la clase Coordenada
      * @return String letra: La letra que representa las columnas, int numero: El número que representa las filas.
@@ -58,6 +59,4 @@ public class Coordenada {
     public String toString() {
         return "Coordenada: Letra(" + letra + ") -- Numero(" + numero +")";
     }
-    
-    
 }

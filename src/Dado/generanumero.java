@@ -8,9 +8,14 @@ import java.util.Random;
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira * 16/10/2017
- */
+ ** @author Carlos Daniel Martines Sequeira 
+ ** 16/10/2017
+ **/
 public class generanumero {
+    /**
+     * Genera un numero de aleatorio que va del 1 al 6 simulando la cara del Dado.
+     * @return
+     */
     public int calculanumero() {
         Random Generar = new Random();
         int num = Generar.nextInt(6) + 1;
