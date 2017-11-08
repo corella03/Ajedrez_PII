@@ -52,7 +52,7 @@ public class Reina extends Pieza {
             } else if (numero > casilla.getCoordenada().getNumero()
                     && letraThis.equals(casilla.getCoordenada().getLetra())) {
                 for (int f1 = numero; f1 > 0; f1--) {
-                    if (f1 + 1 == casilla.getCoordenada().getNumero()
+                    if (f1 - 1 == casilla.getCoordenada().getNumero()
                             && letraThis.equals(casilla.getCoordenada().getLetra())) {
                         return true;
                     }

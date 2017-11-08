@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Interfaz;
+
 import LogicaJuego.Color;
 import Pieza.*;
 import Tablero.*;
@@ -19,18 +20,19 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.border.Border;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira 
- ** 15/10/2017 
+ ** @author Carlos Daniel Martines Sequeira * 15/10/2017
  */
 public class Frm_Juego extends javax.swing.JFrame {
+
     /**
      * Creates new form Frm_Juego
      */
-    private Timer timer;
-    private Timer timer2;
+    private Timer timer; //tiempo del jugador 1
+    private Timer timer2; //tiempo del jugador 2
     private int segundos = 60;
     private int minutos = 9;
     private int segundos2 = 60;
@@ -41,6 +43,7 @@ public class Frm_Juego extends javax.swing.JFrame {
     private Casilla casilla2;
     private JLabel label = new JLabel();
     private boolean estado = true;
+
     public Frm_Juego() {
         initComponents();
         setLocationRelativeTo(null);
@@ -52,6 +55,7 @@ public class Frm_Juego extends javax.swing.JFrame {
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
     }
+
     public Frm_Juego(Tablero tablero) {
         initComponents();
         timer = new Timer(1000, accion);
@@ -59,6 +63,8 @@ public class Frm_Juego extends javax.swing.JFrame {
         this.tablero = tablero;
         tablero.setTurno(Color.BLANCO);
         inicioJuego();
+        btnExit.setContentAreaFilled(false);
+        btnExit.setBorder(null);
         mostarJugadores();
     }
     /**
@@ -124,8 +130,10 @@ public class Frm_Juego extends javax.swing.JFrame {
             }
         }
     };
+
     /**
-     * Método que inicializa el tablero y/o cada casilla con sus componentes a nivel de consola.
+     * Método que inicializa el tablero y/o cada casilla con sus componentes a
+     * nivel de consola.
      */
     public void inicioJuego() {
         crearLabels();
@@ -147,9 +155,10 @@ public class Frm_Juego extends javax.swing.JFrame {
             }
         }
     }
+
     /**
-     * Método en el cual se crea los labels y se pinta todos los componentes en el panel.
-     * Eso lo hace cad vez que se llama el método.
+     * Método en el cual se crea los labels y se pinta todos los componentes en
+     * el panel. Eso lo hace cad vez que se llama el método.
      */
     public void crearLabels() {
         ButtonController bt = new ButtonController();
@@ -177,14 +186,18 @@ public class Frm_Juego extends javax.swing.JFrame {
         jpanel.addMouseListener(bt);
         jpanel.paintAll(jpanel.getGraphics());
     }
+
     /**
-     * En este método se aplica la logica del juego, lo que es llmar a los metodos de mover, puede mover
-     * en resumen aqui implementa la logica con la parte grafica del programa.
-     * Támbien cumple con el funcionamiento del uso de los clicks en la parte de interfaz(panel).
+     * En este método se aplica la logica del juego, lo que es llmar a los
+     * metodos de mover, puede mover en resumen aqui implementa la logica con la
+     * parte grafica del programa. Támbien cumple con el funcionamiento del uso
+     * de los clicks en la parte de interfaz(panel).
      */
     private class ButtonController implements MouseListener {
+
         public void actionPerformed(ActionEvent e) {
         }
+
         @Override
         public void mouseClicked(MouseEvent e) {
             JLabel lbl = (JLabel) e.getSource();
@@ -287,6 +300,7 @@ public class Frm_Juego extends javax.swing.JFrame {
         public void mouseExited(MouseEvent e) {
         }
     }
+
     /**
      * Muetras los jugadores cual es el ganador de la rifa.
      */
@@ -300,6 +314,7 @@ public class Frm_Juego extends javax.swing.JFrame {
             lblJug2.setText(tablero.getPartida().getJugador2().replace("1", ""));
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -511,7 +526,9 @@ public class Frm_Juego extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
     /**
      * Verifica si esta el rey negro, si no ha sido comido.
-     * @return true: si esta muerto(Envia mensaje de ganador), false: si esta vivo.
+     *
+     * @return true: si esta muerto(Envia mensaje de ganador), false: si esta
+     * vivo.
      */
     public boolean validarNegra() {
         for (int filas = 0; filas < 8; filas++) {
@@ -523,9 +540,12 @@ public class Frm_Juego extends javax.swing.JFrame {
         }
         return true;
     }
+
     /**
      * Verifica si esta el rey blanco, si no ha sido comido.
-     * @return true: si esta muerto(Envia mensaje de ganador), false: si esta vivo.
+     *
+     * @return true: si esta muerto(Envia mensaje de ganador), false: si esta
+     * vivo.
      */
     public boolean validarBlanca() {
         for (int filas = 0; filas < 8; filas++) {
@@ -537,6 +557,7 @@ public class Frm_Juego extends javax.swing.JFrame {
         }
         return true;
     }
+
     /**
      * @param args the command line arguments
      */
