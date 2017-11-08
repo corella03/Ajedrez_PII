@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Interfaz;
-
 import LogicaJuego.Color;
 import Pieza.*;
 import Tablero.*;
@@ -20,15 +19,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.border.Border;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Carlos Daniel Martines Sequeira * 15/10/2017 *
- *
+ ** @author Carlos Daniel Martines Sequeira 
+ ** 15/10/2017 
  */
 public class Frm_Juego extends javax.swing.JFrame {
-
     /**
      * Creates new form Frm_Juego
      */
@@ -44,7 +41,6 @@ public class Frm_Juego extends javax.swing.JFrame {
     private Casilla casilla2;
     private JLabel label = new JLabel();
     private boolean estado = true;
-
     public Frm_Juego() {
         initComponents();
         setLocationRelativeTo(null);
@@ -56,7 +52,6 @@ public class Frm_Juego extends javax.swing.JFrame {
         btnExit.setContentAreaFilled(false);
         btnExit.setBorder(null);
     }
-
     public Frm_Juego(Tablero tablero) {
         initComponents();
         timer = new Timer(1000, accion);
@@ -64,8 +59,11 @@ public class Frm_Juego extends javax.swing.JFrame {
         this.tablero = tablero;
         tablero.setTurno(Color.BLANCO);
         inicioJuego();
-        setBackground();
+        mostarJugadores();
     }
+    /**
+     * Método que lleva el Tiempo de un jugador.
+     */
     private ActionListener accion = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -95,6 +93,9 @@ public class Frm_Juego extends javax.swing.JFrame {
 
         }
     };
+    /**
+     * Método que lleva el tiempo del otro Jugador
+     */
     private ActionListener accion2 = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -123,12 +124,17 @@ public class Frm_Juego extends javax.swing.JFrame {
             }
         }
     };
-
+    /**
+     * Método que inicializa el tablero y/o cada casilla con sus componentes a nivel de consola.
+     */
     public void inicioJuego() {
         crearLabels();
-        ver();
+        //ver();
     }
 
+    /**
+     * Imprime cada casilla con sus componentes a nivel de consola.
+     */
     public void ver() {
         for (int filas = 0; filas < 8; filas++) {
             for (int columnas = 0; columnas < 8; columnas++) {
@@ -141,7 +147,10 @@ public class Frm_Juego extends javax.swing.JFrame {
             }
         }
     }
-
+    /**
+     * Método en el cual se crea los labels y se pinta todos los componentes en el panel.
+     * Eso lo hace cad vez que se llama el método.
+     */
     public void crearLabels() {
         ButtonController bt = new ButtonController();
         jpanel.removeAll();
@@ -168,12 +177,14 @@ public class Frm_Juego extends javax.swing.JFrame {
         jpanel.addMouseListener(bt);
         jpanel.paintAll(jpanel.getGraphics());
     }
-
+    /**
+     * En este método se aplica la logica del juego, lo que es llmar a los metodos de mover, puede mover
+     * en resumen aqui implementa la logica con la parte grafica del programa.
+     * Támbien cumple con el funcionamiento del uso de los clicks en la parte de interfaz(panel).
+     */
     private class ButtonController implements MouseListener {
-
         public void actionPerformed(ActionEvent e) {
         }
-
         @Override
         public void mouseClicked(MouseEvent e) {
             JLabel lbl = (JLabel) e.getSource();
@@ -276,8 +287,10 @@ public class Frm_Juego extends javax.swing.JFrame {
         public void mouseExited(MouseEvent e) {
         }
     }
-
-    public void setBackground() {
+    /**
+     * Muetras los jugadores cual es el ganador de la rifa.
+     */
+    public void mostarJugadores() {
         String jug1 = String.valueOf(tablero.getPartida().getJugador1().charAt(tablero.getPartida().getJugador1().length() - 1));
         if (jug1.equals("1")) {
             lblJug2.setText(tablero.getPartida().getJugador1().replace("1", ""));
@@ -287,7 +300,6 @@ public class Frm_Juego extends javax.swing.JFrame {
             lblJug2.setText(tablero.getPartida().getJugador2().replace("1", ""));
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -470,7 +482,6 @@ public class Frm_Juego extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         timer.start();
     }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         piezasB.removeAll();
         piezasN.removeAll();
@@ -498,7 +509,10 @@ public class Frm_Juego extends javax.swing.JFrame {
         tablero.setTurno(Color.BLANCO);
         inicioJuego();
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    /**
+     * Verifica si esta el rey negro, si no ha sido comido.
+     * @return true: si esta muerto(Envia mensaje de ganador), false: si esta vivo.
+     */
     public boolean validarNegra() {
         for (int filas = 0; filas < 8; filas++) {
             for (int columnas = 0; columnas < 8; columnas++) {
@@ -509,7 +523,10 @@ public class Frm_Juego extends javax.swing.JFrame {
         }
         return true;
     }
-
+    /**
+     * Verifica si esta el rey blanco, si no ha sido comido.
+     * @return true: si esta muerto(Envia mensaje de ganador), false: si esta vivo.
+     */
     public boolean validarBlanca() {
         for (int filas = 0; filas < 8; filas++) {
             for (int columnas = 0; columnas < 8; columnas++) {
@@ -520,7 +537,6 @@ public class Frm_Juego extends javax.swing.JFrame {
         }
         return true;
     }
-
     /**
      * @param args the command line arguments
      */
